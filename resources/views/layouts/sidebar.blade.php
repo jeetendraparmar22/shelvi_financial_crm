@@ -31,6 +31,9 @@
                     <a href="{{ route('user-register') }}"><i class="fe fe-file-text"></i> <span>Register
                             User</span></a>
                 </li>
+                <li>
+                    <a href="{{ route('user-list') }}"><i class="fe fe-file-text"></i> <span> User List</span></a>
+                </li>
 
             </ul>
 
