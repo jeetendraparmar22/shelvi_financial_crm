@@ -13,24 +13,32 @@
                                     <a href="{{ route('dashboard') }}">Home</a>
                                 </li>
                                 <li class="breadcrumb-item text-muted">
-                                    <a href="#" class="text-muted">Users List</a>
+                                    <a href="#" class="text-muted">Customers List</a>
                                 </li>
                             </ol>
                         </div>
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title mb-0">Users List</h4>
+                            <h4 class="card-title mb-0">Customers List</h4>
                         </div>
                         <div class="card-body pt-2">
                             <div>
                                 <div class="d-flex align-items-center">
-
+                                    <div class="user_list form-group mb-0">
+                                        <select class="select" id="user_list">
+                                            <option>Select User</option>
+                                            <option>Options 1</option>
+                                            <option>Options 2</option>
+                                            <option>Options 3</option>
+                                            <option>Options 4</option>
+                                        </select>
+                                    </div>
                                     <div class="top-nav-search customer_list">
 
                                         <div class>
-                                            <a class="btn btn-primary" href="{{ route('users.create') }}"><i
-                                                    class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add User</a>
+                                            <a class="btn btn-primary" href="{{ route('customers.create') }}"><i
+                                                    class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Customer</a>
                                         </div>
                                         <form>
 

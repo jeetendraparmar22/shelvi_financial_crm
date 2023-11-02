@@ -4,15 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-        return view('user-list');
+        return view('customer-list');
     }
 
     /**
@@ -20,7 +19,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user-register');
+        return view('customer-application-form');
     }
 
     /**
@@ -28,7 +27,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validation 
+        $validated = $request->validate([
+            ''
+        ]);
     }
 
     /**
