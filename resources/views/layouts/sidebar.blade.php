@@ -21,15 +21,16 @@
             <ul>
                 <li class="menu-title"><span>Details</span></li>
                 <li>
-                    <a href="{{ route('user-form') }}"><i class="fe fe-file"></i> <span>Application Form</span></a>
+                    <a href="{{ route('customers.create') }}"><i class="fe fe-file"></i> <span>Application
+                            Form</span></a>
                 </li>
                 <li>
-                    <a href="{{ route('user-list') }}"><i class="fe fe-user"></i> <span>Customers-List</span></a>
+                    <a href="{{ route('customers.index') }}"><i class="fe fe-user"></i> <span>Customers-List</span></a>
                 </li>
 
+
                 <li>
-                    <a href="{{ route('user-register') }}"><i class="fe fe-file-text"></i> <span>Register
-                            User</span></a>
+                    <a href="{{ route('users.index') }}"><i class="fe fe-file-text"></i> <span> User List</span></a>
                 </li>
 
             </ul>
