@@ -6610,6 +6610,37 @@ table .badge {
     position: relative
 }
 
+.image_icons {
+    width: 40px;
+}
+
+/* //////// */
+
+.bg-light-primary {
+    background: #d3eafd;
+    color: #2196f3;
+}
+
+.table-card .table-responsive .table>tbody>tr>th {
+    text-align: left;
+}
+
+.table-card .form-control {
+    text-align: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ////////// */
+
 .form-custom.cal-icon:after {
     font-size: 14px
 }
