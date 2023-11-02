@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +27,7 @@ Route::post('/login', [LoginController::class, 'authLogin'])->name('login');
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // User routes
-Route::get('user-form', [UserController::class, 'userForm'])->name('user-form');
-Route::get('user-list', [UserController::class, 'userList'])->name('user-list');
-Route::get('user-register', [UserController::class, 'userRegisterForm'])->name('user-register');
-Route::post('register', [UserController::class, 'userRegistration'])->name('register');
+Route::resource('users', UserController::class);
+
+// Customer Routes
+Route::resource('customers', CustomerController::class);
