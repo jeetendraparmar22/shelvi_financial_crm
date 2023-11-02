@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
     <title>Shelvi Financial Services</title>
 
-    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.ico') }}" />
 
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
 
@@ -21,6 +21,12 @@
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}" />
 
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" />
+
+    <link rel="stylesheet" href="{{ asset('assets/plugins/fullcalendar/fullcalendar.min.css') }}" />
+
+    <link rel="stylesheet" href="{{ asset('assets/css/fancybox.css') }}" />
+
+    <link rel="stylesheet" href="{{ asset('assets/plugins/toastr/toatr.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
 </head>
@@ -54,21 +60,21 @@
                 {{-- <li class="nav-item dropdown has-arrow flag-nav">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">
                         <img src="{{ asset('assets/img/flags/us1.png') }}" alt height="20" /><span>English</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end">
+                    <a href="javascript:void(0);" class="dropdown-item">
+                        <img src="{{ asset('assets/img/flags/us.png') }}" alt height="16" /><span>English</span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-end">
-                        <a href="javascript:void(0);" class="dropdown-item">
-                            <img src="{{ asset('assets/img/flags/us.png') }}" alt height="16" /><span>English</span>
-                        </a>
-                        <a href="javascript:void(0);" class="dropdown-item">
-                            <img src="{{ asset('assets/img/flags/fr.png') }}" alt height="16" /><span>French</span>
-                        </a>
-                        <a href="javascript:void(0);" class="dropdown-item">
-                            <img src="{{ asset('assets/img/flags/es.png') }}" alt height="16" /><span>Spanish</span>
-                        </a>
-                        <a href="javascript:void(0);" class="dropdown-item">
-                            <img src="{{ asset('assets/img/flags/de.png') }}" alt height="16" /><span>German</span>
-                        </a>
-                    </div>
+                    <a href="javascript:void(0);" class="dropdown-item">
+                        <img src="{{ asset('assets/img/flags/fr.png') }}" alt height="16" /><span>French</span>
+                    </a>
+                    <a href="javascript:void(0);" class="dropdown-item">
+                        <img src="{{ asset('assets/img/flags/es.png') }}" alt height="16" /><span>Spanish</span>
+                    </a>
+                    <a href="javascript:void(0);" class="dropdown-item">
+                        <img src="{{ asset('assets/img/flags/de.png') }}" alt height="16" /><span>German</span>
+                    </a>
+                </div>
                 </li> --}}
 
                 <li class="nav-item has-arrow dropdown-heads">
@@ -92,8 +98,7 @@
                                     <a href="#">
                                         <div class="media d-flex">
                                             <span class="avatar avatar-sm">
-                                                <img class="avatar-img rounded-circle" alt
-                                                    src="{{ asset('assets/img/profiles/avatar-02.jpg') }}" />
+                                                <img class="avatar-img rounded-circle" alt src="{{ asset('assets/img/profiles/avatar-02.jpg') }}" />
                                             </span>
                                             <div class="media-body">
                                                 <p class="noti-details">
@@ -111,8 +116,7 @@
                                     <a href="profile.html">
                                         <div class="media d-flex">
                                             <span class="avatar avatar-sm">
-                                                <img class="avatar-img rounded-circle" alt
-                                                    src="{{ asset('assets/img/profiles/avatar-03.jpg') }}" />
+                                                <img class="avatar-img rounded-circle" alt src="{{ asset('assets/img/profiles/avatar-03.jpg') }}" />
                                             </span>
                                             <div class="media-body">
                                                 <p class="noti-details">
@@ -131,8 +135,7 @@
                                     <a href="#">
                                         <div class="media d-flex">
                                             <div class="avatar avatar-sm">
-                                                <span class="avatar-title rounded-circle bg-primary-light"><i
-                                                        class="far fa-user"></i></span>
+                                                <span class="avatar-title rounded-circle bg-primary-light"><i class="far fa-user"></i></span>
                                             </div>
                                             <div class="media-body">
                                                 <p class="noti-details">
@@ -149,8 +152,7 @@
                                     <a href="#">
                                         <div class="media d-flex">
                                             <span class="avatar avatar-sm">
-                                                <img class="avatar-img rounded-circle" alt
-                                                    src="{{ asset('assets/img/profiles/avatar-04.jpg') }}" />
+                                                <img class="avatar-img rounded-circle" alt src="{{ asset('assets/img/profiles/avatar-04.jpg') }}" />
                                             </span>
                                             <div class="media-body">
                                                 <p class="noti-details">
@@ -169,8 +171,7 @@
                                     <a href="#">
                                         <div class="media d-flex">
                                             <div class="avatar avatar-sm">
-                                                <span class="avatar-title rounded-circle bg-info-light"><i
-                                                        class="far fa-comment"></i></span>
+                                                <span class="avatar-title rounded-circle bg-info-light"><i class="far fa-comment"></i></span>
                                             </div>
                                             <div class="media-body">
                                                 <p class="noti-details">
@@ -199,8 +200,7 @@
                 <li class="nav-item dropdown">
                     <a href="javascript:void(0)" class="user-link nav-link" data-bs-toggle="dropdown">
                         <span class="user-img">
-                            <img src="{{ asset('assets/img/logo-small.svg') }}" alt="img"
-                                class="profilesidebar" />
+                            <img src="{{ asset('assets/img/logo-small.svg') }}" alt="img" class="profilesidebar" />
                             {{-- <span class="animate-circle"></span> --}}
                         </span>
                         <span class="user-content">

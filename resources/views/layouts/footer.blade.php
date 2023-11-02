@@ -14,6 +14,10 @@
 <script src="{{ asset('assets/plugins/toastr/toastr.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/toastr/toastr.js') }}"></script>
 <script src="{{ asset('assets/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/fullcalendar/fullcalendar.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/fullcalendar/jquery.fullcalendar.js') }}"></script>
+<script src="{{ asset('assets/js/fancybox.umd.js') }}"></script>
+
 <script src="{{ asset('assets/js/script.js') }}"></script>
 </body>
 

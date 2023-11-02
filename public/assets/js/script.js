@@ -1150,49 +1150,52 @@
     prevTab.show();
   });
 })(jQuery);
-function getLastSegmentFromUrl(url) {
-  const segments = url.split("/");
-  return segments[segments.length - 1];
-}
-function updateLocalStorageValue() {
-  const currentUrl = window.location.href;
-  const lastSegment = getLastSegmentFromUrl(currentUrl);
-  localStorage.setItem("lastUrlSegment", lastSegment);
-}
-updateLocalStorageValue();
-window.addEventListener("popstate", updateLocalStorageValue);
-const localStorageValue = localStorage.getItem("lastUrlSegment");
-const targetDiv = document.getElementById("targetDiv");
-const targetDiv2 = document.getElementById("targetDiv2");
-const targetDiv3 = document.getElementById("targetDiv3");
-const targetDiv4 = document.getElementById("targetDiv4");
-const targetDiv5 = document.getElementById("targetDiv5");
-const classToToggle = "checked";
-if (localStorageValue === "index.html") {
-  targetDiv.classList.add(classToToggle);
-} else {
-  targetDiv.classList.remove(classToToggle);
-}
-if (localStorageValue === "index-two.html") {
-  targetDiv2.classList.add(classToToggle);
-} else {
-  targetDiv2.classList.remove(classToToggle);
-}
-if (localStorageValue === "index-three.html") {
-  targetDiv3.classList.add(classToToggle);
-} else {
-  targetDiv3.classList.remove(classToToggle);
-}
-if (localStorageValue === "index-four.html") {
-  targetDiv4.classList.add(classToToggle);
-} else {
-  targetDiv4.classList.remove(classToToggle);
-}
-if (localStorageValue === "index-five.html") {
-  targetDiv5.classList.add(classToToggle);
-} else {
-  targetDiv5.classList.remove(classToToggle);
-}
+// function getLastSegmentFromUrl(url) {
+//   const segments = url.split("/");
+//   return segments[segments.length - 1];
+// }
+// function updateLocalStorageValue() {
+//   const currentUrl = window.location.href;
+//   const lastSegment = getLastSegmentFromUrl(currentUrl);
+//   localStorage.setItem("lastUrlSegment", lastSegment);
+// }
+// updateLocalStorageValue();
+// window.addEventListener("popstate", updateLocalStorageValue);
+// const localStorageValue = localStorage.getItem("lastUrlSegment");
+// const targetDiv = document.getElementById("targetDiv");
+// const targetDiv2 = document.getElementById("targetDiv2");
+// const targetDiv3 = document.getElementById("targetDiv3");
+// const targetDiv4 = document.getElementById("targetDiv4");
+// const targetDiv5 = document.getElementById("targetDiv5");
+// const classToToggle = "checked";
+// if (localStorageValue === "index.html") {
+//   targetDiv.classList.add(classToToggle);
+// } else {
+//   targetDiv.classList.remove(classToToggle);
+// }
+// if (localStorageValue === "index-two.html") {
+//   targetDiv2.classList.add(classToToggle);
+// } else {
+//   targetDiv2.classList.remove(classToToggle);
+// }
+// if (localStorageValue === "index-three.html") {
+//   targetDiv3.classList.add(classToToggle);
+// } else {
+//   targetDiv3.classList.remove(classToToggle);
+// }
+// if (localStorageValue === "index-four.html") {
+//   targetDiv4.classList.add(classToToggle);
+// } else {
+//   targetDiv4.classList.remove(classToToggle);
+// }
+// if (localStorageValue === "index-five.html") {
+//   targetDiv5.classList.add(classToToggle);
+// } else {
+//   targetDiv5.classList.remove(classToToggle);
+// }
 
+
+// /*bootstrap tooltip*/
+    Fancybox.bind("[data-fancybox]", {});
 
 // $("#user_list").select2({ twig: true });

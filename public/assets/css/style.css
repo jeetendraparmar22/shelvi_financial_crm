@@ -1337,7 +1337,7 @@ div#global-loader,
 
 .btn {
     font-size: 14px;
-    font-weight: 600;
+    /* font-weight: 600; */
     position: relative;
     margin: 0;
     z-index: 1;
@@ -1353,8 +1353,16 @@ div#global-loader,
     -webkit-transition: all .5s;
     -moz-transition: all .5s;
     -o-transition: all .5s;
-    transition: all .5s
+    transition: all .5s;
 }
+.table tbody td a.btn{
+    margin: 0;
+}
+
+.table tbody td a.btn:hover{
+    color: white;
+}
+
 
 .btn-white {
     background-color: #fff;
@@ -5306,9 +5314,9 @@ span.select2-container.select2-container--default.select2-container--open {
     margin-top: 2px
 }
 
-.table tbody td a {
+/* .table tbody td a {
     color: #333
-}
+} */
 
 .table tbody td a.btn-action-icon {
     background: #f3f3f3;
@@ -5549,9 +5557,9 @@ table .badge {
     text-align: center
 }
 
-.table tbody td a {
+/* .table tbody td a {
     color: #0052ea
-}
+} */
 
 .table tbody td a.action-icon {
     color: #333
@@ -5743,7 +5751,7 @@ table .badge {
     display: inline-block;
     margin-left: 10px;
     white-space: nowrap;
-    float: unset
+    /* float: unset */
 }
 
 .sidebar-menu-five ul ul a:hover {
@@ -5984,7 +5992,7 @@ table .badge {
     display: inline-block;
     margin-left: 10px;
     white-space: nowrap;
-    float: unset;
+    /* float: unset; */
     -webkit-transition: all .2s ease;
     -ms-transition: all .2s ease;
     transition: all .2s ease
@@ -6611,7 +6619,7 @@ table .badge {
 }
 
 .image_icons {
-    width: 40px;
+    width: 32px;
 }
 
 /* //////// */
@@ -6629,6 +6637,13 @@ table .badge {
     text-align: right;
 }
 
+.doc_icons{
+    width: 30px;
+}
+
+.ver_middle{
+    vertical-align: bottom;
+}
 
 
 

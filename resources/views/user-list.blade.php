@@ -51,7 +51,8 @@
                                                     <th class="sorting" rowspan="1" colspan="1">User Name</th>
                                                     <th class="sorting" rowspan="1" colspan="1">Mobile Number</th>
                                                     <th class="sorting" rowspan="1" colspan="1">Role</th>
-                                                    <th class="sorting" rowspan="1" colspan="1">Last Activity</th>
+                                                    <th class="sorting text-center" rowspan="1" colspan="1">Documents
+                                                    </th>
                                                     <th class="sorting" rowspan="1" colspan="1">Created on</th>
                                                     <th class="sorting_asc" rowspan="1" colspan="1"
                                                         aria-sort="ascending">Status</th>
@@ -69,31 +70,24 @@
                                                     </td>
                                                     <td>+1 989-438-3131</td>
                                                     <td>$4,220</td>
-                                                    <td><span class="badge badge-pill bg-ash-gray text-gray-light">10 mins
-                                                            ago</span></td>
+                                                    <td class="ver_middle text-center">
+                                                        <div class="d-flex justify-content-center">
+                                                            <a href="#"><img data-fancybox src="assets/img/pdf.svg"
+                                                                    class="doc_icons" /></a>
+                                                            <a href="#"><img data-fancybox src="assets/img/pdf.svg"
+                                                                    class="doc_icons" /></a>
+                                                        </div>
+                                                    </td>
                                                     <td>19 Dec 2022, 06:12 PM</td>
                                                     <td class="sorting_1"><span
                                                             class="badge badge-pill bg-success-light">Active</span></td>
-                                                    <td class="d-flex align-items-center">
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="#" class="btn-action-icon"
-                                                                data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                    class="fas fa-ellipsis-v"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-right" style>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a class="dropdown-item" href="#"><i
-                                                                                class="far fa-edit me-2"></i>Edit</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a class="dropdown-item" href="javascript:void(0);"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#delete_modal"><i
-                                                                                class="far fa-trash-alt me-2"></i>Delete</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
+                                                    <td class="d-flex align-items-center ">
+                                                        <a class="btn btn-small btn-success  me-2" href="#"><i
+                                                                class="far fa-edit me-2"></i> Edit</a>
+                                                        <a class="btn btn-small btn-danger text-white"
+                                                            href="javascript:void(0);" data-bs-toggle="modal"
+                                                            data-bs-target="#delete_modal"><i
+                                                                class="far fa-trash-alt me-2"></i>Delete</a>
                                                     </td>
                                                 </tr>
                                                 <tr role="row" class="even">
@@ -106,31 +100,24 @@
                                                     </td>
                                                     <td>+1 843-443-3282</td>
                                                     <td>$1,862</td>
-                                                    <td><span class="badge badge-pill bg-success-light">Online</span></td>
+                                                    <td class="ver_middle">
+                                                        <div class="d-flex justify-content-center">
+                                                            <a href="#"><img src="assets/img/pdf.svg"
+                                                                    class="doc_icons" /></a>
+                                                            <a href="#"><img src="assets/img/pdf.svg"
+                                                                    class="doc_icons" /></a>
+                                                        </div>
+                                                    </td>
                                                     <td>15 Dec 2022, 06:12 PM</td>
                                                     <td class="sorting_1"><span
                                                             class="badge badge-pill bg-success-light">Active</span></td>
-                                                    <td class="d-flex align-items-center">
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="#" class=" btn-action-icon "
-                                                                data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                    class="fas fa-ellipsis-v"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                <ul>
-                                                                    <li>
-                                                                        <a class="dropdown-item" href="#"><i
-                                                                                class="far fa-edit me-2"></i>Edit</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a class="dropdown-item"
-                                                                            href="javascript:void(0);"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#delete_modal"><i
-                                                                                class="far fa-trash-alt me-2"></i>Delete</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
+                                                    <td class="d-flex align-items-center ">
+                                                        <a class="btn btn-small btn-success  me-2" href="#"><i
+                                                                class="far fa-edit me-2"></i> Edit</a>
+                                                        <a class="btn btn-small btn-danger text-white"
+                                                            href="javascript:void(0);" data-bs-toggle="modal"
+                                                            data-bs-target="#delete_modal"><i
+                                                                class="far fa-trash-alt me-2"></i>Delete</a>
                                                     </td>
                                                 </tr>
                                                 <tr role="row" class="odd">
@@ -143,32 +130,24 @@
                                                     </td>
                                                     <td>+1 956-623-2880</td>
                                                     <td>$6,789</td>
-                                                    <td><span class="badge badge-pill bg-ash-gray text-gray-light">1 hour
-                                                            ago</span></td>
+                                                    <td class="ver_middle">
+                                                        <div class="d-flex justify-content-center">
+                                                            <a href="#"><img src="assets/img/pdf.svg"
+                                                                    class="doc_icons" /></a>
+                                                            <a href="#"><img src="assets/img/pdf.svg"
+                                                                    class="doc_icons" /></a>
+                                                        </div>
+                                                    </td>
                                                     <td>14 Dec 2022, 12:38 PM</td>
                                                     <td class="sorting_1"><span
                                                             class="badge badge-pill bg-success-light">Active</span></td>
-                                                    <td class="d-flex align-items-center">
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="#" class=" btn-action-icon "
-                                                                data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                    class="fas fa-ellipsis-v"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                <ul>
-                                                                    <li>
-                                                                        <a class="dropdown-item" href="#"><i
-                                                                                class="far fa-edit me-2"></i>Edit</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a class="dropdown-item"
-                                                                            href="javascript:void(0);"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#delete_modal"><i
-                                                                                class="far fa-trash-alt me-2"></i>Delete</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
+                                                    <td class="d-flex align-items-center ">
+                                                        <a class="btn btn-small btn-success  me-2" href="#"><i
+                                                                class="far fa-edit me-2"></i> Edit</a>
+                                                        <a class="btn btn-small btn-danger text-white"
+                                                            href="javascript:void(0);" data-bs-toggle="modal"
+                                                            data-bs-target="#delete_modal"><i
+                                                                class="far fa-trash-alt me-2"></i>Delete</a>
                                                     </td>
                                                 </tr>
                                                 <tr role="row" class="even">
@@ -181,31 +160,24 @@
                                                     </td>
                                                     <td>+1 956-613-2880</td>
                                                     <td>$1,789</td>
-                                                    <td><span class="badge badge-pill bg-success-light">Online</span></td>
+                                                    <td class="ver_middle">
+                                                        <div class="d-flex justify-content-center">
+                                                            <a href="#"><img src="assets/img/pdf.svg"
+                                                                    class="doc_icons" /></a>
+                                                            <a href="#"><img src="assets/img/pdf.svg"
+                                                                    class="doc_icons" /></a>
+                                                        </div>
+                                                    </td>
                                                     <td>12 Dec 2022, 12:38 PM</td>
                                                     <td class="sorting_1"><span
                                                             class="badge badge-pill bg-success-light">Active</span></td>
-                                                    <td class="d-flex align-items-center">
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="#" class=" btn-action-icon "
-                                                                data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                    class="fas fa-ellipsis-v"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                <ul>
-                                                                    <li>
-                                                                        <a class="dropdown-item" href="#"><i
-                                                                                class="far fa-edit me-2"></i>Edit</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a class="dropdown-item"
-                                                                            href="javascript:void(0);"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#delete_modal"><i
-                                                                                class="far fa-trash-alt me-2"></i>Delete</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
+                                                    <td class="d-flex align-items-center ">
+                                                        <a class="btn btn-small btn-success  me-2" href="#"><i
+                                                                class="far fa-edit me-2"></i> Edit</a>
+                                                        <a class="btn btn-small btn-danger text-white"
+                                                            href="javascript:void(0);" data-bs-toggle="modal"
+                                                            data-bs-target="#delete_modal"><i
+                                                                class="far fa-trash-alt me-2"></i>Delete</a>
                                                     </td>
                                                 </tr>
                                                 <tr role="row" class="odd">
@@ -218,32 +190,25 @@
                                                     </td>
                                                     <td>+1 917-409-0861</td>
                                                     <td>$2,789</td>
-                                                    <td><span class="badge badge-pill bg-success-light">Online</span></td>
+                                                    <td class="ver_middle">
+                                                        <div class="d-flex justify-content-center">
+                                                            <a href="#"><img src="assets/img/pdf.svg"
+                                                                    class="doc_icons" /></a>
+                                                            <a href="#"><img src="assets/img/pdf.svg"
+                                                                    class="doc_icons" /></a>
+                                                        </div>
+                                                    </td>
                                                     <td>04 Dec 2022, 12:38 PM</td>
                                                     <td class="sorting_1"><span
                                                             class="badge badge-pill bg-ash-gray text-gray-light">Restricted</span>
                                                     </td>
-                                                    <td class="d-flex align-items-center">
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="#" class=" btn-action-icon "
-                                                                data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                    class="fas fa-ellipsis-v"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                <ul>
-                                                                    <li>
-                                                                        <a class="dropdown-item" href="#"><i
-                                                                                class="far fa-edit me-2"></i>Edit</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a class="dropdown-item"
-                                                                            href="javascript:void(0);"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#delete_modal"><i
-                                                                                class="far fa-trash-alt me-2"></i>Delete</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
+                                                    <td class="d-flex align-items-center ">
+                                                        <a class="btn btn-small btn-success  me-2" href="#"><i
+                                                                class="far fa-edit me-2"></i> Edit</a>
+                                                        <a class="btn btn-small btn-danger text-white"
+                                                            href="javascript:void(0);" data-bs-toggle="modal"
+                                                            data-bs-target="#delete_modal"><i
+                                                                class="far fa-trash-alt me-2"></i>Delete</a>
                                                     </td>
                                                 </tr>
                                                 <tr role="row" class="even">
@@ -255,33 +220,25 @@
                                                     </td>
                                                     <td>+1 117-409-0861</td>
                                                     <td>$1,789</td>
-                                                    <td><span class="badge badge-pill bg-ash-gray text-gray-light">2 days
-                                                            ago</span></td>
+                                                    <td class="ver_middle">
+                                                        <div class="d-flex justify-content-center">
+                                                            <a href="#"><img src="assets/img/pdf.svg"
+                                                                    class="doc_icons" /></a>
+                                                            <a href="#"><img src="assets/img/pdf.svg"
+                                                                    class="doc_icons" /></a>
+                                                        </div>
+                                                    </td>
                                                     <td>04 Dec 2022, 12:38 PM</td>
                                                     <td class="sorting_1"><span
                                                             class="badge badge-pill bg-ash-gray text-gray-light">Restricted</span>
                                                     </td>
-                                                    <td class="d-flex align-items-center">
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="#" class=" btn-action-icon "
-                                                                data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                    class="fas fa-ellipsis-v"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                <ul>
-                                                                    <li>
-                                                                        <a class="dropdown-item" href="#"><i
-                                                                                class="far fa-edit me-2"></i>Edit</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a class="dropdown-item"
-                                                                            href="javascript:void(0);"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#delete_modal"><i
-                                                                                class="far fa-trash-alt me-2"></i>Delete</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
+                                                    <td class="d-flex align-items-center ">
+                                                        <a class="btn btn-small btn-success  me-2" href="#"><i
+                                                                class="far fa-edit me-2"></i> Edit</a>
+                                                        <a class="btn btn-small btn-danger text-white"
+                                                            href="javascript:void(0);" data-bs-toggle="modal"
+                                                            data-bs-target="#delete_modal"><i
+                                                                class="far fa-trash-alt me-2"></i>Delete</a>
                                                     </td>
                                                 </tr>
 
@@ -333,7 +290,8 @@
                         <div class="modal-btn delete-action">
                             <div class="row">
                                 <div class="col-6">
-                                    <a href="#" class="btn btn-primary paid-continue-btn">Delete</a>
+                                    <a href="#" class="btn btn-primary paid-continue-btn" id="type-error"
+                                        data-bs-dismiss="modal">Delete</a>
                                 </div>
                                 <div class="col-6">
                                     <a href="#" data-bs-dismiss="modal"
