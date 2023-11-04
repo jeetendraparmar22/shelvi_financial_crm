@@ -56,242 +56,55 @@
                                             <thead class="thead-light">
                                                 <tr role="row">
                                                     <th class="sorting" rowspan="1" colspan="1">#</th>
-                                                    <th class="sorting" rowspan="1" colspan="1">User Name</th>
-                                                    <th class="sorting" rowspan="1" colspan="1">Mobile Number</th>
-                                                    <th class="sorting" rowspan="1" colspan="1">Role</th>
-                                                    <th class="sorting" rowspan="1" colspan="1">Last Activity</th>
-                                                    <th class="sorting" rowspan="1" colspan="1">Created on</th>
+                                                    <th class="sorting" rowspan="1" colspan="1">Customer Name</th>
+                                                    <th class="sorting" rowspan="1" colspan="1">Mobile No.</th>
+                                                    <th class="sorting" rowspan="1" colspan="1">Loan Amount</th>
+                                                    <th class="sorting" rowspan="1" colspan="1">Executive Name</th>
+
+                                                    <th class="sorting text-center" rowspan="1" colspan="1">Documents
+                                                    </th>
+                                                    <th class="sorting" rowspan="1" colspan="1">File Created on</th>
                                                     <th class="sorting_asc" rowspan="1" colspan="1"
-                                                        aria-sort="ascending">Status</th>
+                                                        aria-sort="ascending">Loan Status</th>
                                                     <th class="sorting" rowspan="1" colspan="1">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach ($customers as $customer)
+                                                    <tr role="row" class="odd">
+                                                        <td class>1</td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a
+                                                                    href="{{ route('customers.show', ['customer' => $customer->id]) }}">{{ $customer->first_name }}
+                                                                </a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>{{ $customer->mobile_no }}</td>
+                                                        <td>{{ $customer->loan_amount }}</td>
+                                                        <td></td>
 
-                                                <tr role="row" class="odd">
-                                                    <td class>1</td>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="customer-detail.html">John Smith </a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>+1 989-438-3131</td>
-                                                    <td>$4,220</td>
-                                                    <td><span class="badge badge-pill bg-ash-gray text-gray-light">10 mins
-                                                            ago</span></td>
-                                                    <td>19 Dec 2022, 06:12 PM</td>
-                                                    <td class="sorting_1"><span
-                                                            class="badge badge-pill bg-success-light">Active</span></td>
-                                                    <td class="d-flex align-items-center">
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="#" class="btn-action-icon"
-                                                                data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                    class="fas fa-ellipsis-v"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-right" style>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a class="dropdown-item" href="#"><i
-                                                                                class="far fa-edit me-2"></i>Edit</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a class="dropdown-item" href="javascript:void(0);"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#delete_modal"><i
-                                                                                class="far fa-trash-alt me-2"></i>Delete</a>
-                                                                    </li>
-                                                                </ul>
+                                                        <td class="ver_middle text-center">
+                                                            <div class="d-flex justify-content-center">
+                                                                <a href="#"><img data-fancybox
+                                                                        src="assets/img/pdf.svg" class="doc_icons" /></a>
+                                                                <a href="#"><img data-fancybox
+                                                                        src="assets/img/pdf.svg" class="doc_icons" /></a>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr role="row" class="even">
-                                                    <td class>2</td>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-
-                                                            <a href="customer-detail.html">Johnny </a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>+1 843-443-3282</td>
-                                                    <td>$1,862</td>
-                                                    <td><span class="badge badge-pill bg-success-light">Online</span></td>
-                                                    <td>15 Dec 2022, 06:12 PM</td>
-                                                    <td class="sorting_1"><span
-                                                            class="badge badge-pill bg-success-light">Active</span></td>
-                                                    <td class="d-flex align-items-center">
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="#" class=" btn-action-icon "
-                                                                data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                    class="fas fa-ellipsis-v"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                <ul>
-                                                                    <li>
-                                                                        <a class="dropdown-item" href="#"><i
-                                                                                class="far fa-edit me-2"></i>Edit</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a class="dropdown-item"
-                                                                            href="javascript:void(0);"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#delete_modal"><i
-                                                                                class="far fa-trash-alt me-2"></i>Delete</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr role="row" class="odd">
-                                                    <td class>4</td>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-
-                                                            <a href="customer-detail.html">Sharonda </a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>+1 956-623-2880</td>
-                                                    <td>$6,789</td>
-                                                    <td><span class="badge badge-pill bg-ash-gray text-gray-light">1 hour
-                                                            ago</span></td>
-                                                    <td>14 Dec 2022, 12:38 PM</td>
-                                                    <td class="sorting_1"><span
-                                                            class="badge badge-pill bg-success-light">Active</span></td>
-                                                    <td class="d-flex align-items-center">
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="#" class=" btn-action-icon "
-                                                                data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                    class="fas fa-ellipsis-v"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                <ul>
-                                                                    <li>
-                                                                        <a class="dropdown-item" href="#"><i
-                                                                                class="far fa-edit me-2"></i>Edit</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a class="dropdown-item"
-                                                                            href="javascript:void(0);"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#delete_modal"><i
-                                                                                class="far fa-trash-alt me-2"></i>Delete</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr role="row" class="even">
-                                                    <td class>5</td>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-
-                                                            <a href="customer-detail.html">Pricilla </a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>+1 956-613-2880</td>
-                                                    <td>$1,789</td>
-                                                    <td><span class="badge badge-pill bg-success-light">Online</span></td>
-                                                    <td>12 Dec 2022, 12:38 PM</td>
-                                                    <td class="sorting_1"><span
-                                                            class="badge badge-pill bg-success-light">Active</span></td>
-                                                    <td class="d-flex align-items-center">
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="#" class=" btn-action-icon "
-                                                                data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                    class="fas fa-ellipsis-v"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                <ul>
-                                                                    <li>
-                                                                        <a class="dropdown-item" href="#"><i
-                                                                                class="far fa-edit me-2"></i>Edit</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a class="dropdown-item"
-                                                                            href="javascript:void(0);"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#delete_modal"><i
-                                                                                class="far fa-trash-alt me-2"></i>Delete</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr role="row" class="odd">
-                                                    <td class>3</td>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-
-                                                            <a href="customer-detail.html">Robert </a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>+1 917-409-0861</td>
-                                                    <td>$2,789</td>
-                                                    <td><span class="badge badge-pill bg-success-light">Online</span></td>
-                                                    <td>04 Dec 2022, 12:38 PM</td>
-                                                    <td class="sorting_1"><span
-                                                            class="badge badge-pill bg-ash-gray text-gray-light">Restricted</span>
-                                                    </td>
-                                                    <td class="d-flex align-items-center">
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="#" class=" btn-action-icon "
-                                                                data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                    class="fas fa-ellipsis-v"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                <ul>
-                                                                    <li>
-                                                                        <a class="dropdown-item" href="#"><i
-                                                                                class="far fa-edit me-2"></i>Edit</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a class="dropdown-item"
-                                                                            href="javascript:void(0);"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#delete_modal"><i
-                                                                                class="far fa-trash-alt me-2"></i>Delete</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr role="row" class="even">
-                                                    <td class>6</td>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="customer-detail.html">Randall </a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>+1 117-409-0861</td>
-                                                    <td>$1,789</td>
-                                                    <td><span class="badge badge-pill bg-ash-gray text-gray-light">2 days
-                                                            ago</span></td>
-                                                    <td>04 Dec 2022, 12:38 PM</td>
-                                                    <td class="sorting_1"><span
-                                                            class="badge badge-pill bg-ash-gray text-gray-light">Restricted</span>
-                                                    </td>
-                                                    <td class="d-flex align-items-center">
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="#" class=" btn-action-icon "
-                                                                data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                    class="fas fa-ellipsis-v"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                <ul>
-                                                                    <li>
-                                                                        <a class="dropdown-item" href="#"><i
-                                                                                class="far fa-edit me-2"></i>Edit</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a class="dropdown-item"
-                                                                            href="javascript:void(0);"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#delete_modal"><i
-                                                                                class="far fa-trash-alt me-2"></i>Delete</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                        </td>
+                                                        <td>{{ $customer->created_at }}</td>
+                                                        <td class="sorting_1"><span
+                                                                class="badge badge-pill bg-success-light"></span></td>
+                                                        <td class="d-flex align-items-center ">
+                                                            <a class="btn btn-small btn-success  me-2" href="#"><i
+                                                                    class="far fa-edit me-2"></i> Edit</a>
+                                                            <a class="btn btn-small btn-danger text-white"
+                                                                href="javascript:void(0);" data-bs-toggle="modal"
+                                                                data-bs-target="#delete_modal"><i
+                                                                    class="far fa-trash-alt me-2"></i>Delete</a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
 
                                             </tbody>
                                         </table>
