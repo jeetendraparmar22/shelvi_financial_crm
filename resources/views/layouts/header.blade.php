@@ -29,6 +29,9 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/toastr/toatr.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
+    <script src="{{ asset('assets/js/jquery-3.7.0.min.js') }}"></script>
+
+    <script src="{{ asset('assets/js/customer-form-validation.js') }}"></script>
 </head>
 
 <body>
@@ -98,7 +101,8 @@
                                     <a href="#">
                                         <div class="media d-flex">
                                             <span class="avatar avatar-sm">
-                                                <img class="avatar-img rounded-circle" alt src="{{ asset('assets/img/profiles/avatar-02.jpg') }}" />
+                                                <img class="avatar-img rounded-circle" alt
+                                                    src="{{ asset('assets/img/profiles/avatar-02.jpg') }}" />
                                             </span>
                                             <div class="media-body">
                                                 <p class="noti-details">
@@ -116,7 +120,8 @@
                                     <a href="profile.html">
                                         <div class="media d-flex">
                                             <span class="avatar avatar-sm">
-                                                <img class="avatar-img rounded-circle" alt src="{{ asset('assets/img/profiles/avatar-03.jpg') }}" />
+                                                <img class="avatar-img rounded-circle" alt
+                                                    src="{{ asset('assets/img/profiles/avatar-03.jpg') }}" />
                                             </span>
                                             <div class="media-body">
                                                 <p class="noti-details">
@@ -135,7 +140,8 @@
                                     <a href="#">
                                         <div class="media d-flex">
                                             <div class="avatar avatar-sm">
-                                                <span class="avatar-title rounded-circle bg-primary-light"><i class="far fa-user"></i></span>
+                                                <span class="avatar-title rounded-circle bg-primary-light"><i
+                                                        class="far fa-user"></i></span>
                                             </div>
                                             <div class="media-body">
                                                 <p class="noti-details">
@@ -152,7 +158,8 @@
                                     <a href="#">
                                         <div class="media d-flex">
                                             <span class="avatar avatar-sm">
-                                                <img class="avatar-img rounded-circle" alt src="{{ asset('assets/img/profiles/avatar-04.jpg') }}" />
+                                                <img class="avatar-img rounded-circle" alt
+                                                    src="{{ asset('assets/img/profiles/avatar-04.jpg') }}" />
                                             </span>
                                             <div class="media-body">
                                                 <p class="noti-details">
@@ -171,7 +178,8 @@
                                     <a href="#">
                                         <div class="media d-flex">
                                             <div class="avatar avatar-sm">
-                                                <span class="avatar-title rounded-circle bg-info-light"><i class="far fa-comment"></i></span>
+                                                <span class="avatar-title rounded-circle bg-info-light"><i
+                                                        class="far fa-comment"></i></span>
                                             </div>
                                             <div class="media-body">
                                                 <p class="noti-details">
@@ -200,7 +208,8 @@
                 <li class="nav-item dropdown">
                     <a href="javascript:void(0)" class="user-link nav-link" data-bs-toggle="dropdown">
                         <span class="user-img">
-                            <img src="{{ asset('assets/img/logo-small.svg') }}" alt="img" class="profilesidebar" />
+                            <img src="{{ asset('assets/img/logo-small.svg') }}" alt="img"
+                                class="profilesidebar" />
                             {{-- <span class="animate-circle"></span> --}}
                         </span>
                         <span class="user-content">
