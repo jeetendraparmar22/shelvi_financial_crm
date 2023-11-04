@@ -11577,11 +11577,7 @@ li.previous {
     color: #878a99
 }
 
-@media(max-width:767px) {
-    .list-btn {
-        margin-top: 15px
-    }
-}
+
 
 .list-btn .filter-list .short-filter {
     border: 1px solid #e6e9e8;
@@ -22020,4 +22016,19 @@ table tr td .status-toggle .checktoggle {
 
 .invoice-content-title a:hover {
     color: #7638ff
+}
+
+@media(max-width:767px) {
+    .list-btn {
+        margin-top: 15px
+    }
+
+    .login-wrapper .loginbox .login-right{
+        width: 100%;
+        padding: 20px;
+    }
+
+    .logo-dark{
+        max-width: 70%;
+    }
 }

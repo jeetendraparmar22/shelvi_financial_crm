@@ -77,28 +77,34 @@
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>First Name</label>
-                                                    <input type="text" class="form-control" placeholder="Enter First Name">
+                                                    <input type="text" class="form-control" placeholder="Enter First Name" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Last Name</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Last Name">
+                                                    <input type="text" class="form-control" placeholder="Enter Last Name" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Email</label>
-                                                    <input type="email" class="form-control" placeholder="Enter Email Address">
+                                                    <input type="email" class="form-control" placeholder="Enter Email Address" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Mobile No</label>
-                                                    <input type="number" class="form-control" placeholder="Enter Mobile No">
+                                                    <input type="number" class="form-control" placeholder="Enter Mobile No" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>Remark</label>
+                                                    <textarea type="text" class="form-control" placeholder="Enter your Address" required></textarea>
                                                 </div>
                                             </div>
 
@@ -110,7 +116,7 @@
                                             <div class="col-lg-12">
                                                 <div class="form-group">
                                                     <label>Address</label>
-                                                    <textarea type="text" class="form-control" placeholder="Enter your Address"></textarea>
+                                                    <textarea type="text" class="form-control" placeholder="Enter your Address" required></textarea>
                                                 </div>
                                             </div>
 
@@ -184,9 +190,11 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <label>Alternate Mobile No</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Mobile Number">
+                                                    <input type="text" class="form-control" placeholder="Enter Mobile Number" required>
                                                 </div>
                                             </div>
+
+
                                             <div class="col-xl-4 col-lg-4 col-md-4 col-12">
                                                 <div class="form-group">
                                                     <label>Aadhar Card</label>
@@ -209,7 +217,7 @@
 
                                     </form>
                                     <div class="d-flex">
-                                        <a class="btn btn btn-primary next">Next</a>
+                                        <a class="btn btn btn-primary next" type="submit">Next</a>
                                     </div>
                                 </div>
 
@@ -378,14 +386,21 @@
                                         <h5>Loan Details</h5>
 
                                         <div class="d-flex">
-                                            <a href="#" class="image_icons me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="WhatsApp"> <img src="{{ asset('assets/img/whatsapp.svg') }}" /> </a>
-                                            <a href="#"  class="image_icons" data-bs-toggle="tooltip" data-bs-placement="top" title="PDF"  ><img data-fancybox src="{{ asset('assets/img/pdf.svg') }}" /> </a>
+                                            <a href="#" class="image_icons me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="WhatsApp"> <img src="{{ asset('assets/img/whatsapp.svg') }}" />
+                                            </a>
+                                            <a href="#" class="image_icons" data-bs-toggle="tooltip" data-bs-placement="top" title="PDF"><img data-fancybox src="{{ asset('assets/img/pdf.svg') }}" />
+                                            </a>
                                         </div>
                                     </div>
                                     <form>
                                         <div class="card table-card">
 
                                             <div class="">
+                                                <div class="mb-3">
+                                                    <h6 class="mb-2"><b>Customer Name :</b> Patel Rakesh</h6>
+                                                    <h6 class="mb-2"><b>Executive :</b> Prakash Jain</h6>
+                                                    <h6 class="mb-2"><b>Finance :</b> Kogta Palanpur</h6>
+                                                </div>
                                                 <div class="rounded  bg-light-primary">
                                                     <div class="row justify-content-start">
                                                         <div class="col-auto">
@@ -428,6 +443,11 @@
                                                                             <td><input type="text" class="form-control " value="$66.00"></td>
                                                                         </tr>
                                                                         <tr>
+                                                                            <th>Remark </th>
+                                                                            <th>:</th>
+                                                                            <td><textarea type="text" class="form-control" placeholder="Enter your Address" required></textarea></td>
+                                                                        </tr>
+                                                                        <tr>
                                                                             <td class="pe-0 pt-0">
                                                                                 <hr class="mb-3 mt-0">
                                                                                 <h5 class="text-primary m-r-10">Total Outstanding </h5>
@@ -452,7 +472,6 @@
                                             <a class="btn btn-primary previous me-2"> Back</a>
                                             <a class="btn btn-primary next">Continue</a>
                                         </div>
-
                                     </div>
                                 </div>
 
