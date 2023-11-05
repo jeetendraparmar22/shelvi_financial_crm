@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
@@ -94,6 +95,8 @@ class CustomerController extends Controller
                 'pincode' => $request->pincode,
                 'alternate_mobile_no' => $request->alternate_mobile_no,
                 'adhar_card' =>  $cust_doc_path,
+                'remark_customer_detail' => $request->remark_customer_detail,
+
                 'finance_name' => $request->finance_name,
                 'finance_address' => $request->finance_address,
                 'executive_name' => $request->executive_name,
@@ -109,6 +112,12 @@ class CustomerController extends Controller
                 'rc_book' => $vehicle_rc_path,
                 'insurance_file' => $vehicle_insurance_path,
                 'loan_amount' => $request->loan_amount,
+                'interest_rate' => $request->interest_rate,
+                'loan_term' => $request->loan_term,
+                'emi' => $request->emi,
+
+                'loan_status' => $request->loan_status,
+
                 'loan_surakhya_vimo' => $request->loan_surakhya_vimo,
                 'iho' => $request->iho,
                 'file_charge' => $request->file_charge,
@@ -116,11 +125,14 @@ class CustomerController extends Controller
                 'rto_charge' => $request->rto_charge,
                 'hold_for_insurance' => $request->hold_for_insurance,
                 'final_total_amount' => $request->final_total_amount,
+                'remark_loan_detail' => $request->remark_loan_detail,
+
                 'bank_account_holder_name' => $request->bank_account_holder_name,
                 'account_no' => $request->account_no,
                 'bank_name' => $request->bank_name,
                 'branch_name' => $request->branch_name,
                 'ifsc_code' => $request->ifsc_code,
+                'user_id' => Auth::user()->id,
                 'created_at' => now()
 
             ]);
@@ -178,8 +190,38 @@ class CustomerController extends Controller
             // Store the uploaded document in the user's folder
             $cust_doc_path = $request->file('adhar_card_file')->storeAs('customer_documents/' . $folderName, $request->file('adhar_card_file')->getClientOriginalName(), 'local');
         } else {
-            $cust_doc_path = "";
+            // get old path
+            $doc_path = DB::table('customers')->select('adhar_card')->where('id', $id)->first();
+            $cust_doc_path = $doc_path->adhar_card;
         }
+
+        // Store RC book
+
+        if ($request->hasFile('rc_book')) {
+            // Create a folder name using user name and current datetime
+            $folderName = $request->first_name . '_' . now()->format('Y-m-d_H-i-s');
+
+            // Store the uploaded document in the user's folder
+            $vehicle_rc_path = $request->file('rc_book')->storeAs('vehicle_documents/' . $folderName, $request->file('rc_book')->getClientOriginalName(), 'local');
+        } else {
+            $rc_path = DB::table('customers')->select('rc_book')->where('id', $id)->first();
+
+            $vehicle_rc_path = $rc_path->rc_book;
+        }
+
+        // Store Insurance copy
+        if ($request->hasFile('insurance_file')) {
+            // Create a folder name using user name and current datetime
+            $folderName = $request->first_name . '_' . now()->format('Y-m-d_H-i-s');
+
+            // Store the uploaded document in the user's folder
+            $vehicle_insurance_path = $request->file('insurance_file')->storeAs('insurance_documents/' . $folderName, $request->file('insurance_file')->getClientOriginalName(), 'local');
+        } else {
+            $insurance_path = DB::table('customers')->select('insurance_file')->where('id', $id)->first();
+
+            $vehicle_insurance_path = $insurance_path->insurance_file;
+        }
+
         // update Data
         try {
 
@@ -198,6 +240,9 @@ class CustomerController extends Controller
                 'pincode' => $request->pincode,
                 'alternate_mobile_no' => $request->alternate_mobile_no,
                 'adhar_card' =>  $cust_doc_path,
+                'remark_customer_detail' => $request->remark_customer_detail,
+
+
                 'finance_name' => $request->finance_name,
                 'finance_address' => $request->finance_address,
                 'executive_name' => $request->executive_name,
@@ -210,9 +255,15 @@ class CustomerController extends Controller
                 'engine_no' => $request->engine_no,
                 'fuel_type' => $request->fuel_type,
                 'insurance_company_name' => $request->insurance_company_name,
-                'rc_book' => $request->rc_book,
-                'insurance_file' => $request->insurance_file,
+                'rc_book' => $vehicle_rc_path,
+                'insurance_file' => $vehicle_insurance_path,
                 'loan_amount' => $request->loan_amount,
+                'interest_rate' => $request->interest_rate,
+                'loan_term' => $request->loan_term,
+                'emi' => $request->emi,
+                'loan_status' => $request->loan_status,
+                'remark_loan_detail' => $request->remark_loan_detail,
+
                 'loan_surakhya_vimo' => $request->loan_surakhya_vimo,
                 'iho' => $request->iho,
                 'file_charge' => $request->file_charge,

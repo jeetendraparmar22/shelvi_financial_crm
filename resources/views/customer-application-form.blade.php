@@ -274,6 +274,13 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Remark</label>
+                                                        <textarea type="text" name="remark_customer_detail" class="form-control" placeholder="Enter Remark">{{ old('remark_customer_detail') }}</textarea>
+                                                    </div>
+
+                                                </div>
 
                                             </div>
 
@@ -611,7 +618,19 @@
                                                                                 <th>Remark</th>
                                                                                 <th>:</th>
                                                                                 <td>
-                                                                                    <textarea class="form-control" id="loan_detail_remark" name="loan_detail_remark">{{ old('loan_detail_remark') }}</textarea>
+                                                                                    <textarea class="form-control" id="loan_detail_remark" name="remark_loan_detail">{{ old('remark_loan_detail') }}</textarea>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th>Loan Status
+                                                                                </th>
+                                                                                <th>:</th>
+                                                                                <td><input type="text"
+                                                                                        class="form-control "
+                                                                                        name="loan_status"
+                                                                                        value="{{ old('loan_status') }}">
+                                                                                </td>
+
                                                                             </tr>
                                                                             <tr>
                                                                                 <td class="pe-0 pt-0">

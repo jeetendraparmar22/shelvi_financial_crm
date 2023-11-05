@@ -110,7 +110,8 @@
                                                         </td>
                                                         <td>{{ $customer->created_at }}</td>
                                                         <td class="sorting_1"><span
-                                                                class="badge badge-pill bg-success-light"></span></td>
+                                                                class="badge badge-pill bg-success-light">{{ $customer->loan_status }}</span>
+                                                        </td>
                                                         <td class="d-flex align-items-center ">
                                                             <a class="btn btn-small btn-success  me-2"
                                                                 href="{{ route('customers.edit', $customer->id) }}"><i

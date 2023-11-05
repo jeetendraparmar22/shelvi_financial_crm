@@ -108,7 +108,7 @@
                                                     <div class="form-group">
                                                         <label>Middle Name<span class="text-danger">*</span></label>
                                                         <input type="text" placeholder="Enter Middle Name"
-                                                            name="last_name"
+                                                            name="last_name" value="{{ $customer->last_name }}"
                                                             class="form-control @error('last_name') is-invalid
                                         
                                                             @enderror">
@@ -121,7 +121,8 @@
                                                     <div class="form-group">
                                                         <label>Surname<span class="text-danger">*</span></label>
                                                         <input type="text" class="form-control"
-                                                            placeholder="Enter Surname" name="surname">
+                                                            placeholder="Enter Surname" name="surname"
+                                                            value="{{ $customer->surname }}">
                                                     </div>
                                                     @error('surname')
                                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -131,7 +132,8 @@
                                                     <div class="form-group">
                                                         <label>Email</label>
                                                         <input type="text" class="form-control"
-                                                            placeholder="Enter Email Address" name="email">
+                                                            placeholder="Enter Email Address" name="email"
+                                                            value="{{ $customer->email }}">
                                                     </div>
                                                     @error('email')
                                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -143,6 +145,7 @@
                                                     <div class="form-group">
                                                         <label>Mobile No<span class="text-danger">*</span></label>
                                                         <input type="number" name="mobile_no"
+                                                            value="{{ $customer->mobile_no }}"
                                                             class="form-control @error('mobile_no') is-invalid
                                         
                                                         @enderror"
@@ -158,7 +161,8 @@
                                                     <div class="form-group">
                                                         <label>Alternate Mobile No</label>
                                                         <input type="text" class="form-control"
-                                                            placeholder="Enter Mobile Number" name="alternate_mobile_no ">
+                                                            placeholder="Enter Mobile Number" name="alternate_mobile_no "
+                                                            value="{{ $customer->alternate_mobile_no }}">
                                                     </div>
                                                 </div>
 
@@ -174,7 +178,7 @@
                                                             class="form-control @error('address') is-invalid
                                         
                                                         @enderror"
-                                                            placeholder="Enter your Address"></textarea>
+                                                            placeholder="Enter your Address">{{ $customer->address }}</textarea>
                                                     </div>
                                                     @error('address')
                                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -186,10 +190,7 @@
                                                         <label>Country</label>
                                                         <select class="select" name="country">
                                                             <option>Select Country</option>
-                                                            <option>Options 1</option>
-                                                            <option>Options 2</option>
-                                                            <option>Options 3</option>
-                                                            <option>Options 4</option>
+
                                                         </select>
                                                     </div>
                                                 </div>
@@ -200,10 +201,7 @@
                                                             <label>State</label>
                                                             <select class="select" name="state">
                                                                 <option>Select State</option>
-                                                                <option>Options 1</option>
-                                                                <option>Options 2</option>
-                                                                <option>Options 3</option>
-                                                                <option>Options 4</option>
+
                                                             </select>
                                                         </div>
                                                         <a class="btn btn-success form-plus-btn" href="#"
@@ -219,10 +217,7 @@
                                                             <label>City</label>
                                                             <select class="select" name="city">
                                                                 <option>Select City</option>
-                                                                <option>Options 1</option>
-                                                                <option>Options 2</option>
-                                                                <option>Options 3</option>
-                                                                <option>Options 4</option>
+
                                                             </select>
                                                         </div>
                                                         <a class="btn btn-secondary form-plus-btn" href="#"
@@ -239,10 +234,7 @@
                                                             <label>Village</label>
                                                             <select class="select" name="village">
                                                                 <option>Select Village</option>
-                                                                <option>Options 1</option>
-                                                                <option>Options 2</option>
-                                                                <option>Options 3</option>
-                                                                <option>Options 4</option>
+
                                                             </select>
                                                         </div>
                                                         <a class="btn btn-primary form-plus-btn" href="#"
@@ -278,7 +270,13 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Remark</label>
+                                                        <textarea type="text" name="remark_customer_detail" class="form-control" placeholder="Enter Remark">{{ $customer->remark_customer_detail }}</textarea>
+                                                    </div>
 
+                                                </div>
                                             </div>
 
 
@@ -300,28 +298,30 @@
                                                             Name</label>
                                                         <input type="text" class="form-control"
                                                             id="basicpill-pancard-input" placeholder="Enter Finance Name"
-                                                            name="finance_name">
+                                                            name="finance_name" value="{{ $customer->finance_name }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label for="basicpill-vatno-input" class="form-label">Finance
                                                             Address</label>
-                                                        <textarea class="form-control" placeholder="Enter Finance Address" name="finance_address"></textarea>
+                                                        <textarea class="form-control" placeholder="Enter Finance Address" name="finance_address">{{ $customer->finance_address }}</textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label class="form-label">Executive Name</label>
                                                         <input type="text" class="form-control"
-                                                            placeholder="Enter Executive Name" name="executive_name">
+                                                            placeholder="Enter Executive Name" name="executive_name"
+                                                            value="{{ $customer->executive_name }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label class="form-label">Dealer Name</label>
                                                         <input type="text" class="form-control"
-                                                            placeholder="Enter Dealer Name" name="Dealer_name">
+                                                            placeholder="Enter Dealer Name" name="Dealer_name"
+                                                            value="{{ $customer->Dealer_name }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -344,7 +344,8 @@
                                                     <div class="form-group">
                                                         <label>Vehicle Type</label>
                                                         <input type="text" class="form-control"
-                                                            placeholder="Enter Vehicle Type" name="vehicle_type">
+                                                            placeholder="Enter Vehicle Type" name="vehicle_type"
+                                                            value="{{ $customer->vehicle_type }}">
                                                     </div>
                                                 </div>
 
@@ -353,7 +354,8 @@
                                                         <label>Vehicle Registration Number</label>
                                                         <input type="text" class="form-control"
                                                             placeholder="Enter Vehicle Registration Number"
-                                                            name="vehicle_registration_no">
+                                                            name="vehicle_registration_no"
+                                                            value="{{ $customer->vehicle_registration_no }}">
                                                     </div>
                                                 </div>
 
@@ -362,7 +364,8 @@
                                                         <label>Registration Year</label>
                                                         <input type="text" class="form-control"
                                                             placeholder="Enter Registration Year"
-                                                            name="vehicle_registration_year">
+                                                            name="vehicle_registration_year"
+                                                            value="{{ $customer->vehicle_registration_year }}">
                                                     </div>
                                                 </div>
 
@@ -370,7 +373,8 @@
                                                     <div class="form-group">
                                                         <label>Chasis Number </label>
                                                         <input type="text" class="form-control"
-                                                            placeholder="Enter Chasis Number" name="chasis_no">
+                                                            placeholder="Enter Chasis Number" name="chasis_no"
+                                                            value="{{ $customer->chasis_no }}">
                                                     </div>
                                                 </div>
 
@@ -378,14 +382,16 @@
                                                     <div class="form-group">
                                                         <label>Engine Number </label>
                                                         <input type="text" class="form-control"
-                                                            placeholder="Enter Engine Number" name="engine_no">
+                                                            placeholder="Enter Engine Number" name="engine_no"
+                                                            value="{{ $customer->engine_no }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4">
                                                     <div class="form-group">
                                                         <label>Fuel Type</label>
                                                         <input type="text" class="form-control"
-                                                            placeholder="Enter Fuel Type" name="fuel_type">
+                                                            placeholder="Enter Fuel Type" name="fuel_type"
+                                                            value="{{ $customer->fuel_type }}">
                                                     </div>
                                                 </div>
 
@@ -394,7 +400,8 @@
                                                         <label>Insurance Company Name</label>
                                                         <input type="text" class="form-control"
                                                             placeholder="Enter Insurance Company Name"
-                                                            name="insurance_company_name">
+                                                            name="insurance_company_name"
+                                                            value="{{ $customer->insurance_company_name }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -493,9 +500,13 @@
                                                 <div class="">
 
                                                     <div class="mb-3">
-                                                        <h6 class="mb-2"><b>Customer Name :</b> Patel Rakesh</h6>
-                                                        <h6 class="mb-2"><b>Executive :</b> Prakash Jain</h6>
-                                                        <h6 class="mb-2"><b>Finance :</b> Kogta Palanpur</h6>
+                                                        <h6 class="mb-2"><b>Customer Name :</b>
+                                                            {{ $customer->first_name }} {{ $customer->last_name }}
+                                                            {{ $customer->surname }}</h6>
+                                                        <h6 class="mb-2"><b>Executive :</b>
+                                                            {{ $customer->executive_name }}</h6>
+                                                        <h6 class="mb-2"><b>Finance :</b> {{ $customer->finance_name }}
+                                                        </h6>
                                                     </div>
                                                     <div class="rounded  bg-light-primary">
                                                         <div class="row justify-content-start">
@@ -510,7 +521,8 @@
                                                                                 <th>:</th>
                                                                                 <td><input type="number"
                                                                                         class="form-control "
-                                                                                        value="" id="loan-amount"
+                                                                                        value="{{ $customer->loan_amount }}"
+                                                                                        id="loan-amount"
                                                                                         name="loan_amount">
                                                                                 </td>
                                                                             </tr>
@@ -546,7 +558,7 @@
                                                                                 <th>:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
-                                                                                        value=""
+                                                                                        value="{{ $customer->loan_surakhya_vimo }}"
                                                                                         id="loan-suraksha-vimo"
                                                                                         name="loan_surakhya_vimo"></td>
                                                                             </tr>
@@ -555,8 +567,8 @@
                                                                                 <th>:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
-                                                                                        value="" id="iho"
-                                                                                        name="iho">
+                                                                                        value="{{ $customer->iho }}"
+                                                                                        id="iho" name="iho">
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -564,7 +576,8 @@
                                                                                 <th>:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
-                                                                                        value="" id="cutoff-fee"
+                                                                                        value="{{ $customer->file_charge }}"
+                                                                                        id="cutoff-fee"
                                                                                         name="file_charge">
                                                                                 </td>
                                                                             </tr>
@@ -573,7 +586,7 @@
                                                                                 <th>:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
-                                                                                        value=""
+                                                                                        value="{{ $customer->road_side_assite }}"
                                                                                         id="road-side-assite"
                                                                                         name="road_side_assite"></td>
                                                                             </tr>
@@ -582,8 +595,8 @@
                                                                                 <th>:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
-                                                                                        value="" id="rto"
-                                                                                        name="rto_charge">
+                                                                                        value="{{ $customer->rto_charge }}"
+                                                                                        id="rto" name="rto_charge">
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -592,13 +605,25 @@
                                                                                 <th>:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
-                                                                                        value=""
+                                                                                        value="{{ $customer->hold_for_insurance }}"
                                                                                         id="hold-for-insurance"
                                                                                         name="hold_for_insurance"></td>
                                                                                 <th>Remark</th>
                                                                                 <th>:</th>
                                                                                 <td>
-                                                                                    <textarea class="form-control" value="" id="" name=""></textarea>
+                                                                                    <textarea class="form-control" value="" id="" name="remark_loan_detail"></textarea>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th>Loan Status
+                                                                                </th>
+                                                                                <th>:</th>
+                                                                                <td><input type="text"
+                                                                                        class="form-control "
+                                                                                        name="loan_status"
+                                                                                        value="{{ $customer->loan_status }}">
+                                                                                </td>
+
                                                                             </tr>
                                                                             <tr>
                                                                                 <td class="pe-0 pt-0">
@@ -611,7 +636,7 @@
                                                                                 <td class="ps-0 pt-0 pb-4">
                                                                                     <hr class="mb-3 mt-0">
                                                                                     <h5 class="text-primary"><span
-                                                                                            id="total-remaining">0</span>
+                                                                                            id="total-remaining">{{ $customer->final_total_amount }}</span>
                                                                                     </h5>
                                                                                 </td>
                                                                             </tr>
@@ -646,35 +671,40 @@
                                                         <label>Account Holder Name</label>
                                                         <input type="text" class="form-control"
                                                             placeholder="Enter Account Holder Name"
-                                                            name="bank_account_holder_name">
+                                                            name="bank_account_holder_name"
+                                                            value="{{ $customer->bank_account_holder_name }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4 col-md-12 col-sm-12">
                                                     <div class="form-group">
                                                         <label>Account Number</label>
                                                         <input type="text" class="form-control"
-                                                            placeholder="Enter Account Number" name="account_no">
+                                                            placeholder="Enter Account Number" name="account_no"
+                                                            value="{{ $customer->account_no }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                                     <div class="form-group">
                                                         <label>Bank Name</label>
                                                         <input type="text" class="form-control"
-                                                            placeholder="Enter Bank Name" name="bank_name">
+                                                            placeholder="Enter Bank Name" name="bank_name"
+                                                            value="{{ $customer->bank_name }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                                     <div class="form-group">
                                                         <label>Branch Name</label>
                                                         <input type="text" class="form-control"
-                                                            placeholder="Enter Branch Name" name="branch_name">
+                                                            placeholder="Enter Branch Name" name="branch_name"
+                                                            value="{{ $customer->branch_name }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4 col-md-12 col-sm-12">
                                                     <div class="form-group">
                                                         <label>IFSC Code</label>
                                                         <input type="text" class="form-control"
-                                                            placeholder="Enter IFSC Code" name="ifsc_code">
+                                                            placeholder="Enter IFSC Code" name="ifsc_code"
+                                                            value="{{ $customer->ifsc_code }}">
                                                     </div>
                                                 </div>
                                             </div>
