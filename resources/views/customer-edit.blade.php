@@ -123,13 +123,19 @@
                                                         <input type="text" class="form-control"
                                                             placeholder="Enter Surname" name="surname">
                                                     </div>
+                                                    @error('surname')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                                     <div class="form-group">
                                                         <label>Email</label>
-                                                        <input type="email" class="form-control"
+                                                        <input type="text" class="form-control"
                                                             placeholder="Enter Email Address" name="email">
                                                     </div>
+                                                    @error('email')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
 
                                                 <div class="col-lg-4 col-md-6 col-sm-12">

@@ -41,6 +41,8 @@ class CustomerController extends Controller
             'last_name' => 'required',
             'mobile_no' => 'required',
             'address' => 'required',
+            'surname' => 'required',
+            'email' => 'email',
         ]);
 
         // Store user document
@@ -52,6 +54,29 @@ class CustomerController extends Controller
             $cust_doc_path = $request->file('adhar_card_file')->storeAs('customer_documents/' . $folderName, $request->file('adhar_card_file')->getClientOriginalName(), 'local');
         } else {
             $cust_doc_path = "";
+        }
+
+        // Store RC book
+
+        if ($request->hasFile('rc_book')) {
+            // Create a folder name using user name and current datetime
+            $folderName = $request->first_name . '_' . now()->format('Y-m-d_H-i-s');
+
+            // Store the uploaded document in the user's folder
+            $vehicle_rc_path = $request->file('rc_book')->storeAs('vehicle_documents/' . $folderName, $request->file('rc_book')->getClientOriginalName(), 'local');
+        } else {
+            $vehicle_rc_path = "";
+        }
+
+        // Store Insurance copy
+        if ($request->hasFile('insurance_file')) {
+            // Create a folder name using user name and current datetime
+            $folderName = $request->first_name . '_' . now()->format('Y-m-d_H-i-s');
+
+            // Store the uploaded document in the user's folder
+            $vehicle_insurance_path = $request->file('insurance_file')->storeAs('insurance_documents/' . $folderName, $request->file('insurance_file')->getClientOriginalName(), 'local');
+        } else {
+            $vehicle_insurance_path = "";
         }
         // save data in table
         try {
@@ -81,8 +106,8 @@ class CustomerController extends Controller
                 'engine_no' => $request->engine_no,
                 'fuel_type' => $request->fuel_type,
                 'insurance_company_name' => $request->insurance_company_name,
-                'rc_book' => $request->rc_book,
-                'insurance_file' => $request->insurance_file,
+                'rc_book' => $vehicle_rc_path,
+                'insurance_file' => $vehicle_insurance_path,
                 'loan_amount' => $request->loan_amount,
                 'loan_surakhya_vimo' => $request->loan_surakhya_vimo,
                 'iho' => $request->iho,

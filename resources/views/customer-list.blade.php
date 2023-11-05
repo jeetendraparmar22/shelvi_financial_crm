@@ -101,10 +101,10 @@
                                                                         src="{{ asset('storage/' . $customer->adhar_card) }}"
                                                                         class="doc_icons" /></a>
                                                                 <a href="#"><img data-fancybox
-                                                                        src="{{ asset('storage/' . $customer->adhar_card) }}"
+                                                                        src="{{ asset('storage/' . $customer->rc_book) }}"
                                                                         class="doc_icons" /></a>
                                                                 <a href="#"><img data-fancybox
-                                                                        src="{{ asset('storage/' . $customer->adhar_card) }}"
+                                                                        src="{{ asset('storage/' . $customer->insurance_file) }}"
                                                                         class="doc_icons" /></a>
                                                             </div>
                                                         </td>
