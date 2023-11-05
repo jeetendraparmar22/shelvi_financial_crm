@@ -13,14 +13,14 @@
                                     <a href="{{ route('dashboard') }}">Home</a>
                                 </li>
                                 <li class="breadcrumb-item text-muted">
-                                    <a href="#" class="text-muted">Customers List</a>
+                                    <a href="#" class="text-muted">Customers Loan Application List</a>
                                 </li>
                             </ol>
                         </div>
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title mb-0">Customers List</h4>
+                            <h4 class="card-title mb-0">Customers Loan Application List</h4>
                         </div>
                         <div class="card-body pt-2">
                             <div>
@@ -28,10 +28,9 @@
                                     <div class="user_list form-group mb-0">
                                         <select class="select" id="user_list">
                                             <option>Select User</option>
-                                            <option>Options 1</option>
-                                            <option>Options 2</option>
-                                            <option>Options 3</option>
-                                            <option>Options 4</option>
+                                            @foreach ($users as $user)
+                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="top-nav-search customer_list">

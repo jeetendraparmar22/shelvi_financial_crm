@@ -19,7 +19,10 @@ class CustomerController extends Controller
     {
         // Get all customers
         $customers = DB::table('customers')->get();
-        return view('customer-list', ['customers' => $customers]);
+
+        // get Users
+        $users = DB::table('users')->where('user_type', 'user')->get();
+        return view('customer-list', ['customers' => $customers, 'users' => $users]);
     }
 
     /**

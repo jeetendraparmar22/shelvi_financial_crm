@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -11,8 +13,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
-        return view('user-list');
+        // Get all customers
+        $users = DB::table('users')->where('user_type', 'user')->get();
+        return view('user-list', ['users' => $users]);
     }
 
     /**
@@ -28,7 +31,30 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validation
+        $validated = $request->validate([
+            'name' => 'required',
+            'mobile_no' => 'required|digits:10',
+            'password' => 'required',
+            'email' => 'email',
+        ]);
+
+        // Add user
+        try {
+            DB::table('users')->insert([
+                'name' => $request->name,
+                'email' => $request->email,
+                'mobile_no' => $request->mobile_no,
+                'user_type' => $request->user_type,
+                'password' => Hash::make($request->password),
+                'address' => $request->address,
+                'created_at' => now()
+
+            ]);
+            return redirect()->route('users.index')->with('success', 'User added Successfully');
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     /**

@@ -10,8 +10,8 @@
                                 <img class="img-radius img-fluid wid-40"
                                     src="{{ asset('assets/img/profiles/avatar-02.jpg') }}" alt="User image">
                                 <div class="media-body mx-3">
-                                    <h5 class="mb-1">John Doe</h5>
-                                    <h6 class="text-muted mb-0">UI/UX Designer</h6>
+                                    <h5 class="mb-1">{{ $customer->first_name }} {{ $customer->surname }}</h5>
+
                                 </div>
                             </div>
                         </div>
@@ -23,16 +23,16 @@
                                         <div class="media-body mx-3">
                                             <h6 class="m-0">Email</h6>
                                         </div>
-                                        <small>demo@sample.com</small>
+                                        <small>{{ $customer->email }}</small>
                                     </div>
                                 </a>
                                 <a href="#" class="list-group-item list-group-item-action">
                                     <div class="media align-items-center">
                                         <i class="fa fa-phone f-20"></i>
                                         <div class="media-body mx-3">
-                                            <h6 class="m-0">Phone</h6>
+                                            <h6 class="m-0">Mobile No.</h6>
                                         </div>
-                                        <small>(+99) 9999 999 999</small>
+                                        <small>{{ $customer->mobile_no }}</small>
                                     </div>
                                 </a>
                                 <a href="#" class="list-group-item list-group-item-action">
@@ -41,7 +41,7 @@
                                         <div class="media-body mx-3">
                                             <h6 class="m-0">Location</h6>
                                         </div>
-                                        <small>Melbourne</small>
+                                        <small>{{ $customer->address }}</small>
                                     </div>
                                 </a>
                             </div>
@@ -51,93 +51,102 @@
                 </div>
                 <div class="col-lg-8 col-xxl-9">
                     <div class="card border">
-                        <div class="card-header">
-                            <h5>About me</h5>
-                        </div>
+
                         <div class="card-body">
-                            <p class="mb-4">Hello,I’m Anshan Handgun Creative Graphic Designer &amp; User Experience
-                                Designer based in Website, I create
-                                digital Products a more Beautiful and usable place. Morbid accusant ipsum. Nam nec tellus
-                                at.</p>
-                            <h5>Personal Details</h5>
+
+                            <h5>Loan Details</h5>
                             <hr class="my-3">
                             <div class="table-responsive">
                                 <table class="table table-borderless">
                                     <tbody>
                                         <tr>
-                                            <td><b class="text-header">Full Name</b></td>
+                                            <td><b class="text-header">Loan Amount</b></td>
                                             <td>:</td>
-                                            <td>John Doe</td>
+                                            <td>{{ $customer->loan_amount }}</td>
                                         </tr>
                                         <tr>
-                                            <td><b class="text-header">Fathers Name</b></td>
+                                            <td><b class="text-header">Interest Rate (%)</b></td>
                                             <td>:</td>
-                                            <td>Mr. Deepen Handgun</td>
+                                            <td>{{ $customer->interest_rate }}</td>
                                         </tr>
                                         <tr>
-                                            <td><b class="text-header">Address</b></td>
+                                            <td><b class="text-header">Loan Terms(Months)</b></td>
                                             <td>:</td>
-                                            <td>Street 110-B Kalians Bag, Dewan, M.P. INDIA</td>
+                                            <td>{{ $customer->loan_term }}</td>
                                         </tr>
                                         <tr>
-                                            <td><b class="text-header">Zip Code</b></td>
+                                            <td><b class="text-header">EMI</b></td>
                                             <td>:</td>
-                                            <td>12345</td>
+                                            <td>{{ $customer->emi }}</td>
                                         </tr>
                                         <tr>
-                                            <td><b class="text-header">Phone</b></td>
+                                            <td><b class="text-header">Loan Status</b></td>
                                             <td>:</td>
-                                            <td>+0 123456789 , +0 123456789</td>
+                                            <td>{{ $customer->loan_status }}</td>
                                         </tr>
                                         <tr>
-                                            <td><b class="text-header">Email</b></td>
+                                            <td><b class="text-header">Remark</b></td>
                                             <td>:</td>
-                                            <td>support@example.com</td>
+                                            <td>{{ $customer->remark_loan_detail }}</td>
                                         </tr>
-                                        <tr>
-                                            <td><b class="text-header">Website</b></td>
-                                            <td>:</td>
-                                            <td>http://example.com</td>
-                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                    </div>
-                    <div class="card border">
-                        <div class="card-header">
-                            <h5>Education</h5>
+                        <div class="card-body">
+
+                            <h5>Vehicle Details</h5>
+                            <hr class="my-3">
+                            <div class="table-responsive">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <td><b class="text-header">Vehicle Type</b></td>
+                                            <td>:</td>
+                                            <td>{{ $customer->vehicle_type }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b class="text-header">Vehicle Registration Number</b></td>
+                                            <td>:</td>
+                                            <td>{{ $customer->vehicle_registration_no }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b class="text-header">Registration Year</b></td>
+                                            <td>:</td>
+                                            <td>{{ $customer->vehicle_registration_year }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b class="text-header">Chasis Number</b></td>
+                                            <td>:</td>
+                                            <td>{{ $customer->chasis_no }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b class="text-header">Engine Number</b></td>
+                                            <td>:</td>
+                                            <td>{{ $customer->engine_no }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b class="text-header">Fuel Type</b></td>
+                                            <td>:</td>
+                                            <td>{{ $customer->fuel_type }}</td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="card-body">
-                            <div class="row align-items-center mb-3">
-                                <div class="col-sm-3">
-                                    <h5>2014-2017</h5><span>Master Degree</span>
-                                </div>
-                                <div class="col-sm-9">
-                                    <h6>Master Degree in Computer Application</h6>
-                                    <p>University of Oxford, England</p>
-                                </div>
-                            </div>
-                            <div class="row align-items-center mb-3">
-                                <div class="col-sm-3">
-                                    <h5>2011-2013</h5><span>Bachelor</span>
-                                </div>
-                                <div class="col-sm-9">
-                                    <h6>Bachelor Degree in Computer Engineering</h6>
-                                    <p>Imperial College London</p>
-                                </div>
-                            </div>
-                            <div class="row align-items-center mb-3">
-                                <div class="col-sm-3">
-                                    <h5>2009-2011</h5><span>School</span>
-                                </div>
-                                <div class="col-sm-9">
-                                    <h6>Higher Secondary Education</h6>
-                                    <p>School of London, England</p>
-                                </div>
+
+                            <h5>Documents Details</h5>
+                            <hr class="my-3">
+                            <div class="table-responsive">
+
                             </div>
                         </div>
                     </div>
+
 
                 </div>
             </div>
