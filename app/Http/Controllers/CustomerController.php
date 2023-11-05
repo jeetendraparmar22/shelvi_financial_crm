@@ -43,6 +43,16 @@ class CustomerController extends Controller
             'address' => 'required',
         ]);
 
+        // Store user document
+        if ($request->hasFile('adhar_card_file')) {
+            // Create a folder name using user name and current datetime
+            $folderName = $request->first_name . '_' . now()->format('Y-m-d_H-i-s');
+
+            // Store the uploaded document in the user's folder
+            $cust_doc_path = $request->file('adhar_card_file')->storeAs('customer_documents/' . $folderName, $request->file('adhar_card_file')->getClientOriginalName(), 'local');
+        } else {
+            $cust_doc_path = "";
+        }
         // save data in table
         try {
             $inser_data = DB::table('customers')->insert([
@@ -58,9 +68,11 @@ class CustomerController extends Controller
                 'village' => $request->village,
                 'pincode' => $request->pincode,
                 'alternate_mobile_no' => $request->alternate_mobile_no,
-                'adhar_card' => $request->adhar_card,
+                'adhar_card' =>  $cust_doc_path,
                 'finance_name' => $request->finance_name,
                 'finance_address' => $request->finance_address,
+                'executive_name' => $request->executive_name,
+
                 'Dealer_name' => $request->Dealer_name,
                 'vehicle_type' => $request->vehicle_type,
                 'vehicle_registration_no' => $request->vehicle_registration_no,
@@ -87,6 +99,9 @@ class CustomerController extends Controller
                 'created_at' => now()
 
             ]);
+
+
+
             return redirect()->route('customers.create')->with('success', 'Customer Data Added Successfully');
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -113,6 +128,8 @@ class CustomerController extends Controller
     public function edit(string $id)
     {
         //
+        $customer_data = DB::table('customers')->where('id', $id)->first();
+        return view('customer-edit',  ['customer' => $customer_data]);
     }
 
     /**
@@ -120,7 +137,79 @@ class CustomerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        // Validation 
+        $validated = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'mobile_no' => 'required',
+            'address' => 'required',
+        ]);
+        // Store user document
+        if ($request->hasFile('adhar_card_file')) {
+            // Create a folder name using user name and current datetime
+            $folderName = $request->first_name . '_' . now()->format('Y-m-d_H-i-s');
+
+            // Store the uploaded document in the user's folder
+            $cust_doc_path = $request->file('adhar_card_file')->storeAs('customer_documents/' . $folderName, $request->file('adhar_card_file')->getClientOriginalName(), 'local');
+        } else {
+            $cust_doc_path = "";
+        }
+        // update Data
+        try {
+
+
+            $update_data = [
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'last_name' => $request->last_name,
+                'surname' => $request->surname,
+                'email' => $request->email,
+                'mobile_no' => $request->mobile_no,
+                'address' => $request->address,
+                'country' => $request->country,
+                'state' => $request->state,
+                'village' => $request->village,
+                'pincode' => $request->pincode,
+                'alternate_mobile_no' => $request->alternate_mobile_no,
+                'adhar_card' =>  $cust_doc_path,
+                'finance_name' => $request->finance_name,
+                'finance_address' => $request->finance_address,
+                'executive_name' => $request->executive_name,
+
+                'Dealer_name' => $request->Dealer_name,
+                'vehicle_type' => $request->vehicle_type,
+                'vehicle_registration_no' => $request->vehicle_registration_no,
+                'vehicle_registration_year' => $request->vehicle_registration_year,
+                'chasis_no' => $request->chasis_no,
+                'engine_no' => $request->engine_no,
+                'fuel_type' => $request->fuel_type,
+                'insurance_company_name' => $request->insurance_company_name,
+                'rc_book' => $request->rc_book,
+                'insurance_file' => $request->insurance_file,
+                'loan_amount' => $request->loan_amount,
+                'loan_surakhya_vimo' => $request->loan_surakhya_vimo,
+                'iho' => $request->iho,
+                'file_charge' => $request->file_charge,
+                'road_side_assite' => $request->road_side_assite,
+                'rto_charge' => $request->rto_charge,
+                'hold_for_insurance' => $request->hold_for_insurance,
+                'final_total_amount' => $request->final_total_amount,
+                'bank_account_holder_name' => $request->bank_account_holder_name,
+                'account_no' => $request->account_no,
+                'bank_name' => $request->bank_name,
+                'branch_name' => $request->branch_name,
+                'ifsc_code' => $request->ifsc_code,
+                'updated_at' => now()
+
+            ];
+
+            // Update
+            DB::table('customers')->where('id', $id)->update($update_data);
+            return redirect()->route('customers.index')->with('success', 'Data updated successfully');
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     /**

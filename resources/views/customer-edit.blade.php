@@ -19,12 +19,13 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title mb-0">Loan Application Form</h4>
-
+                            <h4 class="card-title mb-0">Edit Application Form</h4>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('customers.store') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('customers.update', $customer->id) }}"
+                                enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
                                 @if (session('success'))
                                     <div class="alert alert-success">
                                         {{ session('success') }}
@@ -92,6 +93,7 @@
                                                     <div class="form-group">
                                                         <label>First Name<span class="text-danger">*</span></label>
                                                         <input type="text" name="first_name"
+                                                            value="{{ $customer->first_name }}"
                                                             class="form-control @error('first_name') is-invalid
                                         
                                                         @enderror"
@@ -176,9 +178,12 @@
                                                 <div class="col-lg-4 col-12">
                                                     <div class="form-group mb-3">
                                                         <label>Country</label>
-                                                        <select class="select" name="country" id="country_name">
-                                                            <option value="">Select Country</option>
-
+                                                        <select class="select" name="country">
+                                                            <option>Select Country</option>
+                                                            <option>Options 1</option>
+                                                            <option>Options 2</option>
+                                                            <option>Options 3</option>
+                                                            <option>Options 4</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -187,9 +192,12 @@
                                                     <div class="flex_row">
                                                         <div class="form-group mb-3">
                                                             <label>State</label>
-                                                            <select class="select" name="state" id="state_name">
-                                                                <option value="">Select State</option>
-
+                                                            <select class="select" name="state">
+                                                                <option>Select State</option>
+                                                                <option>Options 1</option>
+                                                                <option>Options 2</option>
+                                                                <option>Options 3</option>
+                                                                <option>Options 4</option>
                                                             </select>
                                                         </div>
                                                         <a class="btn btn-success form-plus-btn" href="#"
@@ -203,9 +211,12 @@
                                                     <div class="flex_row">
                                                         <div class="form-group mb-3">
                                                             <label>City</label>
-                                                            <select class="select" name="city" id="city_name">
+                                                            <select class="select" name="city">
                                                                 <option>Select City</option>
-
+                                                                <option>Options 1</option>
+                                                                <option>Options 2</option>
+                                                                <option>Options 3</option>
+                                                                <option>Options 4</option>
                                                             </select>
                                                         </div>
                                                         <a class="btn btn-secondary form-plus-btn" href="#"
@@ -666,7 +677,7 @@
                                                 <a class="btn btn-primary previous me-2">Previous</a>
                                                 {{-- <a class="btn btn-primary next" data-bs-toggle="modal"
                                                     data-bs-target="#save_modal">Save Changes</a> --}}
-                                                <button class="btn btn-primary" type="submit">Save</button>
+                                                <button class="btn btn-primary" type="submit">Update Data</button>
                                             </div>
                                         </div>
                                     </div>
@@ -796,99 +807,59 @@
             </div>
         </div>
     </div>
-    @push('scripts')
-        <script src="{{ asset('assets/js/customer-application-form.js') }}"></script>
-        <script src="{{ asset('assets/js/axios.js') }}"></script>
-    @endpush
-    <script>
-        function countryList() {
-            const formData = new FormData();
-
-            axios
-                .get("/countries", formData)
-                .then((response) => {
-                    const countryData = response.data;
-                    const countrySelectBox = $('#country_name');
-                    countryData.forEach(function(country) {
-                        countrySelectBox.append($('<option>', {
-                            value: country.id,
-                            text: country.country_name
-                        }));
-                    });
-                })
-                .catch((error) => {
-                    console.error(error);
+    {{-- <script>
+        $(document).ready(function() {
+            $("#loan-amount, #interest-rate, #loan-term, #cutoff-fee, #loan-suraksha-vimo, #loan-suraksha-vimo,  #iho, #road-side-assite, #rto, #hold-for-insurance")
+                .on("input", function() {
+                    calculateLoan();
                 });
-        }
-        countryList();
 
-        // State List
-        function stateList() {
-            let country_id = $('#country_name').val();
-
-            axios
-                .get("/states", {
-                    params: {
-                        country_id: country_id
-                    }
-                })
-                .then((response) => {
-                    $('#state_name').html("");
-
-                    const stateData = response.data;
-                    console.log(stateData);
-                    const stateSelectBox = $('#state_name');
-                    stateSelectBox.append('<option>Select State</option>')
-                    stateData.forEach(function(state) {
-                        stateSelectBox.append($('<option>', {
-                            value: state.id,
-                            text: state.state_name
-                        }));
-                    });
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        }
-
-        // on country change
-        $('#country_name').change(function() {
-            stateList();
-        })
+            function calculateLoan() {
+                let loanAmount = parseFloat($("#loan-amount").val() || 0);
+                let annualInterestRate = parseFloat($("#interest-rate").val() || 0);
+                let loanTermMonths = parseFloat($("#loan-term").val() || 0);
+                let cutoffFee = parseFloat($("#cutoff-fee").val() || 0);
+                let loanSurakshaVimo = parseFloat($("#loan-suraksha-vimo").val() || 0);
+                let iho = parseFloat($("#iho").val() || 0);
+                let roadSideAssite = parseFloat($("#road-side-assite").val() || 0);
+                let rto = parseFloat($("#rto").val() || 0);
+                let holdForInsurance = parseFloat($("#hold-for-insurance").val() || 0)
 
 
-        // City list
-        function cityList() {
-            let state_id = $('#state_name').val();
+                if (loanAmount > 0 && annualInterestRate > 0 && loanTermMonths > 0) {
+                    let monthlyInterestRate = (annualInterestRate / 12) / 100;
+                    let emi = calculateEMI(loanAmount, monthlyInterestRate, loanTermMonths);
+                    // let totalRemaining = (emi * loanTermMonths) + cutoffFee;
+                    let totalRemaining = loanAmount - cutoffFee - loanSurakshaVimo - iho - roadSideAssite - rto -
+                        holdForInsurance;
 
-            axios
-                .get("/cities", {
-                    params: {
-                        state_id: state_id
-                    }
-                })
-                .then((response) => {
-                    $('#city_name').html("");
 
-                    const cityData = response.data;
+                    $("#emi-result").val(emi.toFixed(2));
+                    $("#total-remaining").text(totalRemaining.toFixed(2));
+                } else {
+                    $("#emi-result").text("0.00");
+                    $("#total-remaining").text("0.00");
+                }
+            }
 
-                    const citySelectBox = $('#city_name');
-                    citySelectBox.append('<option>Select City</option>')
-                    cityData.forEach(function(city) {
-                        citySelectBox.append($('<option>', {
-                            value: city.id,
-                            text: city.city_name
-                        }));
-                    });
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        }
+            function calculateEMI(loanAmount, monthlyInterestRate, loanTermMonths) {
+                let emi = loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTermMonths) / (
+                    Math.pow(1 + monthlyInterestRate, loanTermMonths) - 1);
+                return emi;
+            }
 
-        // on country change
-        $('#state_name').change(function() {
-            cityList();
-        })
-    </script>
+
+
+            // $("#loan-detail-print-btn").on("click", function() {
+            //     var contentToPrint = $("#loan-details").html();
+            //     var $printWindow = window.open('', '', 'width=600,height=600');
+            //     $printWindow.document.open();
+            //     $printWindow.document.write('<html><head><title>Print</title></head><body>' +
+            //         contentToPrint + '</body></html>');
+            //     $printWindow.document.close();
+            //     $printWindow.print();
+            //     $printWindow.close();
+            // });
+        });
+    </script> --}}
 @endsection

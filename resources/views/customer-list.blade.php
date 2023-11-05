@@ -82,21 +82,38 @@
                                                         </td>
                                                         <td>{{ $customer->mobile_no }}</td>
                                                         <td>{{ $customer->loan_amount }}</td>
-                                                        <td></td>
+                                                        <td>{{ $customer->executive_name }}</td>
 
                                                         <td class="ver_middle text-center">
+                                                            <?php
+                                                            $parts = explode('/', $customer->adhar_card); // Split the URL by slashes
+                                                            
+                                                            // Get the last part of the URL and split it by dot
+                                                            $lastPart = end($parts);
+                                                            $valueParts = explode('.', $lastPart);
+                                                            
+                                                            // Extract the value after the dot
+                                                            $doc_file_extention = end($valueParts);
+                                                            ?>
                                                             <div class="d-flex justify-content-center">
+                                                                <a href="#">
+                                                                    <img data-fancybox
+                                                                        src="{{ asset('storage/' . $customer->adhar_card) }}"
+                                                                        class="doc_icons" /></a>
                                                                 <a href="#"><img data-fancybox
-                                                                        src="assets/img/pdf.svg" class="doc_icons" /></a>
+                                                                        src="{{ asset('storage/' . $customer->adhar_card) }}"
+                                                                        class="doc_icons" /></a>
                                                                 <a href="#"><img data-fancybox
-                                                                        src="assets/img/pdf.svg" class="doc_icons" /></a>
+                                                                        src="{{ asset('storage/' . $customer->adhar_card) }}"
+                                                                        class="doc_icons" /></a>
                                                             </div>
                                                         </td>
                                                         <td>{{ $customer->created_at }}</td>
                                                         <td class="sorting_1"><span
                                                                 class="badge badge-pill bg-success-light"></span></td>
                                                         <td class="d-flex align-items-center ">
-                                                            <a class="btn btn-small btn-success  me-2" href="#"><i
+                                                            <a class="btn btn-small btn-success  me-2"
+                                                                href="{{ route('customers.edit', $customer->id) }}"><i
                                                                     class="far fa-edit me-2"></i> Edit</a>
                                                             <a class="btn btn-small btn-danger text-white"
                                                                 href="javascript:void(0);" data-bs-toggle="modal"

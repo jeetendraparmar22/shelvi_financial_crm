@@ -30,8 +30,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
     <script src="{{ asset('assets/js/jquery-3.7.0.min.js') }}"></script>
-
-    <script src="{{ asset('assets/js/customer-form-validation.js') }}"></script>
+    @stack('scripts')
 </head>
 
 <body>
@@ -240,4 +239,4 @@
             </ul>
         </div>
 
-        @include('layouts.sidebar');
+        @include('layouts.sidebar')
