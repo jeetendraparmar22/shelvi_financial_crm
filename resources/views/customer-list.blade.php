@@ -13,14 +13,14 @@
                                     <a href="{{ route('dashboard') }}">Home</a>
                                 </li>
                                 <li class="breadcrumb-item text-muted">
-                                    <a href="#" class="text-muted">Customers List</a>
+                                    <a href="#" class="text-muted">Customers Loan Application List</a>
                                 </li>
                             </ol>
                         </div>
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title mb-0">Customers List</h4>
+                            <h4 class="card-title mb-0">Customers Loan Application List</h4>
                         </div>
                         <div class="card-body pt-2">
                             <div>
@@ -28,10 +28,9 @@
                                     <div class="user_list form-group mb-0">
                                         <select class="select" id="user_list">
                                             <option>Select User</option>
-                                            <option>Options 1</option>
-                                            <option>Options 2</option>
-                                            <option>Options 3</option>
-                                            <option>Options 4</option>
+                                            @foreach ($users as $user)
+                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="top-nav-search customer_list">
@@ -82,21 +81,39 @@
                                                         </td>
                                                         <td>{{ $customer->mobile_no }}</td>
                                                         <td>{{ $customer->loan_amount }}</td>
-                                                        <td></td>
+                                                        <td>{{ $customer->executive_name }}</td>
 
                                                         <td class="ver_middle text-center">
+                                                            <?php
+                                                            $parts = explode('/', $customer->adhar_card); // Split the URL by slashes
+                                                            
+                                                            // Get the last part of the URL and split it by dot
+                                                            $lastPart = end($parts);
+                                                            $valueParts = explode('.', $lastPart);
+                                                            
+                                                            // Extract the value after the dot
+                                                            $doc_file_extention = end($valueParts);
+                                                            ?>
                                                             <div class="d-flex justify-content-center">
+                                                                <a href="#">
+                                                                    <img data-fancybox
+                                                                        src="{{ asset('storage/' . $customer->adhar_card) }}"
+                                                                        class="doc_icons" /></a>
                                                                 <a href="#"><img data-fancybox
-                                                                        src="assets/img/pdf.svg" class="doc_icons" /></a>
+                                                                        src="{{ asset('storage/' . $customer->rc_book) }}"
+                                                                        class="doc_icons" /></a>
                                                                 <a href="#"><img data-fancybox
-                                                                        src="assets/img/pdf.svg" class="doc_icons" /></a>
+                                                                        src="{{ asset('storage/' . $customer->insurance_file) }}"
+                                                                        class="doc_icons" /></a>
                                                             </div>
                                                         </td>
                                                         <td>{{ $customer->created_at }}</td>
                                                         <td class="sorting_1"><span
-                                                                class="badge badge-pill bg-success-light"></span></td>
+                                                                class="badge badge-pill bg-success-light">{{ $customer->loan_status }}</span>
+                                                        </td>
                                                         <td class="d-flex align-items-center ">
-                                                            <a class="btn btn-small btn-success  me-2" href="#"><i
+                                                            <a class="btn btn-small btn-success  me-2"
+                                                                href="{{ route('customers.edit', $customer->id) }}"><i
                                                                     class="far fa-edit me-2"></i> Edit</a>
                                                             <a class="btn btn-small btn-danger text-white"
                                                                 href="javascript:void(0);" data-bs-toggle="modal"
