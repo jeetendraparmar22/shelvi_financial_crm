@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\StateController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VillageController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -31,3 +35,16 @@ Route::resource('users', UserController::class);
 
 // Customer Routes
 Route::resource('customers', CustomerController::class);
+
+// Coutry list
+Route::get('countries', [CountryController::class, 'countryList']);
+
+// state List
+Route::get('states', [StateController::class, 'stateList']);
+
+// City List
+Route::get('cities', [CityController::class, 'cityList']);
+
+// Village List
+Route::get('villages', [VillageController::class, 'villageList']);
+Route::post('add-village', [VillageController::class, 'addVillage']);

@@ -19,12 +19,13 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title mb-0">Loan Application Form</h4>
-
+                            <h4 class="card-title mb-0">Edit Application Form</h4>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('customers.store') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('customers.update', $customer->id) }}"
+                                enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
                                 @if (session('success'))
                                     <div class="alert alert-success">
                                         {{ session('success') }}
@@ -92,7 +93,7 @@
                                                     <div class="form-group">
                                                         <label>First Name<span class="text-danger">*</span></label>
                                                         <input type="text" name="first_name"
-                                                            value="{{ old('first_name') }}"
+                                                            value="{{ $customer->first_name }}"
                                                             class="form-control @error('first_name') is-invalid
                                         
                                                         @enderror"
@@ -107,7 +108,7 @@
                                                     <div class="form-group">
                                                         <label>Middle Name<span class="text-danger">*</span></label>
                                                         <input type="text" placeholder="Enter Middle Name"
-                                                            name="last_name" value="{{ old('last_name') }}"
+                                                            name="last_name" value="{{ $customer->last_name }}"
                                                             class="form-control @error('last_name') is-invalid
                                         
                                                             @enderror">
@@ -119,11 +120,9 @@
                                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                                     <div class="form-group">
                                                         <label>Surname<span class="text-danger">*</span></label>
-                                                        <input type="text" name="surname" value="{{ old('surname') }}"
-                                                            class="form-control @error('surname') is-invalid
-                                        
-                                                        @enderror"
-                                                            placeholder="Enter Surname">
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Enter Surname" name="surname"
+                                                            value="{{ $customer->surname }}">
                                                     </div>
                                                     @error('surname')
                                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -132,14 +131,12 @@
                                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                                     <div class="form-group">
                                                         <label>Email</label>
-                                                        <input type="text" name="email"
-                                                            class="form-control @error('email') is-invalid
-                                        
-                                                        @enderror"
-                                                            value="{{ old('email') }}" placeholder="Enter Email Address">
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Enter Email Address" name="email"
+                                                            value="{{ $customer->email }}">
                                                     </div>
                                                     @error('email')
-                                                        <div class="text-danger">{{ $message }}</div>
+                                                        <div class="alert alert-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
 
@@ -148,7 +145,7 @@
                                                     <div class="form-group">
                                                         <label>Mobile No<span class="text-danger">*</span></label>
                                                         <input type="number" name="mobile_no"
-                                                            value="{{ old('mobile_no') }}"
+                                                            value="{{ $customer->mobile_no }}"
                                                             class="form-control @error('mobile_no') is-invalid
                                         
                                                         @enderror"
@@ -164,8 +161,8 @@
                                                     <div class="form-group">
                                                         <label>Alternate Mobile No</label>
                                                         <input type="text" class="form-control"
-                                                            placeholder="Enter Mobile Number" name="alternate_mobile_no"
-                                                            value="{{ old('alternate_mobile_no') }}">
+                                                            placeholder="Enter Mobile Number" name="alternate_mobile_no "
+                                                            value="{{ $customer->alternate_mobile_no }}">
                                                     </div>
                                                 </div>
 
@@ -181,7 +178,7 @@
                                                             class="form-control @error('address') is-invalid
                                         
                                                         @enderror"
-                                                            placeholder="Enter your Address">{{ old('address') }}</textarea>
+                                                            placeholder="Enter your Address">{{ $customer->address }}</textarea>
                                                     </div>
                                                     @error('address')
                                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -191,8 +188,8 @@
                                                 <div class="col-lg-4 col-12">
                                                     <div class="form-group mb-3">
                                                         <label>Country</label>
-                                                        <select class="select" name="country" id="country_name">
-                                                            <option value="">Select Country</option>
+                                                        <select class="select" name="country">
+                                                            <option>Select Country</option>
 
                                                         </select>
                                                     </div>
@@ -202,8 +199,8 @@
                                                     <div class="flex_row">
                                                         <div class="form-group mb-3">
                                                             <label>State</label>
-                                                            <select class="select" name="state" id="state_name">
-                                                                <option value="">Select State</option>
+                                                            <select class="select" name="state">
+                                                                <option>Select State</option>
 
                                                             </select>
                                                         </div>
@@ -217,8 +214,8 @@
                                                 <div class="col-lg-4 col-12">
                                                     <div class="flex_row">
                                                         <div class="form-group mb-3">
-                                                            <label>City/District</label>
-                                                            <select class="select" name="city" id="city_name">
+                                                            <label>City</label>
+                                                            <select class="select" name="city">
                                                                 <option>Select City</option>
 
                                                             </select>
@@ -235,7 +232,7 @@
                                                     <div class="flex_row">
                                                         <div class="form-group mb-3">
                                                             <label>Village</label>
-                                                            <select class="select" name="village" id="village_name">
+                                                            <select class="select" name="village">
                                                                 <option>Select Village</option>
 
                                                             </select>
@@ -250,8 +247,7 @@
                                                     <div class="form-group">
                                                         <label>Pincode</label>
                                                         <input type="number" class="form-control"
-                                                            placeholder="Enter Pincode" name="pincode"
-                                                            value="{{ old('pincode') }}">
+                                                            placeholder="Enter Pincode" name="pincode">
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-4 col-lg-4 col-md-4 col-12">
@@ -277,11 +273,10 @@
                                                 <div class="col-lg-12">
                                                     <div class="form-group">
                                                         <label>Remark</label>
-                                                        <textarea type="text" name="remark_customer_detail" class="form-control" placeholder="Enter Remark">{{ old('remark_customer_detail') }}</textarea>
+                                                        <textarea type="text" name="remark_customer_detail" class="form-control" placeholder="Enter Remark">{{ $customer->remark_customer_detail }}</textarea>
                                                     </div>
 
                                                 </div>
-
                                             </div>
 
 
@@ -303,14 +298,14 @@
                                                             Name</label>
                                                         <input type="text" class="form-control"
                                                             id="basicpill-pancard-input" placeholder="Enter Finance Name"
-                                                            name="finance_name" value="{{ old('finance_name') }}">
+                                                            name="finance_name" value="{{ $customer->finance_name }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label for="basicpill-vatno-input" class="form-label">Finance
                                                             Address</label>
-                                                        <textarea class="form-control" placeholder="Enter Finance Address" name="finance_address">{{ old('finance_address') }}</textarea>
+                                                        <textarea class="form-control" placeholder="Enter Finance Address" name="finance_address">{{ $customer->finance_address }}</textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -318,7 +313,7 @@
                                                         <label class="form-label">Executive Name</label>
                                                         <input type="text" class="form-control"
                                                             placeholder="Enter Executive Name" name="executive_name"
-                                                            value="{{ old('executive_name') }}">
+                                                            value="{{ $customer->executive_name }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -326,7 +321,7 @@
                                                         <label class="form-label">Dealer Name</label>
                                                         <input type="text" class="form-control"
                                                             placeholder="Enter Dealer Name" name="Dealer_name"
-                                                            value="{{ old('Dealer_name') }}">
+                                                            value="{{ $customer->Dealer_name }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -350,7 +345,7 @@
                                                         <label>Vehicle Type</label>
                                                         <input type="text" class="form-control"
                                                             placeholder="Enter Vehicle Type" name="vehicle_type"
-                                                            value="{{ old('vehicle_type') }}">
+                                                            value="{{ $customer->vehicle_type }}">
                                                     </div>
                                                 </div>
 
@@ -360,7 +355,7 @@
                                                         <input type="text" class="form-control"
                                                             placeholder="Enter Vehicle Registration Number"
                                                             name="vehicle_registration_no"
-                                                            value="{{ old('vehicle_registration_no') }}">
+                                                            value="{{ $customer->vehicle_registration_no }}">
                                                     </div>
                                                 </div>
 
@@ -370,7 +365,7 @@
                                                         <input type="text" class="form-control"
                                                             placeholder="Enter Registration Year"
                                                             name="vehicle_registration_year"
-                                                            value="{{ old('vehicle_registration_year') }}">
+                                                            value="{{ $customer->vehicle_registration_year }}">
                                                     </div>
                                                 </div>
 
@@ -379,7 +374,7 @@
                                                         <label>Chasis Number </label>
                                                         <input type="text" class="form-control"
                                                             placeholder="Enter Chasis Number" name="chasis_no"
-                                                            value="{{ old('chasis_no') }}">
+                                                            value="{{ $customer->chasis_no }}">
                                                     </div>
                                                 </div>
 
@@ -388,7 +383,7 @@
                                                         <label>Engine Number </label>
                                                         <input type="text" class="form-control"
                                                             placeholder="Enter Engine Number" name="engine_no"
-                                                            value="{{ old('engine_no') }}">
+                                                            value="{{ $customer->engine_no }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4">
@@ -396,7 +391,7 @@
                                                         <label>Fuel Type</label>
                                                         <input type="text" class="form-control"
                                                             placeholder="Enter Fuel Type" name="fuel_type"
-                                                            value="{{ old('fuel_type') }}">
+                                                            value="{{ $customer->fuel_type }}">
                                                     </div>
                                                 </div>
 
@@ -406,7 +401,7 @@
                                                         <input type="text" class="form-control"
                                                             placeholder="Enter Insurance Company Name"
                                                             name="insurance_company_name"
-                                                            value="{{ old('insurance_company_name') }}">
+                                                            value="{{ $customer->insurance_company_name }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -446,9 +441,8 @@
                                                                     </span>
                                                                     or Drag and Drop
                                                                 </h6>
-                                                                <p class="text-muted">SVG, PNG, JPG (Max 800*400px)
-                                                                </p>
-                                                                <input type="file" multiple id="rc_book"
+                                                                <p class="text-muted">SVG, PNG, JPG (Max 800*400px)</p>
+                                                                <input type="file" multiple id="image_sign"
                                                                     name="rc_book">
                                                                 <div id="frames"></div>
                                                             </div>
@@ -468,9 +462,8 @@
                                                                     </span>
                                                                     or Drag and Drop
                                                                 </h6>
-                                                                <p class="text-muted">SVG, PNG, JPG (Max 800*400px)
-                                                                </p>
-                                                                <input type="file" multiple id="insurance_file"
+                                                                <p class="text-muted">SVG, PNG, JPG (Max 800*400px)</p>
+                                                                <input type="file" multiple id="image_sign"
                                                                     name="insurance_file">
                                                                 <div id="frames"></div>
                                                             </div>
@@ -495,21 +488,25 @@
                                                         data-bs-placement="top" title="WhatsApp"> <img
                                                             src="{{ asset('assets/img/whatsapp.svg') }}" />
                                                     </a>
-                                                    <a id="printButton" class="image_icons" data-bs-toggle="tooltip"
-                                                        data-bs-placement="top" title="Print"><img
+                                                    <a href="#" class="image_icons" data-bs-toggle="tooltip"
+                                                        data-bs-placement="top" title="Print"><img data-fancybox
                                                             src="{{ asset('assets/img/print.svg') }}" />
                                                     </a>
                                                 </div>
                                             </div>
 
-                                            <div class="card table-card" id="print-loan-detail">
+                                            <div class="card table-card">
 
                                                 <div class="">
 
                                                     <div class="mb-3">
-                                                        <h6 class="mb-2"><b>Customer Name :</b> Patel Rakesh</h6>
-                                                        <h6 class="mb-2"><b>Executive :</b> Prakash Jain</h6>
-                                                        <h6 class="mb-2"><b>Finance :</b> Kogta Palanpur</h6>
+                                                        <h6 class="mb-2"><b>Customer Name :</b>
+                                                            {{ $customer->first_name }} {{ $customer->last_name }}
+                                                            {{ $customer->surname }}</h6>
+                                                        <h6 class="mb-2"><b>Executive :</b>
+                                                            {{ $customer->executive_name }}</h6>
+                                                        <h6 class="mb-2"><b>Finance :</b> {{ $customer->finance_name }}
+                                                        </h6>
                                                     </div>
                                                     <div class="rounded  bg-light-primary">
                                                         <div class="row justify-content-start">
@@ -524,9 +521,9 @@
                                                                                 <th>:</th>
                                                                                 <td><input type="number"
                                                                                         class="form-control "
+                                                                                        value="{{ $customer->loan_amount }}"
                                                                                         id="loan-amount"
-                                                                                        name="loan_amount"
-                                                                                        value="{{ old('loan_amount') }}">
+                                                                                        name="loan_amount">
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -534,9 +531,8 @@
                                                                                 <th>:</th>
                                                                                 <td><input type="number"
                                                                                         class="form-control "
-                                                                                        id="interest-rate"
-                                                                                        name="interest_rate"
-                                                                                        value="{{ old('interest_rate') }}">
+                                                                                        value="" id="interest-rate"
+                                                                                        name="interest_rate">
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -544,8 +540,8 @@
                                                                                 <th>:</th>
                                                                                 <td><input type="number"
                                                                                         class="form-control "
-                                                                                        id="loan-term" name="loan_term"
-                                                                                        value="{{ old('loan_term') }}">
+                                                                                        value="" id="loan-term"
+                                                                                        name="loan_term">
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -553,9 +549,8 @@
                                                                                 <th>:</th>
                                                                                 <td><input type="number"
                                                                                         class="form-control "
-                                                                                        id="emi-result" name="emi"
-                                                                                        value="{{ old('emi') }}"
-                                                                                        readonly>
+                                                                                        value="" id="emi-result"
+                                                                                        name="emi" readonly>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -563,18 +558,17 @@
                                                                                 <th>:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
+                                                                                        value="{{ $customer->loan_surakhya_vimo }}"
                                                                                         id="loan-suraksha-vimo"
-                                                                                        name="loan_surakhya_vimo"
-                                                                                        value="{{ old('loan_surakhya_vimo') }}">
-                                                                                </td>
+                                                                                        name="loan_surakhya_vimo"></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <th>IHO </th>
                                                                                 <th>:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
-                                                                                        id="iho" name="iho"
-                                                                                        value="{{ old('iho') }}">
+                                                                                        value="{{ $customer->iho }}"
+                                                                                        id="iho" name="iho">
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -582,8 +576,9 @@
                                                                                 <th>:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
-                                                                                        id="cutoff-fee" name="file_charge"
-                                                                                        value="{{ old('file_charge') }}">
+                                                                                        value="{{ $customer->file_charge }}"
+                                                                                        id="cutoff-fee"
+                                                                                        name="file_charge">
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -591,18 +586,17 @@
                                                                                 <th>:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
+                                                                                        value="{{ $customer->road_side_assite }}"
                                                                                         id="road-side-assite"
-                                                                                        name="road_side_assite"
-                                                                                        value="{{ old('road_side_assite') }}">
-                                                                                </td>
+                                                                                        name="road_side_assite"></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <th>RTO </th>
                                                                                 <th>:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
-                                                                                        id="rto" name="rto_charge"
-                                                                                        value="{{ old('rto_charge') }}">
+                                                                                        value="{{ $customer->rto_charge }}"
+                                                                                        id="rto" name="rto_charge">
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -611,14 +605,13 @@
                                                                                 <th>:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
+                                                                                        value="{{ $customer->hold_for_insurance }}"
                                                                                         id="hold-for-insurance"
-                                                                                        name="hold_for_insurance"
-                                                                                        value="{{ old('hold_for_insurance') }}">
-                                                                                </td>
+                                                                                        name="hold_for_insurance"></td>
                                                                                 <th>Remark</th>
                                                                                 <th>:</th>
                                                                                 <td>
-                                                                                    <textarea class="form-control" id="loan_detail_remark" name="remark_loan_detail">{{ old('remark_loan_detail') }}</textarea>
+                                                                                    <textarea class="form-control" value="" id="" name="remark_loan_detail"></textarea>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -628,7 +621,7 @@
                                                                                 <td><input type="text"
                                                                                         class="form-control "
                                                                                         name="loan_status"
-                                                                                        value="{{ old('loan_status') }}">
+                                                                                        value="{{ $customer->loan_status }}">
                                                                                 </td>
 
                                                                             </tr>
@@ -643,7 +636,7 @@
                                                                                 <td class="ps-0 pt-0 pb-4">
                                                                                     <hr class="mb-3 mt-0">
                                                                                     <h5 class="text-primary"><span
-                                                                                            id="total-remaining">0</span>
+                                                                                            id="total-remaining">{{ $customer->final_total_amount }}</span>
                                                                                     </h5>
                                                                                 </td>
                                                                             </tr>
@@ -679,7 +672,7 @@
                                                         <input type="text" class="form-control"
                                                             placeholder="Enter Account Holder Name"
                                                             name="bank_account_holder_name"
-                                                            value="{{ old('bank_account_holder_name') }}">
+                                                            value="{{ $customer->bank_account_holder_name }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4 col-md-12 col-sm-12">
@@ -687,7 +680,7 @@
                                                         <label>Account Number</label>
                                                         <input type="text" class="form-control"
                                                             placeholder="Enter Account Number" name="account_no"
-                                                            value="{{ old('account_no') }}">
+                                                            value="{{ $customer->account_no }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4 col-md-6 col-sm-12">
@@ -695,7 +688,7 @@
                                                         <label>Bank Name</label>
                                                         <input type="text" class="form-control"
                                                             placeholder="Enter Bank Name" name="bank_name"
-                                                            value="{{ old('bank_name') }}">
+                                                            value="{{ $customer->bank_name }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4 col-md-6 col-sm-12">
@@ -703,7 +696,7 @@
                                                         <label>Branch Name</label>
                                                         <input type="text" class="form-control"
                                                             placeholder="Enter Branch Name" name="branch_name"
-                                                            value="{{ old('branch_name') }}">
+                                                            value="{{ $customer->branch_name }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4 col-md-12 col-sm-12">
@@ -711,7 +704,7 @@
                                                         <label>IFSC Code</label>
                                                         <input type="text" class="form-control"
                                                             placeholder="Enter IFSC Code" name="ifsc_code"
-                                                            value="{{ old('ifsc_code') }}">
+                                                            value="{{ $customer->ifsc_code }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -720,7 +713,7 @@
                                                 <a class="btn btn-primary previous me-2">Previous</a>
                                                 {{-- <a class="btn btn-primary next" data-bs-toggle="modal"
                                                     data-bs-target="#save_modal">Save Changes</a> --}}
-                                                <button class="btn btn-primary" type="submit">Save</button>
+                                                <button class="btn btn-primary" type="submit">Update Data</button>
                                             </div>
                                         </div>
                                     </div>
@@ -780,14 +773,6 @@
                                 <input type="text" class="form-control" placeholder="Enter State Name">
                             </div>
                         </div>
-                        <div class="col-lg-12 col-md-12">
-                            <div class="form-group mb-3">
-                                <label>Select Country<span class="text-danger">*</span></label>
-                                <select class="select" name="country" id="modal_country_name">
-
-                                </select>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
@@ -845,243 +830,72 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="form-group mb-0">
                                 <label>Village <span class="text-danger">*</span></label>
-                                <input type="text" name="modal_village_name" id="modal_village_name"
-                                    class="form-control" placeholder="Enter Village Name">
+                                <input type="text" class="form-control" placeholder="Enter Village Name">
                             </div>
                         </div>
-                        <div class="col-lg-12 col-md-12">
-                            <div class="form-group mb-0">
-                                <label>City/District<span class="text-danger">*</span></label>
-                                <select class="select" name="city" id="modal_city_name">
-                                    <option>Select City</option>
 
-                                </select>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <a href="#" data-bs-dismiss="modal" class="btn btn-danger me-2">Cancel</a>
-                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary" id="add_village">Add Village</a>
+                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary">Save</a>
                 </div>
             </div>
         </div>
     </div>
-    @push('scripts')
-        <script src="{{ asset('assets/js/customer-application-form.js') }}"></script>
-        <script src="{{ asset('assets/js/axios.js') }}"></script>
-    @endpush
-    <script>
-        function countryList() {
-            const formData = new FormData();
-
-            axios
-                .get("/countries", formData)
-                .then((response) => {
-
-                    const countryData = response.data;
-                    const countrySelectBox = $('#country_name');
-                    countryData.forEach(function(country) {
-                        countrySelectBox.append($('<option>', {
-                            value: country.id,
-                            text: country.country_name
-                        }));
-                    });
-
-                    // append countries in add state modal
-                    $('#modal_country_name').html("");
-                    const modalCountrySelectBox = $('#modal_country_name');
-                    modalCountrySelectBox.append('<option>Select Country</option>')
-                    countryData.forEach(function(modalCountry) {
-                        modalCountrySelectBox.append($('<option>', {
-                            value: modalCountry.id,
-                            text: modalCountry.country_name
-                        }));
-                    });
-                })
-                .catch((error) => {
-                    console.error(error);
+    {{-- <script>
+        $(document).ready(function() {
+            $("#loan-amount, #interest-rate, #loan-term, #cutoff-fee, #loan-suraksha-vimo, #loan-suraksha-vimo,  #iho, #road-side-assite, #rto, #hold-for-insurance")
+                .on("input", function() {
+                    calculateLoan();
                 });
-        }
-        countryList();
 
-        // State List
-        function stateList() {
-            let country_id = $('#country_name').val();
-
-            axios
-                .get("/states", {
-                    params: {
-                        country_id: country_id
-                    }
-                })
-                .then((response) => {
-                    $('#state_name').html("");
-
-                    const stateData = response.data;
-
-                    const stateSelectBox = $('#state_name');
-                    stateSelectBox.append('<option>Select State</option>')
-                    stateData.forEach(function(state) {
-                        stateSelectBox.append($('<option>', {
-                            value: state.id,
-                            text: state.state_name
-                        }));
-                    });
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        }
-
-        // on country change
-        $('#country_name').change(function() {
-            stateList();
-
-        })
+            function calculateLoan() {
+                let loanAmount = parseFloat($("#loan-amount").val() || 0);
+                let annualInterestRate = parseFloat($("#interest-rate").val() || 0);
+                let loanTermMonths = parseFloat($("#loan-term").val() || 0);
+                let cutoffFee = parseFloat($("#cutoff-fee").val() || 0);
+                let loanSurakshaVimo = parseFloat($("#loan-suraksha-vimo").val() || 0);
+                let iho = parseFloat($("#iho").val() || 0);
+                let roadSideAssite = parseFloat($("#road-side-assite").val() || 0);
+                let rto = parseFloat($("#rto").val() || 0);
+                let holdForInsurance = parseFloat($("#hold-for-insurance").val() || 0)
 
 
-        // City list
-        function cityList() {
-            let state_id = $('#state_name').val();
-
-            axios
-                .get("/cities", {
-                    params: {
-                        state_id: state_id
-                    }
-                })
-                .then((response) => {
-                    $('#city_name').html("");
-
-                    const cityData = response.data;
-
-                    const citySelectBox = $('#city_name');
-                    citySelectBox.append('<option>Select City</option>')
-                    cityData.forEach(function(city) {
-                        citySelectBox.append($('<option>', {
-                            value: city.id,
-                            text: city.city_name
-                        }));
-                    });
-
-                    // Append data in add  village modal
-                    $('#modal_city_name').html("");
-                    const modalCitySelectBox = $('#modal_city_name');
-                    modalCitySelectBox.append('<option value="">Select City </option>')
-                    cityData.forEach(function(modalCity) {
-                        modalCitySelectBox.append($('<option>', {
-                            value: modalCity.id,
-                            text: modalCity.city_name
-                        }));
-                    });
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        }
-
-        // on state change
-        $('#state_name').change(function() {
-            cityList();
-        })
-
-        // Village list
-        function villageList() {
-            let city_id = $('#city_name').val();
-
-            axios
-                .get("/villages", {
-                    params: {
-                        city_id: city_id
-                    }
-                })
-                .then((response) => {
-                    $('#village_name').html("");
-
-                    const villageData = response.data;
-
-                    const villageSelectBox = $('#village_name');
-                    villageSelectBox.append('<option>Select Village</option>')
-                    villageData.forEach(function(village) {
-                        villageSelectBox.append($('<option>', {
-                            value: village.id,
-                            text: village.village_name
-                        }));
-                    });
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        }
-
-        // on city change
-        $('#city_name').change(function() {
-            villageList();
-        })
+                if (loanAmount > 0 && annualInterestRate > 0 && loanTermMonths > 0) {
+                    let monthlyInterestRate = (annualInterestRate / 12) / 100;
+                    let emi = calculateEMI(loanAmount, monthlyInterestRate, loanTermMonths);
+                    // let totalRemaining = (emi * loanTermMonths) + cutoffFee;
+                    let totalRemaining = loanAmount - cutoffFee - loanSurakshaVimo - iho - roadSideAssite - rto -
+                        holdForInsurance;
 
 
-        // Add Viilage
-        function addVillage() {
-            var cityId = $('#modal_city_name').val();
-            var villageName = $('#modal_village_name').val();
-
-            const formData = new FormData();
-            formData.append('village_name', villageName);
-            formData.append('city_id', cityId);
-
-            axios
-                .post("/add-village", formData)
-                .then((response) => {
-                    villageList();
-
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        }
-
-
-        // Call add village function
-        $("#add_village").click(function() {
-            var modalVillageName = $('#modal_village_name').val();
-            var modalCityName = $('#modal_city_name').val();
-            if (modalVillageName == '' || modalCityName == '') {
-
-            } else {
-                // Call function
-                addVillage();
+                    $("#emi-result").val(emi.toFixed(2));
+                    $("#total-remaining").text(totalRemaining.toFixed(2));
+                } else {
+                    $("#emi-result").text("0.00");
+                    $("#total-remaining").text("0.00");
+                }
             }
+
+            function calculateEMI(loanAmount, monthlyInterestRate, loanTermMonths) {
+                let emi = loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTermMonths) / (
+                    Math.pow(1 + monthlyInterestRate, loanTermMonths) - 1);
+                return emi;
+            }
+
+
+
+            // $("#loan-detail-print-btn").on("click", function() {
+            //     var contentToPrint = $("#loan-details").html();
+            //     var $printWindow = window.open('', '', 'width=600,height=600');
+            //     $printWindow.document.open();
+            //     $printWindow.document.write('<html><head><title>Print</title></head><body>' +
+            //         contentToPrint + '</body></html>');
+            //     $printWindow.document.close();
+            //     $printWindow.print();
+            //     $printWindow.close();
+            // });
         });
-
-
-
-        // generate PDF of load details
-        $("#printButton").on("click", function() {
-            var printWindow = window.open('', '', 'width=600,height=600');
-            printWindow.document.open();
-            printWindow.document.write('<html><head><title>Print</title></head><body>' + getContentToPrint() +
-                '</body></html>');
-            printWindow.document.close();
-            printWindow.print();
-            printWindow.close();
-        });
-
-        function getContentToPrint() {
-            var loanAmount = $("#loan-amount").val();
-            var interestRate = $("#interest-rate").val();
-            var emi = $("#emi-result").val();
-            var remarks = $("#loan_detail_remark").val();
-
-            return `
-          <div id="print-loan-detail">
-            <h1>Loan Details</h1>
-            <p>Loan Amount: <span>${loanAmount}</span></p>
-            <p>Interest Rate: <span>${interestRate}</span></p>
-            <p>EMI: <span>${emi}</span></p>
-            <p>Remarks: ${remarks}</p>
-          </div>
-        `;
-        }
-    </script>
+    </script> --}}
 @endsection

@@ -12,14 +12,13 @@
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
-                <li class="menu-title"><span>Main</span></li>
+                <li class="menu-title"><span>Menu</span></li>
                 <li>
                     <a href="{{ route('dashboard') }}" class="active"><i class="fe fe-home"></i> <span> Dashboard</span>
                     </a>
                 </li>
-            </ul>
-            <ul>
-                <li class="menu-title"><span>Details</span></li>
+
+
                 <li>
                     <a href="{{ route('customers.create') }}"><i class="fe fe-file"></i> <span>Application
                             Form</span></a>
@@ -30,7 +29,8 @@
 
 
                 <li>
-                    <a href="{{ route('users.index') }}"><i class="fe fe-file-text"></i> <span> User List</span></a>
+                    <a href="{{ route('users.index') }}"><i class="fe fe-file-text"></i> <span> Executive
+                            List</span></a>
                 </li>
 
             </ul>
@@ -38,3 +38,16 @@
         </div>
     </div>
 </div>
+{{-- <script>
+    $(document).ready(function() {
+        // Add click event handler to all menu items
+        $('.sidebar-menu ul li a').click(function() {
+
+            // Remove "active" class from all menu items
+            $('.sidebar-menu ul li a').removeClass('active');
+
+            // Add "active" class to the clicked menu item
+            $(this).addClass('active');
+        });
+    });
+</script> --}}
