@@ -22,6 +22,11 @@
                         <div class="card-header">
                             <h4 class="card-title mb-0">Customers Loan Application List</h4>
                         </div>
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
                         <div class="card-body pt-2">
                             <div>
                                 <div class="d-flex align-items-center">
@@ -117,10 +122,15 @@
                                                             <a class="btn btn-small btn-success  me-2"
                                                                 href="{{ route('customers.edit', $customer->id) }}"><i
                                                                     class="far fa-edit me-2"></i> Edit</a>
-                                                            <a class="btn btn-small btn-danger text-white"
-                                                                href="javascript:void(0);" data-bs-toggle="modal"
-                                                                data-bs-target="#delete_modal"><i
-                                                                    class="far fa-trash-alt me-2"></i>Delete</a>
+                                                            <form method="POST"
+                                                                action="{{ route('customers.destroy', $customer->id) }}"
+                                                                id="customer-delete-form">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <a class="btn btn-small btn-danger text-white"
+                                                                    onclick="confirmDelete()"><i
+                                                                        class="far fa-trash-alt me-2"></i>Delete</a>
+                                                            </form>
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -163,7 +173,7 @@
         </div>
 
         <div class="modal custom-modal fade" id="delete_modal" role="dialog">
-            <div class="modal-dialog modal-dialog-centered modal-md">
+            < <div class="modal-dialog modal-dialog-centered modal-md">
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="form-header">
@@ -173,7 +183,9 @@
                         <div class="modal-btn delete-action">
                             <div class="row">
                                 <div class="col-6">
-                                    <a href="#" class="btn btn-primary paid-continue-btn">Delete</a>
+
+                                    <button href="#" class="btn btn-primary paid-continue-btn">Delete</button>
+
                                 </div>
                                 <div class="col-6">
                                     <a href="#" data-bs-dismiss="modal"
@@ -183,6 +195,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
-    @endsection
+
+    </div>
+@endsection

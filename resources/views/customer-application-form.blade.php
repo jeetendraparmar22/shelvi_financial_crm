@@ -107,7 +107,8 @@
                                                     <div class="form-group">
                                                         <label>Middle Name<span class="text-danger">*</span></label>
                                                         <input type="text" placeholder="Enter Middle Name"
-                                                            name="last_name" value="{{ old('last_name') }}"
+                                                            name="last_name" id="last_name"
+                                                            value="{{ old('last_name') }}"
                                                             class="form-control @error('last_name') is-invalid
                                         
                                                             @enderror">
@@ -119,7 +120,8 @@
                                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                                     <div class="form-group">
                                                         <label>Surname<span class="text-danger">*</span></label>
-                                                        <input type="text" name="surname" value="{{ old('surname') }}"
+                                                        <input type="text" name="surname" id="surname"
+                                                            value="{{ old('surname') }}"
                                                             class="form-control @error('surname') is-invalid
                                         
                                                         @enderror"
@@ -301,9 +303,9 @@
                                                     <div class="form-group">
                                                         <label for="basicpill-pancard-input" class="form-label">Finance
                                                             Name</label>
-                                                        <input type="text" class="form-control"
-                                                            id="basicpill-pancard-input" placeholder="Enter Finance Name"
-                                                            name="finance_name" value="{{ old('finance_name') }}">
+                                                        <input type="text" class="form-control" id="finance-name"
+                                                            placeholder="Enter Finance Name" name="finance_name"
+                                                            value="{{ old('finance_name') }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -318,7 +320,7 @@
                                                         <label class="form-label">Executive Name</label>
                                                         <input type="text" class="form-control"
                                                             placeholder="Enter Executive Name" name="executive_name"
-                                                            value="{{ old('executive_name') }}">
+                                                            id="executive-name" value="{{ old('executive_name') }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -492,8 +494,8 @@
 
                                                 <div class="d-flex ms-4">
                                                     <a href="#" class="image_icons me-2" data-bs-toggle="tooltip"
-                                                        data-bs-placement="top" title="WhatsApp"> <img
-                                                            src="{{ asset('assets/img/whatsapp.svg') }}" />
+                                                        data-bs-placement="top" title="WhatsApp">
+                                                        <img src="{{ asset('assets/img/whatsapp.svg') }}" />
                                                     </a>
                                                     <a id="printButton" class="image_icons" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" title="Print"><img
@@ -507,9 +509,12 @@
                                                 <div class="">
 
                                                     <div class="mb-3">
-                                                        <h6 class="mb-2"><b>Customer Name :</b> Patel Rakesh</h6>
-                                                        <h6 class="mb-2"><b>Executive :</b> Prakash Jain</h6>
-                                                        <h6 class="mb-2"><b>Finance :</b> Kogta Palanpur</h6>
+                                                        <h6 class="mb-2"><b>Customer Name :</b> <span
+                                                                id="loan-detail-customer-name"></span></h6>
+                                                        <h6 class="mb-2"><b>Executive Name:</b> <span
+                                                                id="loan-detail-executive-name"></span></h6>
+                                                        <h6 class="mb-2"><b>Finance Name:</b> <span
+                                                                id="loan-detail-finance-name"></span></h6>
                                                     </div>
                                                     <div class="rounded  bg-light-primary">
                                                         <div class="row justify-content-start">
@@ -517,11 +522,9 @@
                                                                 <div class="table-responsive">
                                                                     <table class="table table-borderless text-end mb-0">
                                                                         <tbody>
-
-
                                                                             <tr>
                                                                                 <th>Loan Amount </th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td><input type="number"
                                                                                         class="form-control "
                                                                                         id="loan-amount"
@@ -531,7 +534,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <th>Interest Rate (%) </th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td><input type="number"
                                                                                         class="form-control "
                                                                                         id="interest-rate"
@@ -541,7 +544,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <th>Loan Term (Months) </th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td><input type="number"
                                                                                         class="form-control "
                                                                                         id="loan-term" name="loan_term"
@@ -550,7 +553,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <th>EMI </th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td><input type="number"
                                                                                         class="form-control "
                                                                                         id="emi-result" name="emi"
@@ -560,7 +563,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <th>Loan Suraksha Vimo </th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
                                                                                         id="loan-suraksha-vimo"
@@ -570,7 +573,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <th>IHO </th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
                                                                                         id="iho" name="iho"
@@ -579,7 +582,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <th>Total File Charge </th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
                                                                                         id="cutoff-fee" name="file_charge"
@@ -588,7 +591,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <th>Road Side Assite </th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
                                                                                         id="road-side-assite"
@@ -598,7 +601,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <th>RTO </th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
                                                                                         id="rto" name="rto_charge"
@@ -608,29 +611,40 @@
                                                                             <tr>
                                                                                 <th>Hold for Insurance & Taxi to PVT
                                                                                 </th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
                                                                                         id="hold-for-insurance"
                                                                                         name="hold_for_insurance"
                                                                                         value="{{ old('hold_for_insurance') }}">
                                                                                 </td>
+                                                                            </tr>
+
+                                                                            <tr>
                                                                                 <th>Remark</th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td>
                                                                                     <textarea class="form-control" id="loan_detail_remark" name="remark_loan_detail">{{ old('remark_loan_detail') }}</textarea>
                                                                                 </td>
                                                                             </tr>
+
                                                                             <tr>
                                                                                 <th>Loan Status
                                                                                 </th>
-                                                                                <th>:</th>
-                                                                                <td><input type="text"
-                                                                                        class="form-control "
-                                                                                        name="loan_status"
-                                                                                        value="{{ old('loan_status') }}">
+                                                                                <th class="dotted">:</th>
+                                                                                <td>
+                                                                                    <select class="select basic"
+                                                                                        id="loan-status"
+                                                                                        name="loan_status">
+                                                                                        <option>Select Status</option>
+                                                                                        <option value="Processing">
+                                                                                            Processing</option>
+                                                                                        <option value="Approved">
+                                                                                            Approved</option>
+                                                                                        <option value="Rejected">
+                                                                                            Rejected</option>
+                                                                                    </select>
                                                                                 </td>
-
                                                                             </tr>
                                                                             <tr>
                                                                                 <td class="pe-0 pt-0">
@@ -646,6 +660,10 @@
                                                                                             id="total-remaining">0</span>
                                                                                     </h5>
                                                                                 </td>
+                                                                                <input type="hidden"
+                                                                                    name="final_total_amount"
+                                                                                    id="final-total-amount"
+                                                                                    value="" />
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
@@ -777,23 +795,17 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="form-group mb-0">
                                 <label>State <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" placeholder="Enter State Name">
+                                <input type="text" name="modal_state_name" id="modal-state-name" class="form-control"
+                                    placeholder="Enter State Name">
                             </div>
                         </div>
-                        <div class="col-lg-12 col-md-12">
-                            <div class="form-group mb-3">
-                                <label>Select Country<span class="text-danger">*</span></label>
-                                <select class="select" name="country" id="modal_country_name">
 
-                                </select>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
                 <div class="modal-footer">
                     <a href="#" data-bs-dismiss="modal" class="btn btn-danger me-2">Cancel</a>
-                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary" id="type-info">Save</a>
+                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary" id="modal-state-save">Save</a>
                 </div>
             </div>
         </div>
@@ -815,7 +827,8 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="form-group mb-0">
                                 <label>City <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" placeholder="Enter City Name">
+                                <input type="text" name="modal_city_name" id="modal-city-name" class="form-control"
+                                    placeholder="Enter City Name">
                             </div>
                         </div>
 
@@ -823,7 +836,7 @@
                 </div>
                 <div class="modal-footer">
                     <a href="#" data-bs-dismiss="modal" class="btn btn-danger me-2">Cancel</a>
-                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary">Save</a>
+                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary" id="modal-save-city">Save</a>
                 </div>
             </div>
         </div>
@@ -845,24 +858,25 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="form-group mb-0">
                                 <label>Village <span class="text-danger">*</span></label>
-                                <input type="text" name="modal_village_name" id="modal_village_name"
+                                <input type="text" name="modal_village_name" id="modal-village-name"
                                     class="form-control" placeholder="Enter Village Name">
                             </div>
                         </div>
-                        <div class="col-lg-12 col-md-12">
+                        {{-- <div class="col-lg-12 col-md-12">
                             <div class="form-group mb-0">
                                 <label>City/District<span class="text-danger">*</span></label>
-                                <select class="select" name="city" id="modal_city_name">
+                                <select class="select" name="modal_city" id="modal_city_name">
                                     <option>Select City</option>
 
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="modal-footer">
                     <a href="#" data-bs-dismiss="modal" class="btn btn-danger me-2">Cancel</a>
-                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary" id="add_village">Add Village</a>
+                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary" id="modal-add-village-save">Add
+                        Village</a>
                 </div>
             </div>
         </div>
@@ -966,15 +980,15 @@
                     });
 
                     // Append data in add  village modal
-                    $('#modal_city_name').html("");
-                    const modalCitySelectBox = $('#modal_city_name');
-                    modalCitySelectBox.append('<option value="">Select City </option>')
-                    cityData.forEach(function(modalCity) {
-                        modalCitySelectBox.append($('<option>', {
-                            value: modalCity.id,
-                            text: modalCity.city_name
-                        }));
-                    });
+                    // $('#modal_city_name').html("");
+                    // var modalCitySelectBox = $('#modal_city_name');
+                    // modalCitySelectBox.append('<option value="">Select City </option>')
+                    // cityData.forEach(function(modalCity) {
+                    //     modalCitySelectBox.append($('<option>', {
+                    //         value: modalCity.id,
+                    //         text: modalCity.city_name
+                    //     }));
+                    // });
                 })
                 .catch((error) => {
                     console.error(error);
@@ -984,6 +998,13 @@
         // on state change
         $('#state_name').change(function() {
             cityList();
+            // set value in modal city
+            // get selected state id and name
+            var selectedStateId = $('#state_name').val();
+            var selectedText = $("#state_name option:selected").text();
+            $('#modal-state-name-option').val(selectedStateId);
+            $('#modal-state-name-option').text(selectedText);
+
         })
 
         // Village list
@@ -1017,14 +1038,58 @@
 
         // on city change
         $('#city_name').change(function() {
+            $('#village_name').html("");
             villageList();
+
+            // set value of city in modal Village
+            // get selected state id and name
+            var selectedCityId = $('#city_name').val();
+            var selectedCityText = $("#city_name option:selected").text();
+            $('#modal-city-name-option').val(selectedCityId);
+            $('#modal-city-name-option').text(selectedCityText);
+
         })
 
 
+        // Add state
+        function addState(countryId) {
+            var modalStateName = $('#modal-state-name').val();
+
+            const formData = new FormData();
+            formData.append('state_name', modalStateName);
+            formData.append('country_id', countryId);
+
+
+            axios
+                .post("/add-state", formData)
+                .then((response) => {
+                    console.log(response)
+                    stateList();
+                    toastr.success("State added Successfully");
+
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        }
+
+        // on click add state btn
+        $("#modal-state-save").click(function() {
+
+
+            var countryId = $('#country_name').val();
+            var mStateName = $('#modal-state-name').val();
+            if (countryId == '' || mStateName == '') {
+                toastr.error("Please Enter state name and select country")
+            } else {
+                // Call function
+                addState(countryId);
+            }
+        });
+
         // Add Viilage
-        function addVillage() {
-            var cityId = $('#modal_city_name').val();
-            var villageName = $('#modal_village_name').val();
+        function addVillage(villageName, cityId) {
+
 
             const formData = new FormData();
             formData.append('village_name', villageName);
@@ -1033,6 +1098,7 @@
             axios
                 .post("/add-village", formData)
                 .then((response) => {
+
                     villageList();
 
                 })
@@ -1043,18 +1109,51 @@
 
 
         // Call add village function
-        $("#add_village").click(function() {
-            var modalVillageName = $('#modal_village_name').val();
-            var modalCityName = $('#modal_city_name').val();
-            if (modalVillageName == '' || modalCityName == '') {
+        $("#modal-add-village-save").click(function() {
+
+            var modalVillageName = $('#modal-village-name').val();
+            var cityName = $('#city_name').val();
+            if (modalVillageName == '' || cityName == '') {
 
             } else {
                 // Call function
-                addVillage();
+                addVillage(modalVillageName, cityName);
             }
         });
 
+        // Add City
+        function addCity(cityName, stateId) {
+            // var stateId = $('#modal-state-name').val();
+            // var CityName = $('#modal_city_name').val();
 
+            const formData = new FormData();
+            formData.append('city_name', cityName);
+            formData.append('state_id', stateId);
+
+            axios
+                .post("/add-city", formData)
+                .then((response) => {
+
+                    cityList();
+
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        }
+
+        // Call add City function
+        $("#modal-save-city").click(function() {
+            alert("l;ll;;");
+            var modalCityName = $('#modal-city-name').val();
+            var modalStateId = $('#state_name').val();
+            if (modalCityName == '' || modalStateId == '') {
+
+            } else {
+                // Call function
+                addCity(modalCityName, modalStateId);
+            }
+        });
 
         // generate PDF of load details
         $("#printButton").on("click", function() {
@@ -1071,17 +1170,89 @@
             var loanAmount = $("#loan-amount").val();
             var interestRate = $("#interest-rate").val();
             var emi = $("#emi-result").val();
+            var customerName = $('#loan-detail-customer-name').text();
+            var executiveName = $('#loan-detail-executive-name').text();
+            var financeName = $('#loan-detail-finance-name').text();
+            var loanTerm = $('#loan-term').val();
+
+            var loansurakshyaVimo = $('#loan-suraksha-vimo').val();
+            var iho = $('#iho').val();
+            var totalFileCharge = $('#cutoff-fee').val();
+            var roadSiteAssite = $('#road-side-assite').val();
+            var rto = $('#rto').val();
+            var holdForInsu = $('#hold-for-insurance').val();
+            var loanStatus = $('#loan-status').val();
+
+
+
             var remarks = $("#loan_detail_remark").val();
+            var remainingAmount = $('#total-remaining').text();
 
             return `
-          <div id="print-loan-detail">
-            <h1>Loan Details</h1>
-            <p>Loan Amount: <span>${loanAmount}</span></p>
-            <p>Interest Rate: <span>${interestRate}</span></p>
-            <p>EMI: <span>${emi}</span></p>
-            <p>Remarks: ${remarks}</p>
+          <div id="print-loan-detail" style="background:#d3eafd;padding:10px 10px;border-radius:10px;">
+            <p style="color:#28084b;font-weight:600;font-family: system-ui;">Customer Name: <span style="color:black;font-weight:500">${customerName}</span></p>
+            <p style="color:#28084b;font-weight:600;font-family: system-ui;">Executive Name : <span style="color:black;font-weight:500">${executiveName}</span></p>
+            <p style="color:#28084b;font-weight:600;font-family: system-ui;">Finance Name : <span style="color:black;font-weight:500"> ${financeName}</span></p>
+            <h2 style="border-bottom:1px solid gray;margin:0;padding-bottom:10px;font-family: system-ui;">Loan Details</h2>
+            <p style="color:black;font-weight:700;font-family: system-ui;">Loan Amount(INR): <span style="color:black;font-weight:500;font-family: system-ui;">${loanAmount}</span></p>
+            <p style="color:black;font-weight:700;font-family: system-ui;">Interest Rate(%): <span style="color:black;font-weight:500;font-family: system-ui;">${interestRate}</span></p>
+            <p style="color:black;font-weight:700;font-family: system-ui;">Terms(Months): <span style="color:black;font-weight:500;font-family: system-ui;">${loanTerm}</span></p>
+            <p style="color:black;font-weight:700;font-family: system-ui;">EMI(INR): <span style="color:black;font-weight:500;font-family: system-ui;">${emi}</span></p>
+
+
+            <p style="color:black;font-weight:700;font-family: system-ui;">Loan Suraksha Vimo: <span style="color:black;font-weight:500;font-family: system-ui;">${loansurakshyaVimo}</span></p>
+            <p style="color:black;font-weight:700;font-family: system-ui;">IHO: <span style="color:black;font-weight:500;font-family: system-ui;">${iho}</span></p>
+            <p style="color:black;font-weight:700;font-family: system-ui;">Total File Charge: <span style="color:black;font-weight:500;font-family: system-ui;">${totalFileCharge}</span></p>
+            <p style="color:black;font-weight:700;font-family: system-ui;">Road Side Assite: <span style="color:black;font-weight:500;font-family: system-ui;">${roadSiteAssite}</span></p>
+            <p style="color:black;font-weight:700;font-family: system-ui;">RTO: <span style="color:black;font-weight:500;font-family: system-ui;">${rto}</span></p>
+            <p style="color:black;font-weight:700;font-family: system-ui;">Hold for Insurance & Taxi to PVT: <span style="color:black;font-weight:500;font-family: system-ui;">${holdForInsu}</span></p>
+            <p style="color:black;font-weight:700;font-family: system-ui;">Loan Status: <span style="color:black;font-weight:500;font-family: system-ui;">${loanStatus}</span></p>
+
+            <p style="color:black;font-weight:700;font-family: system-ui;">Remarks: <span style="color:black;font-weight:500;font-family: system-ui;">${remarks}</span></p>
+            <h2 style="border-bottom:1px solid gray;margin:0;padding-bottom:10px;font-family: system-ui;"></h2>
+            <p style="color:black;font-weight:700;font-family: system-ui;">Total Remaining Amount(INR): <span style="color:black;font-weight:500;font-family: system-ui;">${remainingAmount}</span></p>
           </div>
         `;
         }
+
+
+        // Add value in loan details
+        var customerNameTextbox = $('#first_name');
+        var outputCustomerName = $('#loan-detail-customer-name');
+
+        // Add an input event listener to the textbox
+        customerNameTextbox.on('input', function() {
+            // Get the current value of the input textbox
+            var inputCustomerName = customerNameTextbox.val();
+
+            // Set the text of the span to the input value
+            outputCustomerName.text(inputCustomerName);
+        });
+
+        // Add Executive name
+        var executiveTextbox = $('#executive-name');
+        var outputExecutiveName = $('#loan-detail-executive-name');
+
+        // Add an input event listener to the textbox
+        executiveTextbox.on('input', function() {
+            // Get the current value of the input textbox
+            var executiveNameinputValue = executiveTextbox.val();
+
+            // Set the text of the span to the name
+            outputExecutiveName.text(executiveNameinputValue);
+        });
+
+        // Add Finance name
+        var financeTextbox = $('#finance-name');
+        var outputFinanceName = $('#loan-detail-finance-name');
+
+        // Add an input event listener to the textbox
+        financeTextbox.on('input', function() {
+            // Get the current value of the input textbox
+            var FinanceNameinputValue = financeTextbox.val();
+
+            // Set the text of the span to the name
+            outputFinanceName.text(FinanceNameinputValue);
+        });
     </script>
 @endsection
