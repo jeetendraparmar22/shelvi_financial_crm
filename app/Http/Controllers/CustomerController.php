@@ -58,7 +58,7 @@ $users = DB::table('users')->where('user_type', 'user')->get();
             'mobile_no' => 'required',
             'address' => 'required',
             'surname' => 'required',
-            'email' => 'email',
+            
         ]);
 
         // Store user document
