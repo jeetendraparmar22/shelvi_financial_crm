@@ -1,3 +1,3 @@
-@include('layouts.header');
-@yield('main-container');
-@include('layouts.footer');
+@include('layouts.header')
+@yield('main-container')
+@include('layouts.footer')

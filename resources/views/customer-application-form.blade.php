@@ -517,11 +517,9 @@
                                                                 <div class="table-responsive">
                                                                     <table class="table table-borderless text-end mb-0">
                                                                         <tbody>
-
-
                                                                             <tr>
                                                                                 <th>Loan Amount </th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td><input type="number"
                                                                                         class="form-control "
                                                                                         id="loan-amount"
@@ -531,7 +529,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <th>Interest Rate (%) </th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td><input type="number"
                                                                                         class="form-control "
                                                                                         id="interest-rate"
@@ -541,7 +539,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <th>Loan Term (Months) </th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td><input type="number"
                                                                                         class="form-control "
                                                                                         id="loan-term" name="loan_term"
@@ -550,7 +548,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <th>EMI </th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td><input type="number"
                                                                                         class="form-control "
                                                                                         id="emi-result" name="emi"
@@ -560,7 +558,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <th>Loan Suraksha Vimo </th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
                                                                                         id="loan-suraksha-vimo"
@@ -570,7 +568,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <th>IHO </th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
                                                                                         id="iho" name="iho"
@@ -579,7 +577,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <th>Total File Charge </th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
                                                                                         id="cutoff-fee" name="file_charge"
@@ -588,7 +586,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <th>Road Side Assite </th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
                                                                                         id="road-side-assite"
@@ -598,7 +596,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <th>RTO </th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
                                                                                         id="rto" name="rto_charge"
@@ -608,29 +606,36 @@
                                                                             <tr>
                                                                                 <th>Hold for Insurance & Taxi to PVT
                                                                                 </th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td><input type="text"
                                                                                         class="form-control "
                                                                                         id="hold-for-insurance"
                                                                                         name="hold_for_insurance"
                                                                                         value="{{ old('hold_for_insurance') }}">
                                                                                 </td>
+                                                                            </tr>
+
+                                                                            <tr>
                                                                                 <th>Remark</th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td>
                                                                                     <textarea class="form-control" id="loan_detail_remark" name="remark_loan_detail">{{ old('remark_loan_detail') }}</textarea>
                                                                                 </td>
                                                                             </tr>
+
                                                                             <tr>
                                                                                 <th>Loan Status
                                                                                 </th>
-                                                                                <th>:</th>
-                                                                                <td><input type="text"
-                                                                                        class="form-control "
-                                                                                        name="loan_status"
-                                                                                        value="{{ old('loan_status') }}">
+                                                                                <th class="dotted">:</th>
+                                                                                <td>
+                                                                                    <select class="select basic">
+                                                                                        <option>Select Status</option>
+                                                                                        <option>Status 1</option>
+                                                                                        <option>Status 2</option>
+                                                                                        <option>Status 3</option>
+                                                                                        <option>Status 4</option>
+                                                                                    </select>
                                                                                 </td>
-
                                                                             </tr>
                                                                             <tr>
                                                                                 <td class="pe-0 pt-0">
@@ -815,28 +820,15 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="form-group mb-0">
                                 <label>City <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" placeholder="Enter City Name"
-                                    name="modal_city_name" id="modal_city_name">
+                                <input type="text" class="form-control" placeholder="Enter City Name">
                             </div>
                         </div>
-
-                        <div class="col-lg-12 col-md-12">
-                            <div class="form-group mb-0">
-                                <label>State<span class="text-danger">*</span></label>
-                                {{-- <input type="text" class="form-control" name="modal_state_name" id="modal-state-name"
-                                    value=""> --}}
-                                <select id="modal-state-name">
-                                    <option value="" id="modal-state-name-option"></option>
-                                </select>
-                            </div>
-                        </div>
-
 
                     </div>
                 </div>
                 <div class="modal-footer">
                     <a href="#" data-bs-dismiss="modal" class="btn btn-danger me-2">Cancel</a>
-                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary" id="add_city">Save</a>
+                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary">Save</a>
                 </div>
             </div>
         </div>
@@ -865,12 +857,9 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="form-group mb-0">
                                 <label>City/District<span class="text-danger">*</span></label>
-                                {{-- <select class="select" name="city" id="modal_city_name">
+                                <select class="select" name="city" id="modal_city_name">
                                     <option>Select City</option>
 
-                                </select> --}}
-                                <select id="modal-city-name-village">
-                                    <option value="" id="modal-city-name-option"></option>
                                 </select>
                             </div>
                         </div>

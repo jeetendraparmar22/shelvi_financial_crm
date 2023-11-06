@@ -9,7 +9,7 @@
             </a>
         </div>
     </div>
-    <div class="sidebar-inner slimscroll">
+    <div class="sidebar-inner slimscroll" style="background: rgb(40, 36, 61);">
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
                 <li class="menu-title"><span>Menu</span></li>
