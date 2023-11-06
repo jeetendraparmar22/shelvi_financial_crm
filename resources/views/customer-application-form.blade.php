@@ -815,15 +815,28 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="form-group mb-0">
                                 <label>City <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" placeholder="Enter City Name">
+                                <input type="text" class="form-control" placeholder="Enter City Name"
+                                    name="modal_city_name" id="modal_city_name">
                             </div>
                         </div>
+
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group mb-0">
+                                <label>State<span class="text-danger">*</span></label>
+                                {{-- <input type="text" class="form-control" name="modal_state_name" id="modal-state-name"
+                                    value=""> --}}
+                                <select id="modal-state-name">
+                                    <option value="" id="modal-state-name-option"></option>
+                                </select>
+                            </div>
+                        </div>
+
 
                     </div>
                 </div>
                 <div class="modal-footer">
                     <a href="#" data-bs-dismiss="modal" class="btn btn-danger me-2">Cancel</a>
-                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary">Save</a>
+                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary" id="add_city">Save</a>
                 </div>
             </div>
         </div>
@@ -852,9 +865,12 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="form-group mb-0">
                                 <label>City/District<span class="text-danger">*</span></label>
-                                <select class="select" name="city" id="modal_city_name">
+                                {{-- <select class="select" name="city" id="modal_city_name">
                                     <option>Select City</option>
 
+                                </select> --}}
+                                <select id="modal-city-name-village">
+                                    <option value="" id="modal-city-name-option"></option>
                                 </select>
                             </div>
                         </div>
@@ -966,15 +982,15 @@
                     });
 
                     // Append data in add  village modal
-                    $('#modal_city_name').html("");
-                    const modalCitySelectBox = $('#modal_city_name');
-                    modalCitySelectBox.append('<option value="">Select City </option>')
-                    cityData.forEach(function(modalCity) {
-                        modalCitySelectBox.append($('<option>', {
-                            value: modalCity.id,
-                            text: modalCity.city_name
-                        }));
-                    });
+                    // $('#modal_city_name').html("");
+                    // var modalCitySelectBox = $('#modal_city_name');
+                    // modalCitySelectBox.append('<option value="">Select City </option>')
+                    // cityData.forEach(function(modalCity) {
+                    //     modalCitySelectBox.append($('<option>', {
+                    //         value: modalCity.id,
+                    //         text: modalCity.city_name
+                    //     }));
+                    // });
                 })
                 .catch((error) => {
                     console.error(error);
@@ -984,6 +1000,13 @@
         // on state change
         $('#state_name').change(function() {
             cityList();
+            // set value in modal city
+            // get selected state id and name
+            var selectedStateId = $('#state_name').val();
+            var selectedText = $("#state_name option:selected").text();
+            $('#modal-state-name-option').val(selectedStateId);
+            $('#modal-state-name-option').text(selectedText);
+
         })
 
         // Village list
@@ -1017,13 +1040,22 @@
 
         // on city change
         $('#city_name').change(function() {
+            $('#village_name').html("");
             villageList();
+
+            // set value of city in modal Village
+            // get selected state id and name
+            var selectedCityId = $('#city_name').val();
+            var selectedCityText = $("#city_name option:selected").text();
+            $('#modal-city-name-option').val(selectedCityId);
+            $('#modal-city-name-option').text(selectedCityText);
+
         })
 
 
         // Add Viilage
         function addVillage() {
-            var cityId = $('#modal_city_name').val();
+            var cityId = $('#modal-city-name-village').val();
             var villageName = $('#modal_village_name').val();
 
             const formData = new FormData();
@@ -1033,6 +1065,7 @@
             axios
                 .post("/add-village", formData)
                 .then((response) => {
+
                     villageList();
 
                 })
@@ -1044,8 +1077,9 @@
 
         // Call add village function
         $("#add_village").click(function() {
+
             var modalVillageName = $('#modal_village_name').val();
-            var modalCityName = $('#modal_city_name').val();
+            var modalCityName = $('#modal-city-name-village').val();
             if (modalVillageName == '' || modalCityName == '') {
 
             } else {
@@ -1054,7 +1088,38 @@
             }
         });
 
+        // Add City
+        function addCity() {
+            var stateId = $('#modal-state-name').val();
+            var CityName = $('#modal_city_name').val();
 
+            const formData = new FormData();
+            formData.append('city_name', CityName);
+            formData.append('state_id', stateId);
+
+            axios
+                .post("/add-city", formData)
+                .then((response) => {
+
+                    cityList();
+
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        }
+
+        // Call add City function
+        $("#add_city").click(function() {
+            var modalCityName = $('#modal_city_name').val();
+            var modalStateId = $('#modal-state-name').val();
+            if (modalCityName == '' || modalStateId == '') {
+
+            } else {
+                // Call function
+                addCity();
+            }
+        });
 
         // generate PDF of load details
         $("#printButton").on("click", function() {

@@ -44,7 +44,7 @@ Route::get('states', [StateController::class, 'stateList']);
 
 // City List
 Route::get('cities', [CityController::class, 'cityList']);
-
+Route::post('add-city', [CityController::class, 'addCity']);
 // Village List
 Route::get('villages', [VillageController::class, 'villageList']);
 Route::post('add-village', [VillageController::class, 'addVillage']);
