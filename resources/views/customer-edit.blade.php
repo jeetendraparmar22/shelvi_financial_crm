@@ -501,8 +501,7 @@
 
                                                     <div class="mb-3">
                                                         <h6 class="mb-2"><b>Customer Name :</b>
-                                                            {{ $customer->first_name }} {{ $customer->last_name }}
-                                                            {{ $customer->surname }}</h6>
+                                                            {{ $customer->first_name }}</h6>
                                                         <h6 class="mb-2"><b>Executive :</b>
                                                             {{ $customer->executive_name }}</h6>
                                                         <h6 class="mb-2"><b>Finance :</b> {{ $customer->finance_name }}

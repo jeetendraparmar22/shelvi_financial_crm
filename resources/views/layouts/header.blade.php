@@ -238,7 +238,7 @@
                             <div class="subscription-logout">
                                 <ul>
                                     <li class="pb-0">
-                                        <a class="dropdown-item" href="{{ url('/') }}">Log Out</a>
+                                        <a class="dropdown-item" href="{{ route('logout') }}">Log Out</a>
                                     </li>
                                 </ul>
                             </div>

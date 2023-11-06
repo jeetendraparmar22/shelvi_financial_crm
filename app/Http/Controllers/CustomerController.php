@@ -58,7 +58,7 @@ $users = DB::table('users')->where('user_type', 'user')->get();
             'mobile_no' => 'required',
             'address' => 'required',
             'surname' => 'required',
-            'email' => 'email',
+            
         ]);
 
         // Store user document
@@ -309,5 +309,9 @@ $users = DB::table('users')->where('user_type', 'user')->get();
     public function destroy(string $id)
     {
         //
+        $customer = DB::table('customers')->where('id',$id)->delete();
+        // Redirect or return a response
+    return redirect()->route('customers.index')
+    ->with('success', 'Record deleted successfully.');
     }
 }

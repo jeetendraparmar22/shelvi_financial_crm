@@ -142,7 +142,13 @@
                             <h5>Documents Details</h5>
                             <hr class="my-3">
                             <div class="table-responsive">
-
+                                <div class="docs_flex">
+                                    <div class="doc_img">
+                                        <a href="#"><img src="https://web-static.wrike.com/blog/content/uploads/2022/03/iStock-904268154-e1646654233106.jpg?av=d2d3e2c60680fbaaf2fba9500e0b3e49" data-fancybox /></a>
+                                        <a href="#"><img src="https://www.computerhope.com/jargon/d/doc.png" data-fancybox /></a>
+                                        <a href="#"><img src="https://www.computerhope.com/jargon/d/doc.png" data-fancybox /></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

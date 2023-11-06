@@ -25,6 +25,6 @@ class RedirectIfAuthenticated
             }
         }
 
-        return $next($request);
+        return redirect('/');
     }
 }
