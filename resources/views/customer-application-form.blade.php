@@ -431,8 +431,8 @@
                                             <h5>Loan Details</h5>
 
                                             <div class="d-flex ms-4">
-                                                <a href="#" class="image_icons me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="WhatsApp"> <img
-                                                        src="{{ asset('assets/img/whatsapp.svg') }}" />
+                                                <a href="#" class="image_icons me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="WhatsApp"> 
+                                                    <img src="{{ asset('assets/img/whatsapp.svg') }}" />
                                                 </a>
                                                 <a id="printButton" class="image_icons" data-bs-toggle="tooltip" data-bs-placement="top" title="Print"><img src="{{ asset('assets/img/print.svg') }}" />
                                                 </a>
@@ -969,12 +969,15 @@ function getContentToPrint() {
     var remarks = $("#loan_detail_remark").val();
 
     return `
-          <div id="print-loan-detail">
-            <h1>Loan Details</h1>
-            <p>Loan Amount: <span>${loanAmount}</span></p>
-            <p>Interest Rate: <span>${interestRate}</span></p>
-            <p>EMI: <span>${emi}</span></p>
-            <p>Remarks: ${remarks}</p>
+          <div id="print-loan-detail" style="background:#d3eafd;padding:10px 10px;border-radius:10px;">
+            <p style="color:#28084b;font-weight:600;font-family: system-ui;">Customer Name: <span style="color:black;font-weight:500">Patel Rakesh</span></p>
+            <p style="color:#28084b;font-weight:600;font-family: system-ui;">Executive : <span style="color:black;font-weight:500">Prakash Jain</span></p>
+            <p style="color:#28084b;font-weight:600;font-family: system-ui;">Finance : <span style="color:black;font-weight:500"> Kogta Palanpur</span></p>
+            <h2 style="border-bottom:1px solid gray;margin:0;padding-bottom:10px;font-family: system-ui;">Loan Details</h2>
+            <p style="color:black;font-weight:700;font-family: system-ui;">Loan Amount: <span style="color:black;font-weight:500;font-family: system-ui;">${loanAmount}</span></p>
+            <p style="color:black;font-weight:700;font-family: system-ui;">Interest Rate: <span style="color:black;font-weight:500;font-family: system-ui;">${interestRate}</span></p>
+            <p style="color:black;font-weight:700;font-family: system-ui;">EMI: <span style="color:black;font-weight:500;font-family: system-ui;">${emi}</span></p>
+            <p style="color:black;font-weight:700;font-family: system-ui;">Remarks: <span style="color:black;font-weight:500;font-family: system-ui;">${remarks}</span></p>
           </div>
         `;
 }
