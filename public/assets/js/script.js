@@ -140,6 +140,7 @@
   });
   if ($(".select").length > 0) {
     $(".select").select2({ width: "100%" });
+    $(".basic").select2({ width: "100%",minimumResultsForSearch: -1, });
   }
   if ($(".datetimepicker").length > 0) {
     $(".datetimepicker").datetimepicker({

@@ -4128,15 +4128,16 @@ span.select2-container.select2-container--default.select2-container--open {
     color: #3f4254
 }
 
-@media(max-width:1199.98px) {
+/* @media(max-width:1199.98px) {
     .sidebar .sidebar-menu>ul>li>a {
         padding: 8px 12px
     }
-}
+} */
 
 .sidebar .sidebar-menu>ul>li>a i {
     line-height: 18px;
     font-size: 19px;
+    color: white;
 }
 
 .sidebar .sidebar-menu>ul>li>a svg {
@@ -4150,7 +4151,8 @@ span.select2-container.select2-container--default.select2-container--open {
 
 .sidebar .sidebar-menu>ul>li>a:hover {
     background-color: rgba(38, 17, 85, .05);
-    color: #7539ff
+    color: white;
+    opacity: 0.8;
 }
 
 .sidebar .sidebar-menu>ul>li>a:hover img {
@@ -4158,7 +4160,8 @@ span.select2-container.select2-container--default.select2-container--open {
 }
 
 .sidebar .sidebar-menu>ul>li>a:hover span {
-    color: #7539ff
+    color: white;
+    opacity: 0.8;
 }
 
 .sidebar .sidebar-menu>ul>li>a:hover svg {
@@ -4179,7 +4182,7 @@ span.select2-container.select2-container--default.select2-container--open {
 }
 
 .sidebar .sidebar-menu>ul>li>a.active span {
-    color: #7539ff
+    color: white;
 }
 
 .sidebar .sidebar-menu>ul>li>a.active::before {
@@ -4189,7 +4192,7 @@ span.select2-container.select2-container--default.select2-container--open {
     position: absolute;
     left: 0;
     top: 0;
-    background: #7638ff;
+    background: white;
     -webkit-transition: all .5s;
     -ms-transition: all .5s;
     transition: all .5s;
@@ -4204,7 +4207,7 @@ span.select2-container.select2-container--default.select2-container--open {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    background: #7638ff;
+    background: white;
     -webkit-transition: all .5s;
     -ms-transition: all .5s;
     transition: all .5s;
@@ -4215,7 +4218,7 @@ span.select2-container.select2-container--default.select2-container--open {
     padding: 0 10px;
     font-size: 16px;
     font-weight: 400;
-    color: #3f4254;
+    color: white;
     line-height: 18px
 }
 
@@ -22032,6 +22035,41 @@ table tr td .status-toggle .checktoggle {
     .logo-dark {
         max-width: 70%;
     }
+
+    .wizard .nav-tabs {
+        display: flex;
+        width: 100%;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 15px;
+        top: 63px;
+        margin-bottom: 0 !important;
+    }
+
+    .wizard .nav-item .nav-link {
+        border-bottom: 1px solid #cdcdcd;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        width: 205px;
+        padding: 10px 0 9px 0;
+        max-width: 205px;
+    }
+
+    .wizard .nav-item .nav-link i {
+        margin-right: 5px;
+        font-size: 18px;
+    }
+
+    #print-loan-detail.table-card .table-responsive .table>tbody>tr>th {
+        width: 150px;
+        display: block;
+        white-space: initial;
+        padding: 0px 10px;
+    }
+
+    #print-loan-detail.table-card .table-responsive .table>tbody>tr>th.dotted {
+        display: none;
+    }
 }
 
 .wizard .nav-tabs {
@@ -22043,4 +22081,24 @@ table tr td .status-toggle .checktoggle {
     background: white;
     width: 100%;
     left: 15px;
+    z-index: 99;
+}
+
+.docs_flex, .docs_flex .doc_img {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+}
+
+.docs_flex .doc_img a {
+    display: block;
+}
+
+
+.docs_flex .doc_img img {
+    width: 80px;
+    border-radius: 7px;
+    margin-right: 10px;
+    object-fit: fill;
+    height: 80px;
 }

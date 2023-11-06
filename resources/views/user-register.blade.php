@@ -64,22 +64,23 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-lg-8 col-md-8 col-sm-12">
+                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label>User Type</label>
+                                                <select name="user_type" class="basic select">
+                                                    <option value="user" selected>Executive</option>
+                                                    <option value="admin">Admin</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
                                             <div class="form-group">
                                                 <label>Address</label>
                                                 <textarea type="text" name="address" class="form-control" placeholder="Enter Address">{{ old('address') }}</textarea>
                                             </div>
                                         </div>
-                                        <div class="col-lg-8 col-md-8 col-sm-12">
-                                            <div class="form-group">
-                                                <label>User Type</label>
-                                                <select name="user_type">
-                                                    <option value="user" selected>Executive</option>
-                                                    <option value="admin">Admin</option>
-
-                                                </select>
-                                            </div>
-                                        </div>
+                                       
 
                                         <div class="d-flex justify-content-center">
                                             <button type="reset" class="btn btn btn-danger me-2"> Reset</button>
