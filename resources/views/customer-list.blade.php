@@ -25,14 +25,16 @@
                         <div class="card-body pt-2">
                             <div>
                                 <div class="d-flex align-items-center">
-                                    <div class="user_list form-group mb-0">
-                                        <select class="select" id="user_list">
-                                            <option>Select User</option>
-                                            @foreach ($users as $user)
-                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                    @if (auth()->user()->user_type == 'admin')
+                                        <div class="user_list form-group mb-0">
+                                            <select class="select" id="user_list">
+                                                <option>Select User</option>
+                                                @foreach ($users as $user)
+                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    @endif
                                     <div class="top-nav-search customer_list">
 
                                         <div class>
