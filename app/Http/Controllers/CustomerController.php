@@ -18,7 +18,7 @@ class CustomerController extends Controller
     public function index()
     {
 
-        if(Auth::user()->usert_type =='admin'){
+    if(Auth::user()->user_type =='admin'){
 // Get all customers
 $customers = DB::table('customers')->get();
 

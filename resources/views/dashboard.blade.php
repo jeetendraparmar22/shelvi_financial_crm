@@ -13,7 +13,7 @@
                                 <div class="dash-count">
                                     <div class="dash-title"> Total Amount </div>
                                     <div class="dash-counts">
-                                        <p>1,642</p>
+                                        <p>{{ $sumApprovedLoansAmount }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -36,9 +36,9 @@
                                     <i class="fas fa-users"></i>
                                 </span>
                                 <div class="dash-count">
-                                    <div class="dash-title">Customers</div>
+                                    <div class="dash-title"> Total Executive</div>
                                     <div class="dash-counts">
-                                        <p>100</p>
+                                        <p>{{ $totalExecutive }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -61,9 +61,9 @@
                                     <i class="fas fa-file-alt"></i>
                                 </span>
                                 <div class="dash-count">
-                                    <div class="dash-title">Users</div>
+                                    <div class="dash-title">Total Loan Application</div>
                                     <div class="dash-counts">
-                                        <p>1,041</p>
+                                        <p>{{ $totalLoanApplication }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
                                 <div class="dash-count">
                                     <div class="dash-title">Estimates</div>
                                     <div class="dash-counts">
-                                        <p>2,150</p>
+                                        <p></p>
                                     </div>
                                 </div>
                             </div>
@@ -134,19 +134,19 @@
                                 <div class="w-md-100 d-flex align-items-center mb-3 flex-wrap flex-md-nowrap">
                                     <div>
                                         <span>Total Sales</span>
-                                        <p class="h3 text-primary me-5">&#8377;1000</p>
+                                        <p class="h3 text-primary me-5">&#8377;{{ $sumApprovedLoansAmount }}</p>
                                     </div>
                                     <div>
                                         <span>Receipts</span>
-                                        <p class="h3 text-success me-5">&#8377;1000</p>
+                                        <p class="h3 text-success me-5">&#8377;0</p>
                                     </div>
                                     <div>
                                         <span>Expenses</span>
-                                        <p class="h3 text-danger me-5">&#8377;300</p>
+                                        <p class="h3 text-danger me-5">&#8377;0</p>
                                     </div>
                                     <div>
                                         <span>Earnings</span>
-                                        <p class="h3 text-dark me-5">&#8377;700</p>
+                                        <p class="h3 text-dark me-5">&#8377;0</p>
                                     </div>
                                 </div>
                             </div>
@@ -188,7 +188,7 @@
                                                 <i class="fas fa-circle text-primary me-1"></i>
                                                 Invoiced
                                             </p>
-                                            <h5>&#8377;2,132</h5>
+                                            <h5>0</h5>
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -197,7 +197,7 @@
                                                 <i class="fas fa-circle text-success me-1"></i>
                                                 Received
                                             </p>
-                                            <h5>&#8377;1,763</h5>
+                                            <h5>0</h5>
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -206,7 +206,7 @@
                                                 <i class="fas fa-circle text-danger me-1"></i>
                                                 Pending
                                             </p>
-                                            <h5>&#8377;973</h5>
+                                            <h5>0</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -221,7 +221,7 @@
                         <div class="card-header">
                             <div class="row align-center">
                                 <div class="col">
-                                    <h5 class="card-title">Recent Add Customers</h5>
+                                    <h5 class="card-title">Recent Add Loan application</h5>
                                 </div>
                                 <div class="col-auto">
                                     <a href="#" class="btn-right btn btn-sm btn-outline-primary">

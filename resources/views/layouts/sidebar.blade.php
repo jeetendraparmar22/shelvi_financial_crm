@@ -24,7 +24,8 @@
                             Form</span></a>
                 </li>
                 <li>
-                    <a href="{{ route('customers.index') }}"><i class="fe fe-user"></i> <span>Customers-List</span></a>
+                    <a href="{{ route('customers.index') }}"><i class="fe fe-user"></i> <span> Loan
+                            Application-List</span></a>
                 </li>
 
                 @if (auth()->user()->user_type == 'admin')
