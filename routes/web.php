@@ -10,7 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\VillageController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,12 +22,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('login');
-});
+})->name('/');
+
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('/login'); // Use the '/' to specify the URL you want to redirect to
+})->name('logout');
 
 // Auth Routes
 Route::post('/login', [LoginController::class, 'authLogin'])->name('login');
+
+Route::middleware(['auth'])->group(function () {
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // User routes
@@ -50,3 +57,5 @@ Route::post('add-city', [CityController::class, 'addCity']);
 // Village List
 Route::get('villages', [VillageController::class, 'villageList']);
 Route::post('add-village', [VillageController::class, 'addVillage']);
+});
+
