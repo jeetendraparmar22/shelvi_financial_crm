@@ -1128,8 +1128,8 @@
             var remarks = $("#loan_detail_remark").val();
 
             return `
-          <div id="print-loan-detail">
-            <h1>Loan Details</h1>
+          <div id="print-loan-detail" style="background:#d3eafd;padding:10px 10px">
+            <h1 style="border-bottom:1px solid gray;padding-bottom:10px;font-family: "Roboto", sans-serif !important;">Loan Details</h1>
             <p>Loan Amount: <span>${loanAmount}</span></p>
             <p>Interest Rate: <span>${interestRate}</span></p>
             <p>EMI: <span>${emi}</span></p>
