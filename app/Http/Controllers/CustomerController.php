@@ -17,11 +17,23 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        // Get all customers
-        $customers = DB::table('customers')->get();
+
+        if(Auth::user()->usert_type =='admin'){
+// Get all customers
+$customers = DB::table('customers')->get();
+
+// get Users
+$users = DB::table('users')->where('user_type', 'user')->get();
+        }
+        else{
+            // Get all customers
+        $customers = DB::table('customers')->where('user_id',Auth::user()->id)->get();
 
         // get Users
         $users = DB::table('users')->where('user_type', 'user')->get();
+        }
+        
+
         return view('customer-list', ['customers' => $customers, 'users' => $users]);
     }
 

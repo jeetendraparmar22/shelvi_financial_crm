@@ -27,12 +27,12 @@
                     <a href="{{ route('customers.index') }}"><i class="fe fe-user"></i> <span>Customers-List</span></a>
                 </li>
 
-
-                <li>
-                    <a href="{{ route('users.index') }}"><i class="fe fe-file-text"></i> <span> Executive
-                            List</span></a>
-                </li>
-
+                @if (auth()->user()->user_type == 'admin')
+                    <li>
+                        <a href="{{ route('users.index') }}"><i class="fe fe-file-text"></i> <span> Executive
+                                List</span></a>
+                    </li>
+                @endif
             </ul>
 
         </div>

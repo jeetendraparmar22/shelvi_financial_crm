@@ -211,10 +211,19 @@
                                 class="profilesidebar" />
                             {{-- <span class="animate-circle"></span> --}}
                         </span>
-                        <span class="user-content">
-                            <span class="user-details">Admin</span>
-                            <span class="user-name">Shelvi Finance</span>
-                        </span>
+                        @if (auth()->user()->user_type == 'user')
+                            <span class="user-content">
+                                <span class="user-details">User</span>
+                                <span class="user-name">{{ auth()->user()->name }}</span>
+                            </span>
+                        @else
+                            <span class="user-content">
+                                <span class="user-details">Admin</span>
+                                <span class="user-name">{{ auth()->user()->name }}</span>
+                            </span>
+                        @endif
+
+
                     </a>
                     <div class="dropdown-menu menu-drop-user">
                         <div class="profilemenu">
