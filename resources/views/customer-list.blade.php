@@ -20,7 +20,7 @@
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title mb-0">Customers Loan Application List</h4>
+                            <h4 class="card-title mb-0">Applications List</h4>
                         </div>
                         @if (session('success'))
                             <div class="alert alert-success">
