@@ -35,6 +35,7 @@ $(document).ready(function () {
 
             $("#emi-result").val(emi.toFixed(2));
             $("#total-remaining").text(totalRemaining.toFixed(2));
+            $("#final-total-amount").val(totalRemaining.toFixed(2));
         } else {
             $("#emi-result").text("0.00");
             $("#total-remaining").text("0.00");
