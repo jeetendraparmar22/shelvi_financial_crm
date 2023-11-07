@@ -530,7 +530,8 @@
                                                                                 <th>:</th>
                                                                                 <td><input type="number"
                                                                                         class="form-control "
-                                                                                        value="" id="interest-rate"
+                                                                                        value="{{ $customer->interest_rate }}"
+                                                                                        id="interest-rate"
                                                                                         name="interest_rate">
                                                                                 </td>
                                                                             </tr>
@@ -539,8 +540,8 @@
                                                                                 <th>:</th>
                                                                                 <td><input type="number"
                                                                                         class="form-control "
-                                                                                        value="" id="loan-term"
-                                                                                        name="loan_term">
+                                                                                        value="{{ $customer->loan_term }}"
+                                                                                        id="loan-term" name="loan_term">
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -548,8 +549,9 @@
                                                                                 <th>:</th>
                                                                                 <td><input type="number"
                                                                                         class="form-control "
-                                                                                        value="" id="emi-result"
-                                                                                        name="emi" readonly>
+                                                                                        value="{{ $customer->emi }}"
+                                                                                        id="emi-result" name="emi"
+                                                                                        readonly>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>

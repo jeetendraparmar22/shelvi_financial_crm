@@ -130,7 +130,6 @@ $users = DB::table('users')->where('user_type', 'user')->get();
                 'interest_rate' => $request->interest_rate,
                 'loan_term' => $request->loan_term,
                 'emi' => $request->emi,
-
                 'loan_status' => $request->loan_status,
 
                 'loan_surakhya_vimo' => $request->loan_surakhya_vimo,
