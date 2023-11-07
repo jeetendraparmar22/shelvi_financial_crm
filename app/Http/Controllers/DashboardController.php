@@ -12,10 +12,10 @@ class DashboardController extends Controller
     //
     public function index()
     {
-        $customers = DB::table('customers')->where('user_id',Auth::user()->id)->get();
 
         // Total Amount
         if(Auth::user()->user_type == 'admin'){
+        $customers = DB::table('customers')->get();
             
             $sumApprovedLoansAmount = DB::table('customers')
     ->where('loan_status', 'Approved')
@@ -33,6 +33,8 @@ class DashboardController extends Controller
 
         }
         else{
+        $customers = DB::table('customers')->where('user_id',Auth::user()->id)->get();
+
             $sumApprovedLoansAmount = DB::table('customers')
             ->where('loan_status', 'Approved')
             ->where('user_id', Auth::user()->id)
