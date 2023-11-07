@@ -44,7 +44,8 @@
 
                                         <div class>
                                             <a class="btn btn-primary" href="{{ route('customers.create') }}"><i
-                                                    class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Customer</a>
+                                                    class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add New
+                                                Application</a>
                                         </div>
                                         <form>
 
