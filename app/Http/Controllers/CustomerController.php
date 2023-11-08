@@ -146,6 +146,8 @@ $users = DB::table('users')->where('user_type', 'user')->get();
                 'bank_name' => $request->bank_name,
                 'branch_name' => $request->branch_name,
                 'ifsc_code' => $request->ifsc_code,
+                'transfer_loan_amount' => $request->transfer_loan_amount,
+               
                 'user_id' => Auth::user()->id,
                 'created_at' => now()
 
@@ -290,6 +292,7 @@ $users = DB::table('users')->where('user_type', 'user')->get();
                 'bank_name' => $request->bank_name,
                 'branch_name' => $request->branch_name,
                 'ifsc_code' => $request->ifsc_code,
+                'transfer_loan_amount' => $request->transfer_loan_amount,
                 'updated_at' => now()
 
             ];
