@@ -136,7 +136,7 @@
                                         <span>Total Sales</span>
                                         <p class="h3 text-primary me-5">&#8377;{{ $sumApprovedLoansAmount }}</p>
                                     </div>
-                                    <div>
+                                    {{-- <div>
                                         <span>Receipts</span>
                                         <p class="h3 text-success me-5">&#8377;0</p>
                                     </div>
@@ -147,7 +147,7 @@
                                     <div>
                                         <span>Earnings</span>
                                         <p class="h3 text-dark me-5">&#8377;0</p>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <div id="sales_chart"></div>

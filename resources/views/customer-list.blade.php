@@ -125,11 +125,11 @@
                                                                     class="far fa-edit me-2"></i> Edit</a>
                                                             <form method="POST"
                                                                 action="{{ route('customers.destroy', $customer->id) }}"
-                                                                id="customer-delete-form">
+                                                                id="customer-delete-form-{{ $customer->id }}">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <a class="btn btn-small btn-danger text-white"
-                                                                    onclick="confirmDelete()"><i
+                                                                    onclick="confirmDelete({{ $customer->id }})"><i
                                                                         class="far fa-trash-alt me-2"></i>Delete</a>
                                                             </form>
                                                         </td>
