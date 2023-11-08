@@ -30,7 +30,7 @@
 
                 @if (auth()->user()->user_type == 'admin')
                     <li>
-                        <a href="{{ route('users.index') }}"><i class="fe fe-user"></i> <span> Executive
+                        <a href="{{ route('users.index') }}"><i class="fe fe-user"></i> <span> User
                                 List</span></a>
                     </li>
                 @endif

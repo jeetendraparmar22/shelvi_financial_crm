@@ -107,10 +107,20 @@
                                                             </div>
                                                         </td>
                                                         <td>{{ $customer->created_at }}</td>
-                                                        <td class="sorting_1"><span
-                                                                class="badge badge-pill bg-success-light"
-                                                                id="loan-status-class">{{ $customer->loan_status }}</span>
-                                                        </td>
+                                                        @if ($customer->loan_status == 'Approved')
+                                                            <td class="sorting_1"><span class="badge badge-pill bg-success"
+                                                                    id="loan-status-class">{{ $customer->loan_status }}</span>
+                                                            </td>
+                                                        @elseif ($customer->loan_status == 'Processing')
+                                                            <td class="sorting_1"><span class="badge badge-pill bg-warning"
+                                                                    id="loan-status-class">{{ $customer->loan_status }}</span>
+                                                            </td>
+                                                        @else
+                                                            <td class="sorting_1"><span class="badge badge-pill bg-danger"
+                                                                    id="loan-status-class">{{ $customer->loan_status }}</span>
+                                                            </td>
+                                                        @endif
+
                                                         <td class="d-flex align-items-center ">
                                                             <a class="btn btn-small btn-success  me-2"
                                                                 href="{{ route('customers.edit', $customer->id) }}"><i

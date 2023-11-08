@@ -15,7 +15,11 @@ class DashboardController extends Controller
 
         // Total Amount
         if(Auth::user()->user_type == 'admin'){
-        $customers = DB::table('customers')->get();
+        $customers =  $customers = DB::table('customers')
+       
+        ->join('users', 'customers.user_id', '=', 'users.id')
+        ->select('customers.*', 'users.name as user_name')
+        ->get();
             
             $sumApprovedLoansAmount = DB::table('customers')
     ->where('loan_status', 'Approved')
@@ -33,7 +37,11 @@ class DashboardController extends Controller
 
         }
         else{
-        $customers = DB::table('customers')->where('user_id',Auth::user()->id)->get();
+            $customers = DB::table('customers')
+            ->where('customers.user_id', Auth::user()->id)
+            ->join('users', 'customers.user_id', '=', 'users.id')
+            ->select('customers.*', 'users.name as user_name')
+            ->get();
 
             $sumApprovedLoansAmount = DB::table('customers')
             ->where('loan_status', 'Approved')

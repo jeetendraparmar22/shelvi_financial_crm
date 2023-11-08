@@ -1143,7 +1143,7 @@
             axios
                 .post("/add-city", formData)
                 .then((response) => {
-
+                    toastr.success("City succefully add");
                     cityList();
 
                 })
@@ -1154,7 +1154,7 @@
 
         // Call add City function
         $("#modal-save-city").click(function() {
-            alert("l;ll;;");
+
             var modalCityName = $('#modal-city-name').val();
             var modalStateId = $('#state_name').val();
             if (modalCityName == '' || modalStateId == '') {
