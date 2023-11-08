@@ -13,7 +13,7 @@
                                 <div class="dash-count">
                                     <div class="dash-title"> Total Amount </div>
                                     <div class="dash-counts">
-                                        <p>{{ $sumApprovedLoansAmount }}</p>
+                                        <p>&#8377;{{ $sumApprovedLoansAmount }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -266,7 +266,7 @@
                                             <th>Finance Name</th>
                                             <th> Loan Status</th>
                                             <th>Executive Name</th>
-                                            <th class="text-right">Action</th>
+                                            {{-- <th class="text-right">Action</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -287,7 +287,7 @@
                                                 <td>
                                                     {{ $customer->executive_name }}
                                                 </td>
-                                                <td class="text-right">
+                                                {{-- <td class="text-right">
                                                     <div class="dropdown dropdown-action">
                                                         <a href="#" class="action-icon dropdown-toggle"
                                                             data-bs-toggle="dropdown" aria-expanded="false"><i
@@ -310,7 +310,7 @@
                                                                 Invoice</a>
                                                         </div>
                                                     </div>
-                                                </td>
+                                                </td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>
