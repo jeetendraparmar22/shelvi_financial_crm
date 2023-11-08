@@ -732,6 +732,15 @@
                                                             value="{{ old('ifsc_code') }}">
                                                     </div>
                                                 </div>
+
+                                                <div class="col-lg-4 col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label> Transfer Loan Amount</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Enter Loan Amount" name="transfer_loan_amount"
+                                                            value="{{ old('transfer_loan_amount') }}">
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <div class="d-flex">

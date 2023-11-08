@@ -144,9 +144,12 @@
                             <div class="table-responsive">
                                 <div class="docs_flex">
                                     <div class="doc_img">
-                                        <a href="#"><img src="https://web-static.wrike.com/blog/content/uploads/2022/03/iStock-904268154-e1646654233106.jpg?av=d2d3e2c60680fbaaf2fba9500e0b3e49" data-fancybox /></a>
-                                        <a href="#"><img src="https://www.computerhope.com/jargon/d/doc.png" data-fancybox /></a>
-                                        <a href="#"><img src="https://www.computerhope.com/jargon/d/doc.png" data-fancybox /></a>
+                                        <a href="#"><img src="{{ asset('storage/' . $customer->adhar_card) }}"
+                                                data-fancybox /></a>
+                                        <a href="#"><img src="{{ asset('storage/' . $customer->rc_book) }}"
+                                                data-fancybox /></a>
+                                        <a href="#"><img src="{{ asset('storage/' . $customer->insurance_file) }}"
+                                                data-fancybox /></a>
                                     </div>
                                 </div>
                             </div>
