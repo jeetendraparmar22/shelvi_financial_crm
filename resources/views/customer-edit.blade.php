@@ -488,8 +488,8 @@
                                                         data-bs-placement="top" title="WhatsApp"> <img
                                                             src="{{ asset('assets/img/whatsapp.svg') }}" />
                                                     </a>
-                                                    <a href="#" class="image_icons" data-bs-toggle="tooltip"
-                                                        data-bs-placement="top" title="Print"><img data-fancybox
+                                                    <a id="editPrintButton" class="image_icons" data-bs-toggle="tooltip"
+                                                        data-bs-placement="top" title="Print"><img
                                                             src="{{ asset('assets/img/print.svg') }}" />
                                                     </a>
                                                 </div>
@@ -501,10 +501,16 @@
 
                                                     <div class="mb-3">
                                                         <h6 class="mb-2"><b>Customer Name :</b>
-                                                            {{ $customer->first_name }}</h6>
+                                                            <span
+                                                                id="loan-detail-customer-name">{{ $customer->first_name }}</span>
+                                                        </h6>
                                                         <h6 class="mb-2"><b>Executive :</b>
-                                                            {{ $customer->executive_name }}</h6>
-                                                        <h6 class="mb-2"><b>Finance :</b> {{ $customer->finance_name }}
+                                                            <span
+                                                                id="loan-detail-executive-name">{{ $customer->executive_name }}</span>
+                                                        </h6>
+                                                        <h6 class="mb-2"><b>Finance :</b>
+                                                            <span
+                                                                id="loan-detail-finance-name">{{ $customer->finance_name }}</span>
                                                         </h6>
                                                     </div>
                                                     <div class="rounded  bg-light-primary">
@@ -528,7 +534,7 @@
                                                                             <tr>
                                                                                 <th>Interest Rate (%) </th>
                                                                                 <th>:</th>
-                                                                                <td><input type="number"
+                                                                                <td><input type="text"
                                                                                         class="form-control "
                                                                                         value="{{ $customer->interest_rate }}"
                                                                                         id="interest-rate"
@@ -627,11 +633,14 @@
                                                                                         id="loan-status"
                                                                                         name="loan_status">
                                                                                         <option>Select Status</option>
-                                                                                        <option value="Processing">
+                                                                                        <option value="Processing"
+                                                                                            {{ $customer->loan_status == 'Processing' ? 'selected' : '' }}>
                                                                                             Processing</option>
-                                                                                        <option value="Approved">
+                                                                                        <option value="Approved"
+                                                                                            {{ $customer->loan_status == 'Approved' ? 'selected' : '' }}>
                                                                                             Approved</option>
-                                                                                        <option value="Rejected">
+                                                                                        <option value="Rejected"
+                                                                                            {{ $customer->loan_status == 'Rejected' ? 'selected' : '' }}>
                                                                                             Rejected</option>
                                                                                     </select>
                                                                                 </td>
@@ -869,5 +878,66 @@
             var spanValue = document.getElementById('total-remaining').textContent;
             document.getElementById('final-update-total-amount').value = spanValue;
         });
+
+
+        // generate PDF of load details
+        $("#editPrintButton").on("click", function() {
+            var printWindow = window.open('', '', 'width=600,height=600');
+            printWindow.document.open();
+            printWindow.document.write('<html><head><title>Print</title></head><body>' + getContentToPrint() +
+                '</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+            printWindow.close();
+        });
+
+        function getContentToPrint() {
+            var loanAmount = $("#loan-amount").val();
+            var interestRate = $("#interest-rate").val();
+            var emi = $("#emi-result").val();
+            var customerName = $('#loan-detail-customer-name').text();
+            var executiveName = $('#loan-detail-executive-name').text();
+            var financeName = $('#loan-detail-finance-name').text();
+            var loanTerm = $('#loan-term').val();
+
+            var loansurakshyaVimo = $('#loan-suraksha-vimo').val();
+            var iho = $('#iho').val();
+            var totalFileCharge = $('#cutoff-fee').val();
+            var roadSiteAssite = $('#road-side-assite').val();
+            var rto = $('#rto').val();
+            var holdForInsu = $('#hold-for-insurance').val();
+            var loanStatus = $('#loan-status').val();
+
+
+
+            var remarks = $("#loan_detail_remark").val();
+            var remainingAmount = $('#total-remaining').text();
+
+            return `
+          <div id="print-loan-detail" style="background:#d3eafd;padding:10px 10px;border-radius:10px;">
+            <p style="color:#28084b;font-weight:600;font-family: system-ui;">Customer Name: <span style="color:black;font-weight:500">${customerName}</span></p>
+            <p style="color:#28084b;font-weight:600;font-family: system-ui;">Executive Name : <span style="color:black;font-weight:500">${executiveName}</span></p>
+            <p style="color:#28084b;font-weight:600;font-family: system-ui;">Finance Name : <span style="color:black;font-weight:500"> ${financeName}</span></p>
+            <h2 style="border-bottom:1px solid gray;margin:0;padding-bottom:10px;font-family: system-ui;">Loan Details</h2>
+            <p style="color:black;font-weight:700;font-family: system-ui;">Loan Amount(INR): <span style="color:black;font-weight:500;font-family: system-ui;">${loanAmount}</span></p>
+            <p style="color:black;font-weight:700;font-family: system-ui;">Interest Rate(%): <span style="color:black;font-weight:500;font-family: system-ui;">${interestRate}</span></p>
+            <p style="color:black;font-weight:700;font-family: system-ui;">Terms(Months): <span style="color:black;font-weight:500;font-family: system-ui;">${loanTerm}</span></p>
+            <p style="color:black;font-weight:700;font-family: system-ui;">EMI(INR): <span style="color:black;font-weight:500;font-family: system-ui;">${emi}</span></p>
+
+
+            <p style="color:black;font-weight:700;font-family: system-ui;">Loan Suraksha Vimo: <span style="color:black;font-weight:500;font-family: system-ui;">${loansurakshyaVimo}</span></p>
+            <p style="color:black;font-weight:700;font-family: system-ui;">IHO: <span style="color:black;font-weight:500;font-family: system-ui;">${iho}</span></p>
+            <p style="color:black;font-weight:700;font-family: system-ui;">Total File Charge: <span style="color:black;font-weight:500;font-family: system-ui;">${totalFileCharge}</span></p>
+            <p style="color:black;font-weight:700;font-family: system-ui;">Road Side Assite: <span style="color:black;font-weight:500;font-family: system-ui;">${roadSiteAssite}</span></p>
+            <p style="color:black;font-weight:700;font-family: system-ui;">RTO: <span style="color:black;font-weight:500;font-family: system-ui;">${rto}</span></p>
+            <p style="color:black;font-weight:700;font-family: system-ui;">Hold for Insurance & Taxi to PVT: <span style="color:black;font-weight:500;font-family: system-ui;">${holdForInsu}</span></p>
+            <p style="color:black;font-weight:700;font-family: system-ui;">Loan Status: <span style="color:black;font-weight:500;font-family: system-ui;">${loanStatus}</span></p>
+
+            <p style="color:black;font-weight:700;font-family: system-ui;">Remarks: <span style="color:black;font-weight:500;font-family: system-ui;">${remarks}</span></p>
+            <h2 style="border-bottom:1px solid gray;margin:0;padding-bottom:10px;font-family: system-ui;"></h2>
+            <p style="color:black;font-weight:700;font-family: system-ui;">Total Remaining Amount(INR): <span style="color:black;font-weight:500;font-family: system-ui;">${remainingAmount}</span></p>
+          </div>
+        `;
+        }
     </script>
 @endsection
