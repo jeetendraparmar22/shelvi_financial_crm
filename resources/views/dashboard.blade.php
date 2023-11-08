@@ -265,6 +265,7 @@
                                             <th> Loan Amount</th>
                                             <th>Finance Name</th>
                                             <th> Loan Status</th>
+                                            <th> User Name</th>
                                             <th>Executive Name</th>
                                             {{-- <th class="text-right">Action</th> --}}
                                         </tr>
@@ -280,9 +281,26 @@
                                                 </td>
                                                 <td>&#8377;{{ $customer->loan_amount }}</td>
                                                 <td>{{ $customer->finance_name }}</td>
-                                                <td>
+                                                {{-- <td>
                                                     <span
                                                         class="badge bg-success-light">{{ $customer->loan_status }}</span>
+                                                </td> --}}
+
+                                                @if ($customer->loan_status == 'Approved')
+                                                    <td>
+                                                        <span class="badge bg-success">{{ $customer->loan_status }}</span>
+                                                    </td>
+                                                @elseif ($customer->loan_status == 'Processing')
+                                                    <td>
+                                                        <span class="badge bg-warning">{{ $customer->loan_status }}</span>
+                                                    </td>
+                                                @else
+                                                    <td>
+                                                        <span class="badge bg-danger">{{ $customer->loan_status }}</span>
+                                                    </td>
+                                                @endif
+                                                <td>
+                                                    {{ $customer->user_name }}
                                                 </td>
                                                 <td>
                                                     {{ $customer->executive_name }}
