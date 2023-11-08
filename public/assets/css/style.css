@@ -4263,7 +4263,9 @@ div#global-loader .whirly-loader:not(:required) {
     border-radius: 5px;
 }
 
-.select2-container--default .select2-selection--single .select2-selection__rendered {
+.select2-container--default
+    .select2-selection--single
+    .select2-selection__rendered {
     color: black;
     line-height: 43px;
     border-radius: 5px;
@@ -11393,7 +11395,7 @@ body[data-layout-mode="dark"] .alertify .ajs-header {
     padding: 10px;
     font-size: 14px;
     font-weight: 400;
-    color: black
+    color: black;
 }
 
 .form-group .form-control ::placeholder,
@@ -11832,6 +11834,16 @@ label {
 
 .bg-success-light {
     background-color: #e1ffed !important;
+    color: #33b469 !important;
+}
+
+.bg-processing-light {
+    background-color: #FFFF00 !important;
+    color: #33b469 !important;
+}
+
+.bg-rejected-light {
+    background-color: #FF0000 !important;
     color: #33b469 !important;
 }
 
