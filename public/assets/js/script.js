@@ -1213,8 +1213,8 @@ Fancybox.bind("[data-fancybox]", {});
 
 // $("#user_list").select2({ twig: true });
 
-function confirmDelete() {
+function confirmDelete(id) {
     if (confirm("Are you sure you want to delete this record?")) {
-        document.getElementById("customer-delete-form").submit();
+        document.getElementById("customer-delete-form-" + id).submit();
     }
 }

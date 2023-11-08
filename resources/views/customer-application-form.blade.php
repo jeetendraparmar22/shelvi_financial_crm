@@ -535,7 +535,7 @@
                                                                             <tr>
                                                                                 <th>Interest Rate (%) </th>
                                                                                 <th class="dotted">:</th>
-                                                                                <td><input type="number"
+                                                                                <td><input type="text"
                                                                                         class="form-control "
                                                                                         id="interest-rate"
                                                                                         name="interest_rate"
