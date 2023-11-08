@@ -114,7 +114,7 @@ $users = DB::table('users')->where('user_type', 'user')->get();
 
                 'finance_name' => $request->finance_name,
                 'finance_address' => $request->finance_address,
-                'executive_name' => Auth::user()->name,
+                'executive_name' => $request->executive_name,
 
                 'Dealer_name' => $request->Dealer_name,
                 'vehicle_type' => $request->vehicle_type,
@@ -261,7 +261,7 @@ $users = DB::table('users')->where('user_type', 'user')->get();
 
                 'finance_name' => $request->finance_name,
                 'finance_address' => $request->finance_address,
-                'executive_name' => Auth::user()->name ,
+                'executive_name' => $request->executive_name,
 
                 'Dealer_name' => $request->Dealer_name,
                 'vehicle_type' => $request->vehicle_type,

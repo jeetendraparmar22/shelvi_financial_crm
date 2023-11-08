@@ -92,16 +92,7 @@
                                                         <td>{{ $customer->executive_name }}</td>
 
                                                         <td class="ver_middle text-center">
-                                                            <?php
-                                                            $parts = explode('/', $customer->adhar_card); // Split the URL by slashes
-                                                            
-                                                            // Get the last part of the URL and split it by dot
-                                                            $lastPart = end($parts);
-                                                            $valueParts = explode('.', $lastPart);
-                                                            
-                                                            // Extract the value after the dot
-                                                            $doc_file_extention = end($valueParts);
-                                                            ?>
+
                                                             <div class="d-flex justify-content-center">
                                                                 <a href="#">
                                                                     <img data-fancybox
@@ -117,7 +108,8 @@
                                                         </td>
                                                         <td>{{ $customer->created_at }}</td>
                                                         <td class="sorting_1"><span
-                                                                class="badge badge-pill bg-success-light">{{ $customer->loan_status }}</span>
+                                                                class="badge badge-pill bg-success-light"
+                                                                id="loan-status-class">{{ $customer->loan_status }}</span>
                                                         </td>
                                                         <td class="d-flex align-items-center ">
                                                             <a class="btn btn-small btn-success  me-2"
