@@ -650,6 +650,10 @@
                                                                                             id="total-remaining">{{ $customer->final_total_amount }}</span>
                                                                                     </h5>
                                                                                 </td>
+                                                                                <input type="hidden"
+                                                                                    name="final_total_amount"
+                                                                                    id="final-update-total-amount"
+                                                                                    value="" />
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
@@ -724,7 +728,8 @@
                                                 <a class="btn btn-primary previous me-2">Previous</a>
                                                 {{-- <a class="btn btn-primary next" data-bs-toggle="modal"
                                                     data-bs-target="#save_modal">Save Changes</a> --}}
-                                                <button class="btn btn-primary" type="submit">Update Data</button>
+                                                <button class="btn btn-primary" type="submit"
+                                                    id="update-application">Update Data</button>
                                             </div>
                                         </div>
                                     </div>
@@ -854,4 +859,15 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+        <script src="{{ asset('assets/js/customer-application-form.js') }}"></script>
+        <script src="{{ asset('assets/js/axios.js') }}"></script>
+    @endpush
+    <script>
+        // Set total remain remaining loan amount
+        document.getElementById('update-application').addEventListener('click', function() {
+            var spanValue = document.getElementById('total-remaining').textContent;
+            document.getElementById('final-update-total-amount').value = spanValue;
+        });
+    </script>
 @endsection
