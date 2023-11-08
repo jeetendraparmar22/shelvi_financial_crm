@@ -738,7 +738,8 @@
                                                 <a class="btn btn-primary previous me-2">Previous</a>
                                                 {{-- <a class="btn btn-primary next" data-bs-toggle="modal"
                                                     data-bs-target="#save_modal">Save Changes</a> --}}
-                                                <button class="btn btn-primary" type="submit">Save</button>
+                                                <button class="btn btn-primary" type="submit"
+                                                    id="submit-application">Save</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1255,7 +1256,10 @@
             outputFinanceName.text(FinanceNameinputValue);
         });
 
-        
-        
+        // Set total remain remaining loan amount
+        document.getElementById('submit-application').addEventListener('click', function() {
+            var spanValue = document.getElementById('total-remaining').textContent;
+            document.getElementById('final-total-amount').value = spanValue;
+        });
     </script>
 @endsection

@@ -29,7 +29,7 @@
                             <form action="{{ route('login') }}" method="POST">
                                 @csrf
                                 <div class="form-floating mb-3">
-                                    <input type="text" name="mobile_no"
+                                    <input type="number" name="mobile_no"
                                         class="form-control @error('mobile_no') is-invalid
                                         
                                     @enderror"

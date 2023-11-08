@@ -609,22 +609,32 @@
                                                                                         value="{{ $customer->hold_for_insurance }}"
                                                                                         id="hold-for-insurance"
                                                                                         name="hold_for_insurance"></td>
+
+                                                                            </tr>
+                                                                            <tr>
                                                                                 <th>Remark</th>
-                                                                                <th>:</th>
+                                                                                <th class="dotted">:</th>
                                                                                 <td>
-                                                                                    <textarea class="form-control" value="" id="" name="remark_loan_detail"></textarea>
+                                                                                    <textarea class="form-control" id="loan_detail_remark" name="remark_loan_detail">{{ $customer->remark_loan_detail }}</textarea>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <th>Loan Status
                                                                                 </th>
-                                                                                <th>:</th>
-                                                                                <td><input type="text"
-                                                                                        class="form-control "
-                                                                                        name="loan_status"
-                                                                                        value="{{ $customer->loan_status }}">
+                                                                                <th class="dotted">:</th>
+                                                                                <td>
+                                                                                    <select class="select basic"
+                                                                                        id="loan-status"
+                                                                                        name="loan_status">
+                                                                                        <option>Select Status</option>
+                                                                                        <option value="Processing">
+                                                                                            Processing</option>
+                                                                                        <option value="Approved">
+                                                                                            Approved</option>
+                                                                                        <option value="Rejected">
+                                                                                            Rejected</option>
+                                                                                    </select>
                                                                                 </td>
-
                                                                             </tr>
                                                                             <tr>
                                                                                 <td class="pe-0 pt-0">
@@ -640,6 +650,10 @@
                                                                                             id="total-remaining">{{ $customer->final_total_amount }}</span>
                                                                                     </h5>
                                                                                 </td>
+                                                                                <input type="hidden"
+                                                                                    name="final_total_amount"
+                                                                                    id="final-update-total-amount"
+                                                                                    value="" />
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
@@ -714,7 +728,8 @@
                                                 <a class="btn btn-primary previous me-2">Previous</a>
                                                 {{-- <a class="btn btn-primary next" data-bs-toggle="modal"
                                                     data-bs-target="#save_modal">Save Changes</a> --}}
-                                                <button class="btn btn-primary" type="submit">Update Data</button>
+                                                <button class="btn btn-primary" type="submit"
+                                                    id="update-application">Update Data</button>
                                             </div>
                                         </div>
                                     </div>
@@ -844,59 +859,15 @@
             </div>
         </div>
     </div>
-    {{-- <script>
-        $(document).ready(function() {
-            $("#loan-amount, #interest-rate, #loan-term, #cutoff-fee, #loan-suraksha-vimo, #loan-suraksha-vimo,  #iho, #road-side-assite, #rto, #hold-for-insurance")
-                .on("input", function() {
-                    calculateLoan();
-                });
-
-            function calculateLoan() {
-                let loanAmount = parseFloat($("#loan-amount").val() || 0);
-                let annualInterestRate = parseFloat($("#interest-rate").val() || 0);
-                let loanTermMonths = parseFloat($("#loan-term").val() || 0);
-                let cutoffFee = parseFloat($("#cutoff-fee").val() || 0);
-                let loanSurakshaVimo = parseFloat($("#loan-suraksha-vimo").val() || 0);
-                let iho = parseFloat($("#iho").val() || 0);
-                let roadSideAssite = parseFloat($("#road-side-assite").val() || 0);
-                let rto = parseFloat($("#rto").val() || 0);
-                let holdForInsurance = parseFloat($("#hold-for-insurance").val() || 0)
-
-
-                if (loanAmount > 0 && annualInterestRate > 0 && loanTermMonths > 0) {
-                    let monthlyInterestRate = (annualInterestRate / 12) / 100;
-                    let emi = calculateEMI(loanAmount, monthlyInterestRate, loanTermMonths);
-                    // let totalRemaining = (emi * loanTermMonths) + cutoffFee;
-                    let totalRemaining = loanAmount - cutoffFee - loanSurakshaVimo - iho - roadSideAssite - rto -
-                        holdForInsurance;
-
-
-                    $("#emi-result").val(emi.toFixed(2));
-                    $("#total-remaining").text(totalRemaining.toFixed(2));
-                } else {
-                    $("#emi-result").text("0.00");
-                    $("#total-remaining").text("0.00");
-                }
-            }
-
-            function calculateEMI(loanAmount, monthlyInterestRate, loanTermMonths) {
-                let emi = loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTermMonths) / (
-                    Math.pow(1 + monthlyInterestRate, loanTermMonths) - 1);
-                return emi;
-            }
-
-
-
-            // $("#loan-detail-print-btn").on("click", function() {
-            //     var contentToPrint = $("#loan-details").html();
-            //     var $printWindow = window.open('', '', 'width=600,height=600');
-            //     $printWindow.document.open();
-            //     $printWindow.document.write('<html><head><title>Print</title></head><body>' +
-            //         contentToPrint + '</body></html>');
-            //     $printWindow.document.close();
-            //     $printWindow.print();
-            //     $printWindow.close();
-            // });
+    @push('scripts')
+        <script src="{{ asset('assets/js/customer-application-form.js') }}"></script>
+        <script src="{{ asset('assets/js/axios.js') }}"></script>
+    @endpush
+    <script>
+        // Set total remain remaining loan amount
+        document.getElementById('update-application').addEventListener('click', function() {
+            var spanValue = document.getElementById('total-remaining').textContent;
+            document.getElementById('final-update-total-amount').value = spanValue;
         });
-    </script> --}}
+    </script>
 @endsection
