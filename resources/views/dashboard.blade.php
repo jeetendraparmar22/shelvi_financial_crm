@@ -158,7 +158,7 @@
                     <div class="card flex-fill">
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
-                                <h5 class="card-title">Invoice Analytics</h5>
+                                <h5 class="card-title">Loan Application Analytics</h5>
                                 <div class="dropdown main">
                                     <button class="btn btn-white btn-sm dropdown-toggle" type="button"
                                         id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -186,7 +186,7 @@
                                         <div class="mt-4">
                                             <p class="mb-2 text-truncate">
                                                 <i class="fas fa-circle text-primary me-1"></i>
-                                                Invoiced
+                                                Total Recieved
                                             </p>
                                             <h5>0</h5>
                                         </div>
@@ -195,7 +195,7 @@
                                         <div class="mt-4">
                                             <p class="mb-2 text-truncate">
                                                 <i class="fas fa-circle text-success me-1"></i>
-                                                Received
+                                                Approved
                                             </p>
                                             <h5>0</h5>
                                         </div>
@@ -204,7 +204,7 @@
                                         <div class="mt-4">
                                             <p class="mb-2 text-truncate">
                                                 <i class="fas fa-circle text-danger me-1"></i>
-                                                Pending
+                                                Rejected
                                             </p>
                                             <h5>0</h5>
                                         </div>
@@ -244,17 +244,17 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-auto">
-                                        <i class="fas fa-circle text-success me-1"></i> Paid
+                                        <i class="fas fa-circle text-success me-1"></i> Approved
                                     </div>
                                     <div class="col-auto">
-                                        <i class="fas fa-circle text-warning me-1"></i> Unpaid
+                                        <i class="fas fa-circle text-warning me-1"></i> Processing
                                     </div>
                                     <div class="col-auto">
-                                        <i class="fas fa-circle text-danger me-1"></i> Overdue
+                                        <i class="fas fa-circle text-danger me-1"></i> Rejected
                                     </div>
-                                    <div class="col-auto">
+                                    {{-- <div class="col-auto">
                                         <i class="fas fa-circle text-info me-1"></i> Draft
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <div class="table-responsive">
