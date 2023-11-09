@@ -224,7 +224,8 @@
                                     <h5 class="card-title">Recent Add Loan application</h5>
                                 </div>
                                 <div class="col-auto">
-                                    <a href="#" class="btn-right btn btn-sm btn-outline-primary">
+                                    <a href="{{ route('customers.index') }}"
+                                        class="btn-right btn btn-sm btn-outline-primary">
                                         View All
                                     </a>
                                 </div>

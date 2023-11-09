@@ -30,6 +30,8 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
     <script src="{{ asset('assets/js/jquery-3.7.0.min.js') }}"></script>
+    <script src="{{ asset('assets/js/axios.js') }}"></script>
+
     @stack('scripts')
 </head>
 

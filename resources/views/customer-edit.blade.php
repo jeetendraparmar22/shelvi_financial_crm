@@ -878,7 +878,6 @@
     </div>
     @push('scripts')
         <script src="{{ asset('assets/js/customer-application-form.js') }}"></script>
-        <script src="{{ asset('assets/js/axios.js') }}"></script>
     @endpush
     <script>
         // Set total remain remaining loan amount

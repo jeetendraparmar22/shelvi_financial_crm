@@ -22,6 +22,10 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Route::get('/', function () {
+    return view('login');
+});
+
 Route::get('/login', function () {
     return view('login');
 })->name('/');
@@ -35,27 +39,26 @@ Route::get('/logout', function () {
 Route::post('/login', [LoginController::class, 'authLogin'])->name('login');
 
 Route::middleware(['auth'])->group(function () {
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-// User routes
-Route::resource('users', UserController::class);
+    // User routes
+    Route::resource('users', UserController::class);
 
-// Customer Routes
-Route::resource('customers', CustomerController::class);
+    // Customer Routes
+    Route::resource('customers', CustomerController::class);
 
-// Coutry list
-Route::get('countries', [CountryController::class, 'countryList']);
+    // Coutry list
+    Route::get('countries', [CountryController::class, 'countryList']);
 
-// state List
-Route::get('states', [StateController::class, 'stateList']);
-Route::post('add-state', [StateController::class, 'addState']);
+    // state List
+    Route::get('states', [StateController::class, 'stateList']);
+    Route::post('add-state', [StateController::class, 'addState']);
 
-// City List
-Route::get('cities', [CityController::class, 'cityList']);
-Route::post('add-city', [CityController::class, 'addCity']);
+    // City List
+    Route::get('cities', [CityController::class, 'cityList']);
+    Route::post('add-city', [CityController::class, 'addCity']);
 
-// Village List
-Route::get('villages', [VillageController::class, 'villageList']);
-Route::post('add-village', [VillageController::class, 'addVillage']);
+    // Village List
+    Route::get('villages', [VillageController::class, 'villageList']);
+    Route::post('add-village', [VillageController::class, 'addVillage']);
 });
-

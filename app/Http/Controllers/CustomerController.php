@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -18,21 +20,19 @@ class CustomerController extends Controller
     public function index()
     {
 
-    if(Auth::user()->user_type =='admin'){
-// Get all customers
-$customers = DB::table('customers')->get();
-
-// get Users
-$users = DB::table('users')->where('user_type', 'user')->get();
-        }
-        else{
+        if (Auth::user()->user_type == 'admin') {
             // Get all customers
-        $customers = DB::table('customers')->where('user_id',Auth::user()->id)->get();
+            $customers = Customer::get();
+            // get Users
+            $users = DB::table('users')->where('user_type', 'user')->get();
+        } else {
+            // Get all customers
+            $customers = DB::table('customers')->where('user_id', Auth::user()->id)->get();
 
-        // get Users
-        $users = DB::table('users')->where('user_type', 'user')->get();
+            // get Users
+            $users = DB::table('users')->where('user_type', 'user')->get();
         }
-        
+
 
         return view('customer-list', ['customers' => $customers, 'users' => $users]);
     }
@@ -58,7 +58,7 @@ $users = DB::table('users')->where('user_type', 'user')->get();
             'mobile_no' => 'required',
             'address' => 'required',
             'surname' => 'required',
-            
+
         ]);
 
         // Store user document
@@ -147,9 +147,9 @@ $users = DB::table('users')->where('user_type', 'user')->get();
                 'branch_name' => $request->branch_name,
                 'ifsc_code' => $request->ifsc_code,
                 'transfer_loan_amount' => $request->transfer_loan_amount,
-               
+
                 'user_id' => Auth::user()->id,
-                'created_at' => now()
+                'created_at' => Carbon::now('Asia/Kolkata')
 
             ]);
 
@@ -293,7 +293,7 @@ $users = DB::table('users')->where('user_type', 'user')->get();
                 'branch_name' => $request->branch_name,
                 'ifsc_code' => $request->ifsc_code,
                 'transfer_loan_amount' => $request->transfer_loan_amount,
-                'updated_at' => now()
+                'updated_at' =>  Carbon::now('Asia/Kolkata')
 
             ];
 
@@ -311,10 +311,10 @@ $users = DB::table('users')->where('user_type', 'user')->get();
     public function destroy(string $id)
     {
         //
-        $customer = DB::table('customers')->where('id',$id)->delete();
-       
+        $customer = DB::table('customers')->where('id', $id)->delete();
+
         // Redirect or return a response
-    return redirect()->route('customers.index')
-    ->with('success', 'Record deleted successfully.');
+        return redirect()->route('customers.index')
+            ->with('success', 'Record deleted successfully.');
     }
 }

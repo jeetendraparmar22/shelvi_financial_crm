@@ -893,7 +893,6 @@
     </div>
     @push('scripts')
         <script src="{{ asset('assets/js/customer-application-form.js') }}"></script>
-        <script src="{{ asset('assets/js/axios.js') }}"></script>
     @endpush
     <script>
         function countryList() {
@@ -989,16 +988,7 @@
                         }));
                     });
 
-                    // Append data in add  village modal
-                    // $('#modal_city_name').html("");
-                    // var modalCitySelectBox = $('#modal_city_name');
-                    // modalCitySelectBox.append('<option value="">Select City </option>')
-                    // cityData.forEach(function(modalCity) {
-                    //     modalCitySelectBox.append($('<option>', {
-                    //         value: modalCity.id,
-                    //         text: modalCity.city_name
-                    //     }));
-                    // });
+
                 })
                 .catch((error) => {
                     console.error(error);
