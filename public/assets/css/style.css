@@ -3163,18 +3163,21 @@ div.dataTables_wrapper div.dataTables_info {
     border: 1px solid #e5e7eb;
     border-radius: 5px;
     background: #fff;
-    font-size: 12px;
+    font-size: 12px; 
 }
-
+ 
 div.dataTables_wrapper div.dataTables_filter input {
     margin-left: 0;
     display: inline-block;
     width: auto;
-    padding-left: 30px;
-    border: 1px solid #e5e5e5;
+    padding-left: 15px;
+    border: 0;
     color: #1b2559;
     height: 40px;
     border-radius: 8px;
+    background: #ffefef;
+    box-shadow: none;
+    margin-top: 6px;
 }
 
 div.dataTables_wrapper div.dataTables_filter label {
@@ -7016,6 +7019,7 @@ table .badge {
 
 .doc_icons {
     width: 30px;
+    height: 30px;
 }
 
 .ver_middle {
@@ -11049,10 +11053,9 @@ body[data-layout-mode="dark"] .alertify .ajs-header {
 
 .customer_list {
     float: none;
-    margin-left: auto;
+    /* margin-left: auto; */
     display: flex;
-    justify-content: right;
-    margin-bottom: 6px;
+    margin-bottom: 15px;
     align-items: center;
 }
 
@@ -11838,12 +11841,12 @@ label {
 }
 
 .bg-processing-light {
-    background-color: #FFFF00 !important;
+    background-color: #ffff00 !important;
     color: #33b469 !important;
 }
 
 .bg-rejected-light {
-    background-color: #FF0000 !important;
+    background-color: #ff0000 !important;
     color: #33b469 !important;
 }
 
@@ -23189,4 +23192,11 @@ table tr td .status-toggle .checktoggle {
     margin-right: 10px;
     object-fit: fill;
     height: 80px;
+}
+
+#DataTables_Table_0_filter {
+    text-align: right;
+    position: absolute;
+    top: 13px;
+    right: 23px;
 }

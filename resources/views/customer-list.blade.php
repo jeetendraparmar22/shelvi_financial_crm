@@ -47,12 +47,31 @@
                                                     class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add New
                                                 Application</a>
                                         </div>
-                                        <form>
+                                        <div class="form-group mb-0 me-3 ms-3">
+                                            <select class="select basic">
+                                                <option>Select Month</option>
+                                                <option>January</option>
+                                                <option>February</option>r</option>
+                                                <option>March</option>
+                                                <option>April</option>
+                                                <option>May</option>
+                                                <option>June</option>
+                                                <option>July</option>
+                                                <option>August</option>
+                                                <option>September</option>
+                                                <option>October</option>
+                                                <option>November</option>
+                                                <option>December</option>
+
+                                            </select>
+                                        </div>
+
+                                        {{-- <form>
 
                                             <input type="text" class="form-control" placeholder="Search here">
                                             <button class="btn" type="submit"><img src="assets/img/icons/search.svg"
                                                     alt="img"></button>
-                                        </form>
+                                        </form> --}}
                                     </div>
                                 </div>
                                 <div class="table-responsive">
