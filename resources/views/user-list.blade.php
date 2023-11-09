@@ -32,12 +32,7 @@
                                             <a class="btn btn-primary" href="{{ route('users.create') }}"><i
                                                     class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add User</a>
                                         </div>
-                                        <form>
-
-                                            <input type="text" class="form-control" placeholder="Search here">
-                                            <button class="btn" type="submit"><img src="assets/img/icons/search.svg"
-                                                    alt="img"></button>
-                                        </form>
+                                       
                                     </div>
                                 </div>
                                 <div class="table-responsive">
