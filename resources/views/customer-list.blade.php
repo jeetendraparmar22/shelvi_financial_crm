@@ -54,6 +54,7 @@
                                             <button class="btn" type="submit"><img src="assets/img/icons/search.svg"
                                                     alt="img"></button>
                                         </form>
+
                                     </div>
                                 </div>
 
@@ -81,7 +82,7 @@
                                             <tbody>
                                                 @foreach ($customers as $customer)
                                                     <tr role="row" class="odd">
-                                                        <td class>1</td>
+                                                        <td class>{{ $loop->iteration }}</td>
                                                         <td>
                                                             <h2 class="table-avatar">
                                                                 <a
