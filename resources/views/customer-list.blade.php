@@ -68,16 +68,18 @@
 
                                         {{-- <form>
 
-                                            <input type="text" class="form-control" placeholder="Search here">
+                                            <input type="text" class="form-control" id="datatable-search-btn"
+                                                placeholder="Search here">
                                             <button class="btn" type="submit"><img src="assets/img/icons/search.svg"
                                                     alt="img"></button>
                                         </form> --}}
                                     </div>
                                 </div>
+
                                 <div class="table-responsive">
                                     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                                         <table class="table table-center table-hover datatable dataTable no-footer"
-                                            id="DataTables_Table_0" role="grid"
+                                            id="customer-list-datatable" role="grid"
                                             aria-describedby="DataTables_Table_0_info">
                                             <thead class="thead-light">
                                                 <tr role="row">
@@ -220,4 +222,6 @@
         </div>
 
     </div>
+
+
 @endsection
