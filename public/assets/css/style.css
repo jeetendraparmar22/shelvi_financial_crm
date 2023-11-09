@@ -3180,6 +3180,13 @@ div.dataTables_wrapper div.dataTables_filter input {
     margin-top: 6px;
 }
 
+div.dataTables_wrapper #customer-list-datatable_filter {
+    text-align: right;
+    position: absolute;
+    top: 16px;
+    right: 27px;
+}
+
 div.dataTables_wrapper div.dataTables_filter label {
     margin-bottom: 0;
     position: relative;
