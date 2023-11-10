@@ -59,25 +59,32 @@ class DashboardController extends Controller
     // Loan analytic data
     public function loanAnalyticData()
     {
-        $loan_analytic_data = [];
-
+        
         $monthlyCounts = DB::table('customers')
-            ->select(
-                DB::raw('MONTH(created_at) as month'),
-                DB::raw('YEAR(created_at) as year'),
-                DB::raw('COUNT(*) as count'),
-                DB::raw('SUM(loan_amount) as total_amount')
-            )
-            ->where('loan_status', '=', 'approved')
-            ->groupBy(DB::raw('YEAR(created_at)'), DB::raw('MONTH(created_at)'))
-            ->pluck('total_amount')
-            ->toArray();
-
-        // foreach ($monthlyCounts as $monthlyCount) {
-        //     $loan_analytic_data[$monthlyCount->total_amount];
-        //     // $totalAmount = ;
-        // }
-
-        return response($monthlyCounts);
+        ->select(
+            DB::raw('MONTH(created_at) as month'),
+            DB::raw('YEAR(created_at) as year'),
+            DB::raw('SUM(loan_amount) as total_amount')
+        )
+        ->where('loan_status', '=', 'approved')
+        ->groupBy(DB::raw('YEAR(created_at)'), DB::raw('MONTH(created_at)'))
+        ->get();
+    
+    // Create an array with zero values for each month
+    $result = [];
+    for ($month = 1; $month <= 12; $month++) {
+        $result[$month] = 0;
+    }
+    
+    // Fill in the actual total amounts where they exist in the database results
+    foreach ($monthlyCounts as $data) {
+        $result[$data->month] = $data->total_amount;
+    }
+    
+    // Extract the total_amount values for the response
+    $response = array_values($result);
+    
+    return response($response);
+    
     }
 }

@@ -46,6 +46,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Customer Routes
     Route::resource('customers', CustomerController::class);
+    
 
     // Coutry list
     Route::get('countries', [CountryController::class, 'countryList']);

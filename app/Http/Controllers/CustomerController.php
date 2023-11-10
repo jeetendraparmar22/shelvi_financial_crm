@@ -317,4 +317,6 @@ class CustomerController extends Controller
         return redirect()->route('customers.index')
             ->with('success', 'Record deleted successfully.');
     }
+
+    
 }

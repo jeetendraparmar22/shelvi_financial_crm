@@ -222,21 +222,6 @@
         </div>
 
     </div>
-    <script>
-        function customerApplicationForm() {
-            const formData = new FormData();
-
-            axios
-                .get("/customers", formData)
-                .then((response) => {
-
-                    console.log(response)
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        }
-        customerApplicationForm();
-    </script>
+    
 
 @endsection
