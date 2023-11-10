@@ -61,4 +61,7 @@ Route::middleware(['auth'])->group(function () {
     // Village List
     Route::get('villages', [VillageController::class, 'villageList']);
     Route::post('add-village', [VillageController::class, 'addVillage']);
+
+    // Loan analytic data
+    Route::get('loan-analytic-data', [DashboardController::class, 'loanAnalyticData']);
 });

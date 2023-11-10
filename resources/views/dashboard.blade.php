@@ -342,4 +342,144 @@
             </div>
         </div>
     </div>
+    <script>
+        // function loanAnalyticData() {
+        //     const formData = new FormData();
+
+        //     axios
+        //         .get("/loan-analytic-data", formData)
+        //         .then((response) => {
+
+        //             console.log(response.data)
+        //             columnChart.updateSeries([{
+        //                     name: 'Received',
+        //                     type: "column",
+        //                     data: response.data.recieved
+        //                 }
+
+        //             ]);
+        //         })
+        //         .catch((error) => {
+        //             console.error(error);
+        //         });
+        // }
+        // loanAnalyticData();
+
+        "use strict";
+
+        $(document).ready(function() {
+            // Function to fetch data from Laravel API
+            function fetchData(url, callback) {
+                axios.get(url)
+                    .then(function(response) {
+                        if (response.data) {
+                            callback(response.data);
+                        } else {
+                            console.error('Empty response from API');
+                        }
+                    })
+                    .catch(function(error) {
+                        console.error('Error fetching data:', error);
+                    });
+            }
+
+            // Function to generate data for the charts
+            function generateData(baseval, count, yrange) {
+                var i = 0;
+                var series = [];
+                while (i < count) {
+                    var x = Math.floor(Math.random() * (750 - 1 + 1)) + 1;
+                    var y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+                    var z = Math.floor(Math.random() * (75 - 15 + 1)) + 15;
+
+                    series.push([x, y, z]);
+                    baseval += 86400000;
+                    i++;
+                }
+                return series;
+            }
+
+            // Column chart
+            if ($("#sales_chart").length > 0) {
+                var columnCtx = document.getElementById("sales_chart");
+
+                // Fetch data from Laravel API for the column chart
+                fetchData('/loan-analytic-data', function(data) {
+                    var columnConfig = {
+                        colors: ["#7638ff", "#fda600"],
+                        series: [{
+                                name: "Received",
+                                type: "column",
+                                data: data,
+                            },
+                            {
+                                name: "Pending",
+                                type: "column",
+                                // data: ,
+                            },
+                        ],
+                        chart: {
+                            type: "bar",
+                            fontFamily: "Poppins, sans-serif",
+                            height: 350,
+                            toolbar: {
+                                show: false,
+                            },
+                        },
+                        plotOptions: {
+                            bar: {
+                                horizontal: false,
+                                columnWidth: "60%",
+                                endingShape: "rounded",
+                            },
+                        },
+                        dataLabels: {
+                            enabled: false,
+                        },
+                        stroke: {
+                            show: true,
+                            width: 2,
+                            colors: ["transparent"],
+                        },
+                        xaxis: {
+                            categories: [
+                                "Jan",
+                                "Feb",
+                                "Mar",
+                                "Apr",
+                                "May",
+                                "Jun",
+                                "Jul",
+                                "Aug",
+                                "Sep",
+                                "Oct",
+                                "Nov",
+                                "Dec",
+                            ],
+                        },
+                        yaxis: {
+                            title: {
+                                text: "₹",
+                            },
+                        },
+                        fill: {
+                            opacity: 1,
+                        },
+                        tooltip: {
+                            y: {
+                                formatter: function(val) {
+                                    return "₹ " + val;
+                                },
+                            },
+                        },
+                    };
+
+                    var columnChart = new ApexCharts(columnCtx, columnConfig);
+                    columnChart.render();
+                });
+            }
+
+            // Continue the same approach for other charts...
+        });
+    </script>
 @endsection
