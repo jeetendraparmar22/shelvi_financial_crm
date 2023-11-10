@@ -100,7 +100,7 @@
                                             <tbody>
                                                 @foreach ($customers as $customer)
                                                     <tr role="row" class="odd">
-                                                        <td class>1</td>
+                                                        <td class>{{ $loop->iteration }}</td>
                                                         <td>
                                                             <h2 class="table-avatar">
                                                                 <a
@@ -222,6 +222,21 @@
         </div>
 
     </div>
+    <script>
+        function customerApplicationForm() {
+            const formData = new FormData();
 
+            axios
+                .get("/customers", formData)
+                .then((response) => {
+
+                    console.log(response)
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        }
+        customerApplicationForm();
+    </script>
 
 @endsection

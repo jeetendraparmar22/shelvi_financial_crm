@@ -55,7 +55,7 @@
                                             <tbody>
                                                 @foreach ($users as $user)
                                                     <tr role="row" class="odd">
-                                                        <td class>1</td>
+                                                        <td class>{{ $loop->iteration }}</td>
                                                         <td>
                                                             <h2 class="table-avatar">
                                                                 <a href="#">{{ $user->name }} </a>

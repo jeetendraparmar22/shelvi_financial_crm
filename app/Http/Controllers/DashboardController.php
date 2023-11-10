@@ -14,47 +14,70 @@ class DashboardController extends Controller
     {
 
         // Total Amount
-        if(Auth::user()->user_type == 'admin'){
-        $customers =  $customers = DB::table('customers')
-       
-        ->join('users', 'customers.user_id', '=', 'users.id')
-        ->select('customers.*', 'users.name as user_name')
-        ->get();
-            
-            $sumApprovedLoansAmount = DB::table('customers')
-    ->where('loan_status', 'Approved')
-    ->sum('loan_amount');
+        if (Auth::user()->user_type == 'admin') {
+            $customers =  $customers = DB::table('customers')
 
-    // loan Application
-    $totalLoanApplication = DB::table('customers')
-    
-    ->count();
+                ->join('users', 'customers.user_id', '=', 'users.id')
+                ->select('customers.*', 'users.name as user_name')
+                ->get();
+
+            $sumApprovedLoansAmount = DB::table('customers')
+                ->where('loan_status', 'Approved')
+                ->sum('loan_amount');
+
+            // loan Application
+            $totalLoanApplication = DB::table('customers')
+
+                ->count();
 
             // Total Executive
             $totalExecutive = DB::table('users')
-            ->where('user_type','user')
-            ->count();
-
-        }
-        else{
+                ->where('user_type', 'user')
+                ->count();
+        } else {
             $customers = DB::table('customers')
-            ->where('customers.user_id', Auth::user()->id)
-            ->join('users', 'customers.user_id', '=', 'users.id')
-            ->select('customers.*', 'users.name as user_name')
-            ->get();
+                ->where('customers.user_id', Auth::user()->id)
+                ->join('users', 'customers.user_id', '=', 'users.id')
+                ->select('customers.*', 'users.name as user_name')
+                ->get();
 
             $sumApprovedLoansAmount = DB::table('customers')
-            ->where('loan_status', 'Approved')
-            ->where('user_id', Auth::user()->id)
-            ->sum('loan_amount');
+                ->where('loan_status', 'Approved')
+                ->where('user_id', Auth::user()->id)
+                ->sum('loan_amount');
 
             // tota LoanApplication
-    $totalLoanApplication = DB::table('customers')
-    ->where('user_id', Auth::user()->id)
-    ->count();
+            $totalLoanApplication = DB::table('customers')
+                ->where('user_id', Auth::user()->id)
+                ->count();
 
-    $totalExecutive = 0;
+            $totalExecutive = 0;
         }
-        return view('dashboard', ['customers' => $customers,'sumApprovedLoansAmount' => $sumApprovedLoansAmount,'totalLoanApplication' => $totalLoanApplication,'totalExecutive' => $totalExecutive]);
+        return view('dashboard', ['customers' => $customers, 'sumApprovedLoansAmount' => $sumApprovedLoansAmount, 'totalLoanApplication' => $totalLoanApplication, 'totalExecutive' => $totalExecutive]);
+    }
+
+    // Loan analytic data
+    public function loanAnalyticData()
+    {
+        $loan_analytic_data = [];
+
+        $monthlyCounts = DB::table('customers')
+            ->select(
+                DB::raw('MONTH(created_at) as month'),
+                DB::raw('YEAR(created_at) as year'),
+                DB::raw('COUNT(*) as count'),
+                DB::raw('SUM(loan_amount) as total_amount')
+            )
+            ->where('loan_status', '=', 'approved')
+            ->groupBy(DB::raw('YEAR(created_at)'), DB::raw('MONTH(created_at)'))
+            ->pluck('total_amount')
+            ->toArray();
+
+        // foreach ($monthlyCounts as $monthlyCount) {
+        //     $loan_analytic_data[$monthlyCount->total_amount];
+        //     // $totalAmount = ;
+        // }
+
+        return response($monthlyCounts);
     }
 }
