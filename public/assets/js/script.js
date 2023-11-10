@@ -148,7 +148,7 @@
     }
     if ($(".datetimepicker").length > 0) {
         $(".datetimepicker").datetimepicker({
-            format: "DD-MM-YYYY",
+            format: "DD/MM/YYYY",
             icons: {
                 up: "fas fa-angle-up",
                 down: "fas fa-angle-down",
@@ -1218,3 +1218,15 @@ function confirmDelete(id) {
         document.getElementById("customer-delete-form-" + id).submit();
     }
 }
+
+
+var currentDate = new Date(); // Get the current date
+
+// Format the current date as MM/DD/YYYY in UTC
+var day = String(currentDate.getUTCDate()).padStart(2, "0");
+var month = String(currentDate.getUTCMonth() + 1).padStart(2, "0"); // Months are zero-based
+var year = currentDate.getUTCFullYear();
+var formattedDate = day + "/" + month + "/" + year;
+
+// Set the value of the input element to the current date in UTC
+$(".datetimepicker").val(formattedDate);
