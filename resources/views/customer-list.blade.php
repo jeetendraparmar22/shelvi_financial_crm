@@ -31,14 +31,17 @@
                             <div>
                                 <div class="d-flex align-items-center">
                                     @if (auth()->user()->user_type == 'admin')
-                                        <div class="user_list form-group mb-0">
+                                        {{-- <div class="user_list form-group mb-0">
                                             <select class="select" id="user_list">
                                                 <option>Select User</option>
                                                 @foreach ($users as $user)
                                                     <option value="{{ $user->id }}">{{ $user->name }}</option>
                                                 @endforeach
                                             </select>
-                                        </div>
+
+
+
+                                        </div> --}}
                                     @endif
                                     <div class="top-nav-search customer_list">
 
@@ -48,24 +51,27 @@
                                                 Application</a>
                                         </div>
                                         <div class="form-group mb-0 me-3 ms-3">
-                                            <select class="select basic">
-                                                <option>Select Month</option>
-                                                <option>January</option>
-                                                <option>February</option>r</option>
-                                                <option>March</option>
-                                                <option>April</option>
-                                                <option>May</option>
-                                                <option>June</option>
-                                                <option>July</option>
-                                                <option>August</option>
-                                                <option>September</option>
-                                                <option>October</option>
-                                                <option>November</option>
-                                                <option>December</option>
+                                            <form method="POST" action="{{ url('search-customer') }}">
+                                                @csrf
+                                                <select class="select basic" name="month">
+                                                    <option value="">Select Month</option>
+                                                    <option value="1">January</option>
+                                                    <option value="2">February</option>r</option>
+                                                    <option value="3">March</option>
+                                                    <option value="4">April</option>
+                                                    <option value="5">May</option>
+                                                    <option value="6">June</option>
+                                                    <option value="7">July</option>
+                                                    <option value="8">August</option>
+                                                    <option value="9">September</option>
+                                                    <option value="10">October</option>
+                                                    <option value="11">November</option>
+                                                    <option value="12">December</option>
 
-                                            </select>
+                                                </select>
                                         </div>
-
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                        </form>
                                         {{-- <form>
 
                                             <input type="text" class="form-control" id="datatable-search-btn"
@@ -91,7 +97,7 @@
 
                                                     <th class="sorting text-center" rowspan="1" colspan="1">Documents
                                                     </th>
-                                                    <th class="sorting" rowspan="1" colspan="1">File Created on</th>
+                                                    <th class="sorting" rowspan="1" colspan="1">File Login Date</th>
                                                     <th class="sorting_asc" rowspan="1" colspan="1"
                                                         aria-sort="ascending">Loan Status</th>
                                                     <th class="sorting" rowspan="1" colspan="1">Actions</th>
@@ -127,7 +133,7 @@
                                                                         class="doc_icons" /></a>
                                                             </div>
                                                         </td>
-                                                        <td>{{ $customer->created_at }}</td>
+                                                        <td>{{ $customer->file_log_in_date }}</td>
                                                         @if ($customer->loan_status == 'Approved')
                                                             <td class="sorting_1"><span class="badge badge-pill bg-success"
                                                                     id="loan-status-class">{{ $customer->loan_status }}</span>
@@ -222,6 +228,4 @@
         </div>
 
     </div>
-    
-
 @endsection

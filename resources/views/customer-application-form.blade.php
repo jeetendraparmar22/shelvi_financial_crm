@@ -280,7 +280,9 @@
                                                     <div class="form-group">
                                                         <label>Application Date</label>
                                                         <div class="cal-icon cal-icon-info">
-                                                            <input type="text" class="datetimepicker form-control" placeholder="Select Date">
+                                                            <input type="text" name="file_log_in_date"
+                                                                class="datetimepicker form-control"
+                                                                placeholder="Select Date">
                                                         </div>
                                                     </div>
                                                 </div>

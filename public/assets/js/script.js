@@ -157,6 +157,18 @@
             },
         });
     }
+
+    if ($(".datetimepicker1").length > 0) {
+        $(".datetimepicker1").datetimepicker({
+            format: "DD/MM/YYYY",
+            icons: {
+                up: "fas fa-angle-up",
+                down: "fas fa-angle-down",
+                next: "fas fa-angle-right",
+                previous: "fas fa-angle-left",
+            },
+        });
+    }
     if ($(".summernote").length > 0) {
         $(".summernote").summernote({
             placeholder: "Description",
@@ -1218,7 +1230,6 @@ function confirmDelete(id) {
         document.getElementById("customer-delete-form-" + id).submit();
     }
 }
-
 
 var currentDate = new Date(); // Get the current date
 

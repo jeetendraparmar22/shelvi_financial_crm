@@ -32,7 +32,7 @@
                                             <a class="btn btn-primary" href="{{ route('users.create') }}"><i
                                                     class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add User</a>
                                         </div>
-                                       
+
                                     </div>
                                 </div>
                                 <div class="table-responsive">
@@ -63,7 +63,7 @@
                                                         </td>
                                                         <td>{{ $user->mobile_no }}</td>
 
-                                                        <td>{{ $user->created_at }}</td>
+                                                        <td>{{ $user->file_log_in_date }}</td>
                                                         <td class="sorting_1"><span
                                                                 class="badge badge-pill bg-success-light">Active</span></td>
                                                         <td class="d-flex align-items-center ">

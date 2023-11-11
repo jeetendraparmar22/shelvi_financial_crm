@@ -94,6 +94,7 @@ class CustomerController extends Controller
         } else {
             $vehicle_insurance_path = "";
         }
+        $file_log_in_date = Carbon::createFromFormat('d/m/Y', $request->file_log_in_date)->format('Y-m-d');
         // save data in table
         try {
             $inser_data = DB::table('customers')->insert([
@@ -111,7 +112,7 @@ class CustomerController extends Controller
                 'alternate_mobile_no' => $request->alternate_mobile_no,
                 'adhar_card' =>  $cust_doc_path,
                 'remark_customer_detail' => $request->remark_customer_detail,
-
+                'file_log_in_date' => $file_log_in_date,
                 'finance_name' => $request->finance_name,
                 'finance_address' => $request->finance_address,
                 'executive_name' => $request->executive_name,
@@ -241,6 +242,7 @@ class CustomerController extends Controller
         // update Data
         try {
 
+            $file_log_in_date = Carbon::createFromFormat('d/m/Y', $request->file_log_in_date)->format('Y-m-d');
 
             $update_data = [
                 'first_name' => $request->first_name,
@@ -257,7 +259,7 @@ class CustomerController extends Controller
                 'alternate_mobile_no' => $request->alternate_mobile_no,
                 'adhar_card' =>  $cust_doc_path,
                 'remark_customer_detail' => $request->remark_customer_detail,
-
+                'file_log_in_date' => $file_log_in_date,
 
                 'finance_name' => $request->finance_name,
                 'finance_address' => $request->finance_address,
@@ -318,5 +320,17 @@ class CustomerController extends Controller
             ->with('success', 'Record deleted successfully.');
     }
 
-    
+    public function searchCustomer(Request $request)
+    {
+        $targetMonth = $request->month;
+        $query = DB::table('customers');
+
+        if (!is_null($targetMonth)) {
+            $query->whereMonth('created_at', $targetMonth);
+        }
+
+        $customers = $query->get();
+
+        return view('customer-list', ['customers' => $customers]);
+    }
 }
