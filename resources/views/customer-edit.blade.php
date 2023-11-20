@@ -270,7 +270,17 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-12">
+                                                <div class="col-lg-4 col-12">
+                                                    <div class="form-group">
+                                                        <label>Application Date</label>
+                                                        <div class="cal-icon cal-icon-info">
+                                                            <input type="text" class="datetimepicker1 form-control"
+                                                                name="file_log_in_date" placeholder="Select Date"
+                                                                value="{{ $customer->file_log_in_date ? \Carbon\Carbon::createFromFormat('Y-m-d', $customer->file_log_in_date)->format('d/m/Y') : '' }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-8">
                                                     <div class="form-group">
                                                         <label>Remark</label>
                                                         <textarea type="text" name="remark_customer_detail" class="form-control" placeholder="Enter Remark">{{ $customer->remark_customer_detail }}</textarea>
@@ -878,7 +888,6 @@
     </div>
     @push('scripts')
         <script src="{{ asset('assets/js/customer-application-form.js') }}"></script>
-        <script src="{{ asset('assets/js/axios.js') }}"></script>
     @endpush
     <script>
         // Set total remain remaining loan amount

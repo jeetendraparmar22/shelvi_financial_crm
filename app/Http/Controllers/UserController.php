@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -48,7 +49,7 @@ class UserController extends Controller
                 'user_type' => $request->user_type,
                 'password' => Hash::make($request->password),
                 'address' => $request->address,
-                'created_at' => now()
+                'created_at' => Carbon::now('Asia/Kolkata')
 
             ]);
             return redirect()->route('users.index')->with('success', 'User added Successfully');
