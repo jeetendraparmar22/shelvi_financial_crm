@@ -138,9 +138,10 @@ $(document).ready(function () {
             $("#total-application").text(data[2]);
             $("#approved-application").text(data[0]);
             $("#rejected-application").text(data[1]);
+            $("#processing-application").text(data[3]);
+
             var pieConfig = {
-                // colors: ["#ff0000", "#008000", "#003060"],
-                colors: ["#008000", "#ff0000", "#003060"],
+                colors: ["#008000", "#ff0000", "#003060", "#FF671F"],
 
                 series: data, // Use the series data from Laravel API
                 chart: {
@@ -148,7 +149,12 @@ $(document).ready(function () {
                     height: 350,
                     type: "donut",
                 },
-                labels: ["Approved", "Rejected", "Total Receive Application"],
+                labels: [
+                    "Approved",
+                    "Rejected",
+                    "Total Receive Application",
+                    "Processing",
+                ],
                 legend: { show: false },
                 responsive: [
                     {
