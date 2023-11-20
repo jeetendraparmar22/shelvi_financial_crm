@@ -182,7 +182,7 @@
                             <div id="invoice_chart"></div>
                             <div class="text-center text-muted">
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-3">
                                         <div class="mt-4">
                                             <p class="mb-2 text-truncate">
                                                 <i class="fas fa-circle text-primary me-1"></i>
@@ -191,7 +191,7 @@
                                             <h5 id="total-application">0</h5>
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-3">
                                         <div class="mt-4">
                                             <p class="mb-2 text-truncate">
                                                 <i class="fas fa-circle text-success me-1"></i>
@@ -200,7 +200,16 @@
                                             <h5 id="approved-application">0</h5>
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-3">
+                                        <div class="mt-4">
+                                            <p class="mb-2 text-truncate">
+                                                <i class="fas fa-circle text-warning me-1"></i>
+                                                Processing
+                                            </p>
+                                            <h5 id="processing-application">0</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
                                         <div class="mt-4">
                                             <p class="mb-2 text-truncate">
                                                 <i class="fas fa-circle text-danger me-1"></i>
