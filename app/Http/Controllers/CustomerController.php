@@ -326,7 +326,7 @@ class CustomerController extends Controller
         $query = DB::table('customers');
 
         if (!is_null($targetMonth)) {
-            $query->whereMonth('created_at', $targetMonth);
+            $query->whereMonth('file_log_in_date', $targetMonth);
         }
 
         $customers = $query->get();

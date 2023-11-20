@@ -66,4 +66,5 @@ Route::middleware(['auth'])->group(function () {
 
     // Loan analytic data
     Route::get('loan-analytic-data', [DashboardController::class, 'loanAnalyticData']);
+    Route::get('loan-application-data', [DashboardController::class, 'loanApplicationData']);
 });

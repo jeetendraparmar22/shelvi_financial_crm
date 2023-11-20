@@ -110,7 +110,7 @@
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h5 class="card-title">Loan Analytics</h5>
-                                <div class="dropdown main">
+                                {{-- <div class="dropdown main">
                                     <button class="btn btn-white btn-sm dropdown-toggle" type="button"
                                         id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                         Monthly
@@ -126,7 +126,7 @@
                                             <a href="javascript:void(0);" class="dropdown-item">Yearly</a>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="card-body">
@@ -159,7 +159,7 @@
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h5 class="card-title">Loan Application Analytics</h5>
-                                <div class="dropdown main">
+                                {{-- <div class="dropdown main">
                                     <button class="btn btn-white btn-sm dropdown-toggle" type="button"
                                         id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         Monthly
@@ -175,7 +175,7 @@
                                             <a href="javascript:void(0);" class="dropdown-item">Yearly</a>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="card-body">
@@ -188,7 +188,7 @@
                                                 <i class="fas fa-circle text-primary me-1"></i>
                                                 Total Recieved
                                             </p>
-                                            <h5>0</h5>
+                                            <h5 id="total-application">0</h5>
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -197,7 +197,7 @@
                                                 <i class="fas fa-circle text-success me-1"></i>
                                                 Approved
                                             </p>
-                                            <h5>0</h5>
+                                            <h5 id="approved-application">0</h5>
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -206,7 +206,7 @@
                                                 <i class="fas fa-circle text-danger me-1"></i>
                                                 Rejected
                                             </p>
-                                            <h5>0</h5>
+                                            <h5 id="rejected-application"></h5>
                                         </div>
                                     </div>
                                 </div>

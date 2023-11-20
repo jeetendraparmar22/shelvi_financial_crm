@@ -86,4 +86,25 @@ class DashboardController extends Controller
 
         return response($response);
     }
+
+    // Loan application Data
+    public function loanApplicationData(Request $request)
+    {
+        $results = DB::table('customers')
+            ->select(
+                DB::raw('COUNT(CASE WHEN loan_status = "approved" THEN 1 END) as approved_count'),
+                DB::raw('COUNT(CASE WHEN loan_status = "rejected" THEN 1 END) as rejected_count'),
+                DB::raw('COUNT(*) as total_count')
+            )
+            ->first();
+
+        // Access the results
+        $approvedCount = $results->approved_count;
+        $rejectedCount = $results->rejected_count;
+        $totalCount = $results->total_count;
+
+
+
+        return [$approvedCount, $rejectedCount, $totalCount];
+    }
 }

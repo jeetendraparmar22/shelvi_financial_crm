@@ -100,17 +100,55 @@ $(document).ready(function () {
     // }
 
     //Pie Chart
+    // if ($("#invoice_chart").length > 0) {
+    //     var pieCtx = document.getElementById("invoice_chart"),
+    //         pieConfig = {
+    //             colors: ["#003060", "#ff0000", "#008000"],
+    //             series: [55, 40, 70],
+    //             chart: {
+    //                 fontFamily: "Poppins, sans-serif",
+    //                 height: 350,
+    //                 type: "donut",
+    //             },
+    //             labels: ["Total Receive Application", "Rejected", "Approved"],
+    //             legend: { show: false },
+    //             responsive: [
+    //                 {
+    //                     breakpoint: 480,
+    //                     options: {
+    //                         chart: {
+    //                             width: 200,
+    //                         },
+    //                         legend: {
+    //                             position: "bottom",
+    //                         },
+    //                     },
+    //                 },
+    //             ],
+    //         };
+    //     var pieChart = new ApexCharts(pieCtx, pieConfig);
+    //     pieChart.render();
+    // }
+
     if ($("#invoice_chart").length > 0) {
-        var pieCtx = document.getElementById("invoice_chart"),
-            pieConfig = {
-                colors: ["#7638ff", "#ff737b", "#fda600", "#1ec1b0"],
-                series: [55, 40, 20, 10],
+        var pieCtx = document.getElementById("invoice_chart");
+
+        // Fetch data from Laravel API for the pie chart
+        fetchApplicationData("/loan-application-data", function (data) {
+            $("#total-application").text(data[2]);
+            $("#approved-application").text(data[0]);
+            $("#rejected-application").text(data[1]);
+            var pieConfig = {
+                // colors: ["#ff0000", "#008000", "#003060"],
+                colors: ["#008000", "#ff0000", "#003060"],
+
+                series: data, // Use the series data from Laravel API
                 chart: {
                     fontFamily: "Poppins, sans-serif",
                     height: 350,
                     type: "donut",
                 },
-                labels: ["Paid", "Unpaid", "Overdue", "Draft"],
+                labels: ["Approved", "Rejected", "Total Receive Application"],
                 legend: { show: false },
                 responsive: [
                     {
@@ -126,8 +164,26 @@ $(document).ready(function () {
                     },
                 ],
             };
-        var pieChart = new ApexCharts(pieCtx, pieConfig);
-        pieChart.render();
+
+            var pieChart = new ApexCharts(pieCtx, pieConfig);
+            pieChart.render();
+        });
+    }
+
+    // Function to fetch data from Laravel API
+    function fetchApplicationData(url, callback) {
+        axios
+            .get(url)
+            .then(function (response) {
+                if (response.data) {
+                    callback(response.data);
+                } else {
+                    console.error("Empty response from API");
+                }
+            })
+            .catch(function (error) {
+                console.error("Error fetching data:", error);
+            });
     }
 
     // Simple Line
