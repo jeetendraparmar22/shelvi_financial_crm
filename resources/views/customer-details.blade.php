@@ -96,6 +96,39 @@
                         </div>
                         <div class="card-body">
 
+                            <h5>Borrower Info</h5>
+                            <hr class="my-3">
+                            <div class="table-responsive">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <td><b class="text-header">Finance Name</b></td>
+                                            <td>:</td>
+                                            <td>{{ $customer->finance_name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b class="text-header">Finance Address</b></td>
+                                            <td>:</td>
+                                            <td>{{ $customer->finance_address }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b class="text-header">Executive Name</b></td>
+                                            <td>:</td>
+                                            <td>{{ $customer->executive_name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b class="text-header">Dealer Name</b></td>
+                                            <td>:</td>
+                                            <td>{{ $customer->Dealer_name }}</td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
                             <h5>Vehicle Details</h5>
                             <hr class="my-3">
                             <div class="table-responsive">
@@ -130,6 +163,49 @@
                                             <td><b class="text-header">Fuel Type</b></td>
                                             <td>:</td>
                                             <td>{{ $customer->fuel_type }}</td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                            <h5>Customer Bank Details</h5>
+                            <hr class="my-3">
+                            <div class="table-responsive">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <td><b class="text-header">Account Holder Name</b></td>
+                                            <td>:</td>
+                                            <td>{{ $customer->bank_account_holder_name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b class="text-header">Account Number</b></td>
+                                            <td>:</td>
+                                            <td>{{ $customer->account_no }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b class="text-header">Bank Name</b></td>
+                                            <td>:</td>
+                                            <td>{{ $customer->bank_name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b class="text-header">Branch Name</b></td>
+                                            <td>:</td>
+                                            <td>{{ $customer->branch_name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b class="text-header">IFSC Code</b></td>
+                                            <td>:</td>
+                                            <td>{{ $customer->ifsc_code }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b class="text-header">Transfer Loan Amount</b></td>
+                                            <td>:</td>
+                                            <td>{{ $customer->transfer_loan_amount }}</td>
                                         </tr>
 
 
