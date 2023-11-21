@@ -67,7 +67,7 @@ class CustomerController extends Controller
             $folderName = $request->first_name . '_' . now()->format('Y-m-d_H-i-s');
 
             // Store the uploaded document in the user's folder
-            $cust_doc_path = $request->file('adhar_card_file')->storeAs('customer_documents/' . $folderName, $request->file('adhar_card_file')->getClientOriginalName(), 'local');
+            $cust_doc_path = $request->file('adhar_card_file')->storeAs('customer_documents/' . $folderName, $request->file('adhar_card_file')->getClientOriginalName(), 'public');
         } else {
             $cust_doc_path = "";
         }
@@ -79,7 +79,7 @@ class CustomerController extends Controller
             $folderName = $request->first_name . '_' . now()->format('Y-m-d_H-i-s');
 
             // Store the uploaded document in the user's folder
-            $vehicle_rc_path = $request->file('rc_book')->storeAs('vehicle_documents/' . $folderName, $request->file('rc_book')->getClientOriginalName(), 'local');
+            $vehicle_rc_path = $request->file('rc_book')->storeAs('vehicle_documents/' . $folderName, $request->file('rc_book')->getClientOriginalName(), 'public');
         } else {
             $vehicle_rc_path = "";
         }
@@ -90,7 +90,7 @@ class CustomerController extends Controller
             $folderName = $request->first_name . '_' . now()->format('Y-m-d_H-i-s');
 
             // Store the uploaded document in the user's folder
-            $vehicle_insurance_path = $request->file('insurance_file')->storeAs('insurance_documents/' . $folderName, $request->file('insurance_file')->getClientOriginalName(), 'local');
+            $vehicle_insurance_path = $request->file('insurance_file')->storeAs('insurance_documents/' . $folderName, $request->file('insurance_file')->getClientOriginalName(), 'public');
         } else {
             $vehicle_insurance_path = "";
         }
@@ -205,7 +205,7 @@ class CustomerController extends Controller
             $folderName = $request->first_name . '_' . now()->format('Y-m-d_H-i-s');
 
             // Store the uploaded document in the user's folder
-            $cust_doc_path = $request->file('adhar_card_file')->storeAs('customer_documents/' . $folderName, $request->file('adhar_card_file')->getClientOriginalName(), 'local');
+            $cust_doc_path = $request->file('adhar_card_file')->storeAs('customer_documents/' . $folderName, $request->file('adhar_card_file')->getClientOriginalName(), 'public');
         } else {
             // get old path
             $doc_path = DB::table('customers')->select('adhar_card')->where('id', $id)->first();
@@ -219,7 +219,7 @@ class CustomerController extends Controller
             $folderName = $request->first_name . '_' . now()->format('Y-m-d_H-i-s');
 
             // Store the uploaded document in the user's folder
-            $vehicle_rc_path = $request->file('rc_book')->storeAs('vehicle_documents/' . $folderName, $request->file('rc_book')->getClientOriginalName(), 'local');
+            $vehicle_rc_path = $request->file('rc_book')->storeAs('vehicle_documents/' . $folderName, $request->file('rc_book')->getClientOriginalName(), 'public');
         } else {
             $rc_path = DB::table('customers')->select('rc_book')->where('id', $id)->first();
 
@@ -232,7 +232,7 @@ class CustomerController extends Controller
             $folderName = $request->first_name . '_' . now()->format('Y-m-d_H-i-s');
 
             // Store the uploaded document in the user's folder
-            $vehicle_insurance_path = $request->file('insurance_file')->storeAs('insurance_documents/' . $folderName, $request->file('insurance_file')->getClientOriginalName(), 'local');
+            $vehicle_insurance_path = $request->file('insurance_file')->storeAs('insurance_documents/' . $folderName, $request->file('insurance_file')->getClientOriginalName(), 'public');
         } else {
             $insurance_path = DB::table('customers')->select('insurance_file')->where('id', $id)->first();
 
