@@ -22,15 +22,15 @@ class CustomerController extends Controller
 
         if (Auth::user()->user_type == 'admin') {
             // Get all customers
-            $customers = Customer::get();
+            $customers = Customer::orderBy('id', 'DESC')->get();
             // get Users
-            $users = DB::table('users')->where('user_type', 'user')->get();
+            $users = DB::table('users')->orderBy('id', 'DESC')->where('user_type', 'user')->get();
         } else {
             // Get all customers
-            $customers = DB::table('customers')->where('user_id', Auth::user()->id)->get();
+            $customers = DB::table('customers')->orderBy('id', 'DESC')->where('user_id', Auth::user()->id)->get();
 
             // get Users
-            $users = DB::table('users')->where('user_type', 'user')->get();
+            $users = DB::table('users')->orderBy('id', 'DESC')->where('user_type', 'user')->get();
         }
 
 
@@ -328,8 +328,12 @@ class CustomerController extends Controller
         if (!is_null($targetMonth)) {
             $query->whereMonth('file_log_in_date', $targetMonth);
         }
+        if (Auth::user()->user_type == 'admin') {
 
-        $customers = $query->get();
+            $customers = $query->get();
+        } else {
+            $customers = $query->where('user_id', Auth::user()->id)->get();
+        }
 
         return view('customer-list', ['customers' => $customers]);
     }
