@@ -199,7 +199,7 @@
                                                     <div class="flex_row">
                                                         <div class="form-group mb-3">
                                                             <label>State</label>
-                                                            <select class="select" name="state">
+                                                            <select class="select" name="state" id="state_name">
                                                                 <option>Select State</option>
 
                                                             </select>
@@ -214,8 +214,8 @@
                                                 <div class="col-lg-4 col-12">
                                                     <div class="flex_row">
                                                         <div class="form-group mb-3">
-                                                            <label>City</label>
-                                                            <select class="select" name="city">
+                                                            <label>City/District</label>
+                                                            <select class="select" name="city" id="city_name">
                                                                 <option>Select City</option>
 
                                                             </select>
@@ -232,7 +232,7 @@
                                                     <div class="flex_row">
                                                         <div class="form-group mb-3">
                                                             <label>Village</label>
-                                                            <select class="select" name="village">
+                                                            <select class="select" name="village" id="village_name">
                                                                 <option>Select Village</option>
 
                                                             </select>
@@ -851,7 +851,7 @@
                 </div>
                 <div class="modal-footer">
                     <a href="#" data-bs-dismiss="modal" class="btn btn-danger me-2">Cancel</a>
-                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary">Save</a>
+                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary" id="modal-save-city">Save</a>
                 </div>
             </div>
         </div>
@@ -881,7 +881,8 @@
                 </div>
                 <div class="modal-footer">
                     <a href="#" data-bs-dismiss="modal" class="btn btn-danger me-2">Cancel</a>
-                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary">Save</a>
+                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary"
+                        id="modal-add-village-save">Save</a>
                 </div>
             </div>
         </div>
