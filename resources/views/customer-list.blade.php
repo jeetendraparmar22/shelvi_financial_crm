@@ -91,9 +91,11 @@
                                                 <tr role="row">
                                                     <th class="sorting" rowspan="1" colspan="1">#</th>
                                                     <th class="sorting" rowspan="1" colspan="1">Customer Name</th>
-                                                    <th class="sorting" rowspan="1" colspan="1">Mobile No.</th>
                                                     <th class="sorting" rowspan="1" colspan="1">Loan Amount</th>
+                                                    <th class="sorting" rowspan="1" colspan="1">Vehicle No.</th>
+
                                                     <th class="sorting" rowspan="1" colspan="1">Executive Name</th>
+                                                    <th class="sorting" rowspan="1" colspan="1">Dealer Name</th>
 
                                                     <th class="sorting text-center" rowspan="1" colspan="1">Documents
                                                     </th>
@@ -114,9 +116,11 @@
                                                                 </a>
                                                             </h2>
                                                         </td>
-                                                        <td>{{ $customer->mobile_no }}</td>
                                                         <td>{{ $customer->loan_amount }}</td>
+                                                        <td>{{ $customer->vehicle_registration_no }}</td>
                                                         <td>{{ $customer->executive_name }}</td>
+                                                        <td>{{ $customer->Dealer_name }}</td>
+
 
                                                         <td class="ver_middle text-center">
 
@@ -139,7 +143,8 @@
                                                                     id="loan-status-class">{{ $customer->loan_status }}</span>
                                                             </td>
                                                         @elseif ($customer->loan_status == 'Processing')
-                                                            <td class="sorting_1"><span class="badge badge-pill bg-warning"
+                                                            <td class="sorting_1"><span
+                                                                    class="badge badge-pill bg-warning"
                                                                     id="loan-status-class">{{ $customer->loan_status }}</span>
                                                             </td>
                                                         @else
