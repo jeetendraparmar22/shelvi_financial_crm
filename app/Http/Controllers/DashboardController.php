@@ -60,15 +60,21 @@ class DashboardController extends Controller
     public function loanAnalyticData()
     {
 
-        $monthlyCounts = DB::table('customers')
+        $query = DB::table('customers')
             ->select(
                 DB::raw('MONTH(file_log_in_date) as month'),
                 DB::raw('YEAR(file_log_in_date) as year'),
                 DB::raw('SUM(loan_amount) as total_amount')
             )
             ->where('loan_status', '=', 'approved')
-            ->groupBy(DB::raw('YEAR(file_log_in_date)'), DB::raw('MONTH(file_log_in_date)'))
-            ->get();
+            ->groupBy(DB::raw('YEAR(file_log_in_date)'), DB::raw('MONTH(file_log_in_date)'));
+        if (Auth::user()->user_type == 'admin') {
+
+            $monthlyCounts = $query->get();
+        } else {
+            $monthlyCounts = $query->where('user_id', Auth::user()->id)->get();
+        }
+
 
         // Create an array with zero values for each month
         $result = [];
@@ -90,14 +96,20 @@ class DashboardController extends Controller
     // Loan application Data
     public function loanApplicationData(Request $request)
     {
-        $results = DB::table('customers')
+        $query = DB::table('customers')
             ->select(
                 DB::raw('COUNT(CASE WHEN loan_status = "approved" THEN 1 END) as approved_count'),
                 DB::raw('COUNT(CASE WHEN loan_status = "rejected" THEN 1 END) as rejected_count'),
                 DB::raw('COUNT(CASE WHEN loan_status = "Processing" THEN 1 END) as processing_count'),
                 DB::raw('COUNT(*) as total_count')
-            )
-            ->first();
+            );
+        if (Auth::user()->user_type == 'admin') {
+
+            $results = $query->first();
+        } else {
+            $results = $query->where('user_id', Auth::user()->id)->first();
+        }
+
 
         // Access the results
         $approvedCount = $results->approved_count;
