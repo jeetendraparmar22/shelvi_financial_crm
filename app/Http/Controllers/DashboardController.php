@@ -94,7 +94,7 @@ class DashboardController extends Controller
             ->select(
                 DB::raw('COUNT(CASE WHEN loan_status = "approved" THEN 1 END) as approved_count'),
                 DB::raw('COUNT(CASE WHEN loan_status = "rejected" THEN 1 END) as rejected_count'),
-                DB::raw('COUNT(CASE WHEN loan_status = "processing" THEN 1 END) as processing_count'),
+                DB::raw('COUNT(CASE WHEN loan_status = "Processing" THEN 1 END) as processing_count'),
                 DB::raw('COUNT(*) as total_count')
             )
             ->first();
