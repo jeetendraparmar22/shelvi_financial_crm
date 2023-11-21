@@ -254,13 +254,13 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-auto">
-                                        <i class="fas fa-circle text-success me-1"></i> Approved
+                                        <i class="fas fa-circle text-success me-1"></i><a>Approved</a>
                                     </div>
                                     <div class="col-auto">
-                                        <i class="fas fa-circle text-warning me-1"></i> Processing
+                                        <i class="fas fa-circle text-warning me-1"></i> <a>Processing</a>
                                     </div>
                                     <div class="col-auto">
-                                        <i class="fas fa-circle text-danger me-1"></i> Rejected
+                                        <i class="fas fa-circle text-danger me-1"></i> <a>Rejected</a>
                                     </div>
                                     {{-- <div class="col-auto">
                                         <i class="fas fa-circle text-info me-1"></i> Draft
