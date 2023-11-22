@@ -254,6 +254,7 @@ class CustomerController extends Controller
                 'address' => $request->address,
                 'country' => $request->country,
                 'state' => $request->state,
+                'city' => $request->city,
                 'village' => $request->village,
                 'pincode' => $request->pincode,
                 'alternate_mobile_no' => $request->alternate_mobile_no,

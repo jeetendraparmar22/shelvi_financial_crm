@@ -188,8 +188,10 @@
                                                 <div class="col-lg-4 col-12">
                                                     <div class="form-group mb-3">
                                                         <label>Country</label>
-                                                        <select class="select" name="country" id="country_name">
-                                                            <option>Select Country</option>
+                                                        <select class="select" name="country"
+                                                            id="edit_application_country_name">
+                                                            <option value="{{ $customer->country }}">
+                                                                {{ $customer->country }}</option>
 
                                                         </select>
                                                     </div>
@@ -199,8 +201,10 @@
                                                     <div class="flex_row">
                                                         <div class="form-group mb-3">
                                                             <label>State</label>
-                                                            <select class="select" name="state" id="state_name">
-                                                                <option>Select State</option>
+                                                            <select class="select" name="state"
+                                                                id="edit_application_state_name">
+                                                                <option value="{{ $customer->state }}">
+                                                                    {{ $customer->state }}</option>
 
                                                             </select>
                                                         </div>
@@ -216,7 +220,8 @@
                                                         <div class="form-group mb-3">
                                                             <label>City/District</label>
                                                             <select class="select" name="city" id="city_name">
-                                                                <option>Select City</option>
+                                                                <option value="{{ $customer->city }}">
+                                                                    {{ $customer->city }}</option>
 
                                                             </select>
                                                         </div>
@@ -233,7 +238,8 @@
                                                         <div class="form-group mb-3">
                                                             <label>Village</label>
                                                             <select class="select" name="village" id="village_name">
-                                                                <option>Select Village</option>
+                                                                <option value="{{ $customer->village }}">
+                                                                    {{ $customer->village }}</option>
 
                                                             </select>
                                                         </div>
@@ -892,7 +898,7 @@
     @endpush
     <script>
         // dynamic country, state and city
-        function countryList() {
+        function editApplicationcountryList() {
             const formData = new FormData();
 
             axios
@@ -900,11 +906,12 @@
                 .then((response) => {
 
                     const countryData = response.data;
-                    const countrySelectBox = $('#country_name');
+                    const countrySelectBox = $('#edit_application_country_name');
                     countryData.forEach(function(country) {
                         countrySelectBox.append($('<option>', {
-                            value: country.id,
-                            text: country.country_name
+                            value: country.country_name,
+                            text: country.country_name,
+                            'data-secondary-value': country.id
                         }));
                     });
 
@@ -914,7 +921,7 @@
                     modalCountrySelectBox.append('<option>Select Country</option>')
                     countryData.forEach(function(modalCountry) {
                         modalCountrySelectBox.append($('<option>', {
-                            value: modalCountry.id,
+                            value: modalCountry.country_name,
                             text: modalCountry.country_name
                         }));
                     });
@@ -923,11 +930,13 @@
                     console.error(error);
                 });
         }
-        countryList();
+        editApplicationcountryList();
 
         // State List
-        function stateList() {
-            let country_id = $('#country_name').val();
+        function editApplicationstateList() {
+            var selectedOption = $('#edit_application_country_name option:selected');
+            let country_id = selectedOption.data('secondary-value');
+            console.log(country_id);
 
             axios
                 .get("/states", {
@@ -936,11 +945,11 @@
                     }
                 })
                 .then((response) => {
-                    $('#state_name').html("");
+                    $('#edit_application_state_name').html("");
 
                     const stateData = response.data;
 
-                    const stateSelectBox = $('#state_name');
+                    const stateSelectBox = $('#edit_application_state_name');
                     stateSelectBox.append('<option>Select State</option>')
                     stateData.forEach(function(state) {
                         stateSelectBox.append($('<option>', {
@@ -955,15 +964,15 @@
         }
 
         // on country change
-        $('#country_name').change(function() {
-            stateList();
+        $('#edit_application_country_name').change(function() {
+            editApplicationstateList();
 
         })
 
 
         // City list
         function cityList() {
-            let state_id = $('#state_name').val();
+            let state_id = $('#edit_application_state_name').val();
 
             axios
                 .get("/cities", {
@@ -993,12 +1002,12 @@
         }
 
         // on state change
-        $('#state_name').change(function() {
+        $('#edit_application_state_name').change(function() {
             cityList();
             // set value in modal city
             // get selected state id and name
-            var selectedStateId = $('#state_name').val();
-            var selectedText = $("#state_name option:selected").text();
+            var selectedStateId = $('#edit_application_state_name').val();
+            var selectedText = $("#edit_application_state_name option:selected").text();
             $('#modal-state-name-option').val(selectedStateId);
             $('#modal-state-name-option').text(selectedText);
 
@@ -1061,7 +1070,7 @@
                 .post("/add-state", formData)
                 .then((response) => {
                     console.log(response)
-                    stateList();
+                    editApplicationstateList();
                     toastr.success("State added Successfully");
 
                 })
@@ -1074,7 +1083,7 @@
         $("#modal-state-save").click(function() {
 
 
-            var countryId = $('#country_name').val();
+            var countryId = $('#edit_application_country_name').val();
             var mStateName = $('#modal-state-name').val();
             if (countryId == '' || mStateName == '') {
                 toastr.error("Please Enter state name and select country")
@@ -1143,7 +1152,7 @@
         $("#modal-save-city").click(function() {
 
             var modalCityName = $('#modal-city-name').val();
-            var modalStateId = $('#state_name').val();
+            var modalStateId = $('#edit_application_state_name').val();
             if (modalCityName == '' || modalStateId == '') {
 
             } else {
