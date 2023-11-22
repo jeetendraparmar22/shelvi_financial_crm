@@ -49,10 +49,9 @@
 
                     </div>
                 </div>
-                <div class="col-lg-8 col-xxl-9">
+                <div class="col-lg-8 col-xxl-9 col_details">
                     <div class="card border">
-
-                        <div class="card-body">
+                        <div class="card-body Bgcolor1">
 
                             <h5>Loan Details</h5>
                             <hr class="my-3">
@@ -94,7 +93,10 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="card-body">
+                    </div>
+
+                    <div class="card border">
+                        <div class="card-body Bgcolor2">
 
                             <h5>Borrower Info</h5>
                             <hr class="my-3">
@@ -127,7 +129,9 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="card-body">
+                    </div>
+                    <div class="card border">
+                        <div class="card-body Bgcolor3">
 
                             <h5>Vehicle Details</h5>
                             <hr class="my-3">
@@ -170,7 +174,9 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="card-body">
+                    </div>
+                    <div class="card border">
+                        <div class="card-body Bgcolor4">
 
                             <h5>Customer Bank Details</h5>
                             <hr class="my-3">
@@ -213,7 +219,9 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="card-body">
+                    </div>
+                    {{-- <div class="card border">
+                        <div class="card-body Bgcolor5">
 
                             <h5>Documents Details</h5>
                             <hr class="my-3">
@@ -230,7 +238,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
+
 
 
                 </div>

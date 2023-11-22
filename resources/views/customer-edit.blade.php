@@ -185,22 +185,31 @@
                                                     @enderror
                                                 </div>
 
-                                                <div class="col-lg-4 col-12">
+                                                {{-- <div class="col-lg-4 col-12">
                                                     <div class="form-group mb-3">
                                                         <label>Country</label>
-                                                        <select class="select" name="country" id="country_name">
-                                                            <option>Select Country</option>
+                                                        <select class="select" name="country"
+                                                            id="edit_application_country_name">
+                                                            <option value="{{ $customer->id }}">
+                                                                {{ $customer->country }}</option>
 
                                                         </select>
                                                     </div>
-                                                </div>
+                                                </div> --}}
 
                                                 <div class="col-lg-4 col-12">
                                                     <div class="flex_row">
                                                         <div class="form-group mb-3">
                                                             <label>State</label>
-                                                            <select class="select" name="state" id="state_name">
-                                                                <option>Select State</option>
+                                                            
+                                                            <select class="select" name="state"
+                                                                id="edit_application_state_name">
+                                                               <option value="">Select state</option>
+                                                                @foreach ($states as $state )
+                                                                <option value="{{ $state->id }}" @if($state->id == $customer->state) selected @endif>
+                                                                    {{ $state->state_name }}</option>
+                                                                @endforeach
+                                                                
 
                                                             </select>
                                                         </div>
@@ -215,8 +224,12 @@
                                                     <div class="flex_row">
                                                         <div class="form-group mb-3">
                                                             <label>City/District</label>
-                                                            <select class="select" name="city" id="city_name">
-                                                                <option>Select City</option>
+                                                            <select class="select" name="city" id="edit_application_city_name">
+                                                                <option value="">Select City/District</option>
+                                                                @foreach ($cities as $city )
+                                                                <option value="{{ $city->id }}" @if($city->id == $customer->city) selected @endif>
+                                                                    {{ $city->city_name }}</option>
+                                                                @endforeach
 
                                                             </select>
                                                         </div>
@@ -232,8 +245,12 @@
                                                     <div class="flex_row">
                                                         <div class="form-group mb-3">
                                                             <label>Village</label>
-                                                            <select class="select" name="village" id="village_name">
-                                                                <option>Select Village</option>
+                                                            <select class="select" name="village" id="edit_application_village_name">
+                                                                <option value="">Select Village</option>
+                                                                @foreach ($villages as $village )
+                                                                <option value="{{ $village->id }}" @if($village->id == $customer->village) selected @endif>
+                                                                    {{ $village->village_name }}</option>
+                                                                @endforeach
 
                                                             </select>
                                                         </div>
@@ -813,7 +830,7 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="form-group mb-0">
                                 <label>State <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" placeholder="Enter State Name">
+                                <input type="text" id="edit-application-modal-state-name" class="form-control" placeholder="Enter State Name">
                             </div>
                         </div>
 
@@ -821,7 +838,7 @@
                 </div>
                 <div class="modal-footer">
                     <a href="#" data-bs-dismiss="modal" class="btn btn-danger me-2">Cancel</a>
-                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary" id="type-info">Save</a>
+                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary" id="edit-application-add-state">Save</a>
                 </div>
             </div>
         </div>
@@ -843,7 +860,7 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="form-group mb-0">
                                 <label>City <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" placeholder="Enter City Name">
+                                <input type="text" id="edit-application-modal-city-name" class="form-control" placeholder="Enter City Name">
                             </div>
                         </div>
 
@@ -851,7 +868,7 @@
                 </div>
                 <div class="modal-footer">
                     <a href="#" data-bs-dismiss="modal" class="btn btn-danger me-2">Cancel</a>
-                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary" id="modal-save-city">Save</a>
+                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary" id="edit-application-modal-save-city-btn">Save</a>
                 </div>
             </div>
         </div>
@@ -873,7 +890,7 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="form-group mb-0">
                                 <label>Village <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" placeholder="Enter Village Name">
+                                <input type="text" id="edit-application-modal-village-name" class="form-control" placeholder="Enter Village Name">
                             </div>
                         </div>
 
@@ -882,7 +899,7 @@
                 <div class="modal-footer">
                     <a href="#" data-bs-dismiss="modal" class="btn btn-danger me-2">Cancel</a>
                     <a href="#" data-bs-dismiss="modal" class="btn btn-primary"
-                        id="modal-add-village-save">Save</a>
+                        id="edit-application-modal-add-village-btn">Save</a>
                 </div>
             </div>
         </div>
@@ -891,56 +908,55 @@
         <script src="{{ asset('assets/js/customer-application-form.js') }}"></script>
     @endpush
     <script>
-        // dynamic country, state and city
-        function countryList() {
-            const formData = new FormData();
+        // // dynamic country, state and city
+        // function editApplicationcountryList() {
+        //     const formData = new FormData();
 
-            axios
-                .get("/countries", formData)
-                .then((response) => {
+        //     axios
+        //         .get("/countries", formData)
+        //         .then((response) => {
 
-                    const countryData = response.data;
-                    const countrySelectBox = $('#country_name');
-                    countryData.forEach(function(country) {
-                        countrySelectBox.append($('<option>', {
-                            value: country.id,
-                            text: country.country_name
-                        }));
-                    });
+        //             const countryData = response.data;
+        //             const countrySelectBox = $('#edit_application_country_name');
+        //             countryData.forEach(function(country) {
+        //                 countrySelectBox.append($('<option>', {
+        //                     value: country.id,
+        //                     text: country.country_name,
+        //                     'data-secondary-value': country.id
+        //                 }));
+        //             });
 
-                    // append countries in add state modal
-                    $('#modal_country_name').html("");
-                    const modalCountrySelectBox = $('#modal_country_name');
-                    modalCountrySelectBox.append('<option>Select Country</option>')
-                    countryData.forEach(function(modalCountry) {
-                        modalCountrySelectBox.append($('<option>', {
-                            value: modalCountry.id,
-                            text: modalCountry.country_name
-                        }));
-                    });
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        }
-        countryList();
+        //             // append countries in add state modal
+        //             $('#modal_country_name').html("");
+        //             const modalCountrySelectBox = $('#modal_country_name');
+        //             modalCountrySelectBox.append('<option>Select Country</option>')
+        //             countryData.forEach(function(modalCountry) {
+        //                 modalCountrySelectBox.append($('<option>', {
+        //                     value: modalCountry.country_name,
+        //                     text: modalCountry.country_name
+        //                 }));
+        //             });
+        //         })
+        //         .catch((error) => {
+        //             console.error(error);
+        //         });
+        // }
+        // editApplicationcountryList();
 
         // State List
-        function stateList() {
-            let country_id = $('#country_name').val();
+        function editApplicationstateList() {
+            var selectedOption = $('#edit_application_country_name option:selected');
+            let country_id = selectedOption.data('secondary-value');
+            console.log(country_id);
 
             axios
-                .get("/states", {
-                    params: {
-                        country_id: country_id
-                    }
-                })
+                .get("/states")
                 .then((response) => {
-                    $('#state_name').html("");
+                    $('#edit_application_state_name').html("");
 
                     const stateData = response.data;
 
-                    const stateSelectBox = $('#state_name');
+                    const stateSelectBox = $('#edit_application_state_name');
                     stateSelectBox.append('<option>Select State</option>')
                     stateData.forEach(function(state) {
                         stateSelectBox.append($('<option>', {
@@ -955,28 +971,24 @@
         }
 
         // on country change
-        $('#country_name').change(function() {
-            stateList();
+        // $('#edit_application_country_name').change(function() {
+        //     editApplicationstateList();
 
-        })
+        // })
 
 
         // City list
-        function cityList() {
-            let state_id = $('#state_name').val();
+        function editApplicationCityList() {
+            
 
             axios
-                .get("/cities", {
-                    params: {
-                        state_id: state_id
-                    }
-                })
+                .get("/cities")
                 .then((response) => {
-                    $('#city_name').html("");
+                    $('#edit_application_city_name').html("");
 
                     const cityData = response.data;
 
-                    const citySelectBox = $('#city_name');
+                    const citySelectBox = $('#edit_application_city_name');
                     citySelectBox.append('<option>Select City</option>')
                     cityData.forEach(function(city) {
                         citySelectBox.append($('<option>', {
@@ -993,33 +1005,29 @@
         }
 
         // on state change
-        $('#state_name').change(function() {
-            cityList();
-            // set value in modal city
-            // get selected state id and name
-            var selectedStateId = $('#state_name').val();
-            var selectedText = $("#state_name option:selected").text();
-            $('#modal-state-name-option').val(selectedStateId);
-            $('#modal-state-name-option').text(selectedText);
+        // $('#edit_application_state_name').change(function() {
+        //     cityList();
+        //     // set value in modal city
+        //     // get selected state id and name
+        //     var selectedStateId = $('#edit_application_state_name').val();
+        //     var selectedText = $("#edit_application_state_name option:selected").text();
+        //     $('#modal-state-name-option').val(selectedStateId);
+        //     $('#modal-state-name-option').text(selectedText);
 
-        })
+        // })
 
-        // Village list
-        function villageList() {
-            let city_id = $('#city_name').val();
+        // // Village list
+        function EditApplicationVillageList() {
+            
 
             axios
-                .get("/villages", {
-                    params: {
-                        city_id: city_id
-                    }
-                })
+                .get("/villages")
                 .then((response) => {
-                    $('#village_name').html("");
+                    $('#edit_application_village_name').html("");
 
                     const villageData = response.data;
 
-                    const villageSelectBox = $('#village_name');
+                    const villageSelectBox = $('#edit_application_village_name');
                     villageSelectBox.append('<option>Select Village</option>')
                     villageData.forEach(function(village) {
                         villageSelectBox.append($('<option>', {
@@ -1034,34 +1042,34 @@
         }
 
         // on city change
-        $('#city_name').change(function() {
-            $('#village_name').html("");
-            villageList();
+        // $('#city_name').change(function() {
+        //     $('#village_name').html("");
+        //     villageList();
 
-            // set value of city in modal Village
-            // get selected state id and name
-            var selectedCityId = $('#city_name').val();
-            var selectedCityText = $("#city_name option:selected").text();
-            $('#modal-city-name-option').val(selectedCityId);
-            $('#modal-city-name-option').text(selectedCityText);
+        //     // set value of city in modal Village
+        //     // get selected state id and name
+        //     var selectedCityId = $('#city_name').val();
+        //     var selectedCityText = $("#city_name option:selected").text();
+        //     $('#modal-city-name-option').val(selectedCityId);
+        //     $('#modal-city-name-option').text(selectedCityText);
 
-        })
+        // })
 
 
         // Add state
-        function addState(countryId) {
-            var modalStateName = $('#modal-state-name').val();
+        function editApplicationAddState() {
+            var modalStateName = $('#edit-application-modal-state-name').val();
 
             const formData = new FormData();
             formData.append('state_name', modalStateName);
-            formData.append('country_id', countryId);
+           
 
 
             axios
                 .post("/add-state", formData)
                 .then((response) => {
-                    console.log(response)
-                    stateList();
+                   
+                    editApplicationstateList();
                     toastr.success("State added Successfully");
 
                 })
@@ -1069,34 +1077,32 @@
                     console.error(error);
                 });
         }
-
-        // on click add state btn
-        $("#modal-state-save").click(function() {
-
-
-            var countryId = $('#country_name').val();
-            var mStateName = $('#modal-state-name').val();
-            if (countryId == '' || mStateName == '') {
-                toastr.error("Please Enter state name and select country")
+     
+        // Add state api call
+        $("#edit-application-add-state").click(function() {
+           
+            var mStateName = $('#edit-application-modal-state-name').val();
+            if (mStateName == '') {
+                toastr.error("Please Enter state name")
             } else {
                 // Call function
-                addState(countryId);
+                editApplicationAddState();
             }
         });
 
         // Add Viilage
-        function addVillage(villageName, cityId) {
+        function EditApplicationAddVillage(villageName) {
 
 
             const formData = new FormData();
             formData.append('village_name', villageName);
-            formData.append('city_id', cityId);
+           
 
             axios
                 .post("/add-village", formData)
                 .then((response) => {
 
-                    villageList();
+                    EditApplicationVillageList();
 
                 })
                 .catch((error) => {
@@ -1106,32 +1112,32 @@
 
 
         // Call add village function
-        $("#modal-add-village-save").click(function() {
+        $("#edit-application-modal-add-village-btn").click(function() {
 
-            var modalVillageName = $('#modal-village-name').val();
-            var cityName = $('#city_name').val();
-            if (modalVillageName == '' || cityName == '') {
+            var modalVillageName = $('#edit-application-modal-village-name').val();
+                            
+            if (modalVillageName == '') {
+                toastr.error("Please Enter village name")
 
             } else {
                 // Call function
-                addVillage(modalVillageName, cityName);
+                EditApplicationAddVillage(modalVillageName);
             }
         });
 
         // Add City
-        function addCity(cityName, stateId) {
-            // var stateId = $('#modal-state-name').val();
-            // var CityName = $('#modal_city_name').val();
+        function editApplicationAddCity(cityName) {
+           
 
             const formData = new FormData();
-            formData.append('city_name', cityName);
-            formData.append('state_id', stateId);
+            formData.append('edit_application_city_name', cityName);
+           
 
             axios
                 .post("/add-city", formData)
                 .then((response) => {
-                    toastr.success("City succefully add");
-                    cityList();
+                    toastr.success("City succefully added");
+                    editApplicationCityList();
 
                 })
                 .catch((error) => {
@@ -1140,15 +1146,15 @@
         }
 
         // Call add City function
-        $("#modal-save-city").click(function() {
+        $("#edit-application-modal-save-city-btn").click(function() {
 
-            var modalCityName = $('#modal-city-name').val();
-            var modalStateId = $('#state_name').val();
-            if (modalCityName == '' || modalStateId == '') {
-
+            var modalCityName = $('#edit-application-modal-city-name').val();
+           
+            if (modalCityName == '') {
+                toastr.error("Please Enter city name")  
             } else {
                 // Call function
-                addCity(modalCityName, modalStateId);
+                editApplicationAddCity(modalCityName);
             }
         });
 

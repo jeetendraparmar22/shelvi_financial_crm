@@ -12,7 +12,7 @@ class VillageController extends Controller
     public function villageList(Request $request)
     {
         try {
-            $village_list = village::where('city_id', $request->city_id)->get();
+            $village_list = village::get();
             return response($village_list);
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -25,7 +25,7 @@ class VillageController extends Controller
         try {
             DB::table('villages')->insert([
                 'village_name' => $request->village_name,
-                'city_id' => $request->city_id
+                'city_id' => 1
             ]);
         } catch (\Exception $e) {
         }

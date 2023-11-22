@@ -105,7 +105,7 @@ class CustomerController extends Controller
                 'email' => $request->email,
                 'mobile_no' => $request->mobile_no,
                 'address' => $request->address,
-                'country' => $request->country,
+                'city' => $request->city,
                 'state' => $request->state,
                 'village' => $request->village,
                 'pincode' => $request->pincode,
@@ -183,7 +183,13 @@ class CustomerController extends Controller
     {
         //
         $customer_data = DB::table('customers')->where('id', $id)->first();
-        return view('customer-edit',  ['customer' => $customer_data]);
+
+        // send state, city, village data
+        $states = DB::table('states')->get();
+        $cities = DB::table('cities')->get();
+        $villages = DB::table('villages')->get();
+
+        return view('customer-edit',  ['customer' => $customer_data,'states' =>$states,'cities' =>$cities,'villages' =>$villages ]);
     }
 
     /**
@@ -252,8 +258,9 @@ class CustomerController extends Controller
                 'email' => $request->email,
                 'mobile_no' => $request->mobile_no,
                 'address' => $request->address,
-                'country' => $request->country,
+                // 'country' => $request->country,
                 'state' => $request->state,
+                'city' => $request->city,
                 'village' => $request->village,
                 'pincode' => $request->pincode,
                 'alternate_mobile_no' => $request->alternate_mobile_no,
