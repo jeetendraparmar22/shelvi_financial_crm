@@ -27,7 +27,7 @@
                                 {{ session('success') }}
                             </div>
                         @endif
-                        <div class="card-body pt-2">
+                        <div class="card-body pt-2 ps-1 pe-1">
                             <div>
                                 <div class="d-flex align-items-center">
                                     @if (auth()->user()->user_type == 'admin')
@@ -94,7 +94,7 @@
                                                     <th class="sorting" rowspan="1" colspan="1">Loan Amount</th>
                                                     <th class="sorting" rowspan="1" colspan="1">Vehicle No.</th>
 
-                                                    <th class="sorting" rowspan="1" colspan="1">Executive Name</th>
+                                                    <th class="sorting" >Executive Name</th>
                                                     <th class="sorting" rowspan="1" colspan="1">Dealer Name</th>
 
                                                     <th class="sorting text-center" rowspan="1" colspan="1">Documents

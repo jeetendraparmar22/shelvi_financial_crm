@@ -14,7 +14,7 @@ class CityController extends Controller
     {
 
         try {
-            $city_list = city::where('state_id', $request->state_id)->get();
+            $city_list = city::get();
             return response($city_list);
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -27,7 +27,7 @@ class CityController extends Controller
         try {
             DB::table('cities')->insert([
                 'city_name' => $request->city_name,
-                'state_id' => $request->state_id
+                'state_id' => 1
             ]);
         } catch (\Exception $e) {
         }

@@ -14,7 +14,7 @@ class StateController extends Controller
     {
 
         try {
-            $state_list = state::where('country_id', $request->country_id)->get();
+            $state_list = state::get();
             return response($state_list);
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -26,7 +26,7 @@ class StateController extends Controller
         try {
             DB::table('states')->insert([
                 'state_name' => $request->state_name,
-                'country_id' => $request->country_id
+                'country_id' => 1
             ]);
             
         } catch (\Exception $e) {

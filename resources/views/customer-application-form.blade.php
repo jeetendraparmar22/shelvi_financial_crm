@@ -190,7 +190,7 @@
                                                     @enderror
                                                 </div>
 
-                                                <div class="col-lg-4 col-12">
+                                                {{-- <div class="col-lg-4 col-12">
                                                     <div class="form-group mb-3">
                                                         <label>Country</label>
                                                         <select class="select" name="country" id="country_name">
@@ -198,7 +198,7 @@
 
                                                         </select>
                                                     </div>
-                                                </div>
+                                                </div> --}}
 
                                                 <div class="col-lg-4 col-12">
                                                     <div class="flex_row">
@@ -905,49 +905,44 @@
         <script src="{{ asset('assets/js/customer-application-form.js') }}"></script>
     @endpush
     <script>
-        function countryList() {
-            const formData = new FormData();
+        // function countryList() {
+        //     const formData = new FormData();
 
-            axios
-                .get("/countries", formData)
-                .then((response) => {
+        //     axios
+        //         .get("/countries", formData)
+        //         .then((response) => {
 
-                    const countryData = response.data;
-                    const countrySelectBox = $('#country_name');
-                    countryData.forEach(function(country) {
-                        countrySelectBox.append($('<option>', {
-                            value: country.id,
-                            text: country.country_name
-                        }));
-                    });
+        //             const countryData = response.data;
+        //             const countrySelectBox = $('#country_name');
+        //             countryData.forEach(function(country) {
+        //                 countrySelectBox.append($('<option>', {
+        //                     value: country.id,
+        //                     text: country.country_name
+        //                 }));
+        //             });
 
-                    // append countries in add state modal
-                    $('#modal_country_name').html("");
-                    const modalCountrySelectBox = $('#modal_country_name');
-                    modalCountrySelectBox.append('<option>Select Country</option>')
-                    countryData.forEach(function(modalCountry) {
-                        modalCountrySelectBox.append($('<option>', {
-                            value: modalCountry.id,
-                            text: modalCountry.country_name
-                        }));
-                    });
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        }
-        countryList();
+        //             // append countries in add state modal
+        //             $('#modal_country_name').html("");
+        //             const modalCountrySelectBox = $('#modal_country_name');
+        //             modalCountrySelectBox.append('<option>Select Country</option>')
+        //             countryData.forEach(function(modalCountry) {
+        //                 modalCountrySelectBox.append($('<option>', {
+        //                     value: modalCountry.id,
+        //                     text: modalCountry.country_name
+        //                 }));
+        //             });
+        //         })
+        //         .catch((error) => {
+        //             console.error(error);
+        //         });
+        // }
+        // countryList();
 
         // State List
         function stateList() {
-            let country_id = $('#country_name').val();
-
+            
             axios
-                .get("/states", {
-                    params: {
-                        country_id: country_id
-                    }
-                })
+                .get("/states")
                 .then((response) => {
                     $('#state_name').html("");
 
@@ -966,24 +961,19 @@
                     console.error(error);
                 });
         }
+        stateList();
+        // // on country change
+        // $('#country_name').change(function() {
+        //     stateList();
 
-        // on country change
-        $('#country_name').change(function() {
-            stateList();
-
-        })
+        // })
 
 
         // City list
         function cityList() {
-            let state_id = $('#state_name').val();
-
+           
             axios
-                .get("/cities", {
-                    params: {
-                        state_id: state_id
-                    }
-                })
+                .get("/cities")
                 .then((response) => {
                     $('#city_name').html("");
 
@@ -1005,28 +995,25 @@
                 });
         }
 
-        // on state change
-        $('#state_name').change(function() {
-            cityList();
-            // set value in modal city
-            // get selected state id and name
-            var selectedStateId = $('#state_name').val();
-            var selectedText = $("#state_name option:selected").text();
-            $('#modal-state-name-option').val(selectedStateId);
-            $('#modal-state-name-option').text(selectedText);
+        // call city list function
+        cityList()
+        // // on state change
+        // $('#state_name').change(function() {
+        //     cityList();
+        //     // set value in modal city
+        //     // get selected state id and name
+        //     var selectedStateId = $('#state_name').val();
+        //     var selectedText = $("#state_name option:selected").text();
+        //     $('#modal-state-name-option').val(selectedStateId);
+        //     $('#modal-state-name-option').text(selectedText);
 
-        })
+        // })
 
         // Village list
         function villageList() {
-            let city_id = $('#city_name').val();
-
+           
             axios
-                .get("/villages", {
-                    params: {
-                        city_id: city_id
-                    }
-                })
+                .get("/villages")
                 .then((response) => {
                     $('#village_name').html("");
 
@@ -1045,29 +1032,30 @@
                     console.error(error);
                 });
         }
-
+        // Call village list
+        villageList()
         // on city change
-        $('#city_name').change(function() {
-            $('#village_name').html("");
-            villageList();
+        // $('#city_name').change(function() {
+        //     $('#village_name').html("");
+        //     villageList();
 
-            // set value of city in modal Village
-            // get selected state id and name
-            var selectedCityId = $('#city_name').val();
-            var selectedCityText = $("#city_name option:selected").text();
-            $('#modal-city-name-option').val(selectedCityId);
-            $('#modal-city-name-option').text(selectedCityText);
+        //     // set value of city in modal Village
+        //     // get selected state id and name
+        //     var selectedCityId = $('#city_name').val();
+        //     var selectedCityText = $("#city_name option:selected").text();
+        //     $('#modal-city-name-option').val(selectedCityId);
+        //     $('#modal-city-name-option').text(selectedCityText);
 
-        })
+        // })
 
 
         // Add state
-        function addState(countryId) {
+        function addState(countryId=null) {
             var modalStateName = $('#modal-state-name').val();
 
             const formData = new FormData();
             formData.append('state_name', modalStateName);
-            formData.append('country_id', countryId);
+            // formData.append('country_id', countryId);
 
 
             axios
@@ -1087,23 +1075,23 @@
         $("#modal-state-save").click(function() {
 
 
-            var countryId = $('#country_name').val();
+            // var countryId = $('#country_name').val();
             var mStateName = $('#modal-state-name').val();
-            if (countryId == '' || mStateName == '') {
-                toastr.error("Please Enter state name and select country")
+            if (mStateName == '') {
+                toastr.error("Please Enter state name")
             } else {
                 // Call function
-                addState(countryId);
+                addState();
             }
         });
 
         // Add Viilage
-        function addVillage(villageName, cityId) {
+        function addVillage(villageName) {
 
 
             const formData = new FormData();
             formData.append('village_name', villageName);
-            formData.append('city_id', cityId);
+            
 
             axios
                 .post("/add-village", formData)
@@ -1122,28 +1110,29 @@
         $("#modal-add-village-save").click(function() {
 
             var modalVillageName = $('#modal-village-name').val();
-            var cityName = $('#city_name').val();
-            if (modalVillageName == '' || cityName == '') {
+            
+            if (modalVillageName == '') {
+                toastr.error("Please Enter village name")
 
             } else {
                 // Call function
-                addVillage(modalVillageName, cityName);
+                addVillage(modalVillageName);
             }
         });
 
         // Add City
-        function addCity(cityName, stateId) {
+        function addCity(cityName) {
             // var stateId = $('#modal-state-name').val();
             // var CityName = $('#modal_city_name').val();
 
             const formData = new FormData();
             formData.append('city_name', cityName);
-            formData.append('state_id', stateId);
+           
 
             axios
                 .post("/add-city", formData)
                 .then((response) => {
-                    toastr.success("City succefully add");
+                    toastr.success("City succefully added");
                     cityList();
 
                 })
@@ -1156,12 +1145,12 @@
         $("#modal-save-city").click(function() {
 
             var modalCityName = $('#modal-city-name').val();
-            var modalStateId = $('#state_name').val();
-            if (modalCityName == '' || modalStateId == '') {
-
+           
+            if (modalCityName == '') {
+                toastr.error("Please Enter city name")
             } else {
                 // Call function
-                addCity(modalCityName, modalStateId);
+                addCity(modalCityName);
             }
         });
 
