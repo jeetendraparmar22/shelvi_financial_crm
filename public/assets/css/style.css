@@ -3163,9 +3163,9 @@ div.dataTables_wrapper div.dataTables_info {
     border: 1px solid #e5e7eb;
     border-radius: 5px;
     background: #fff;
-    font-size: 12px; 
+    font-size: 12px;
 }
- 
+
 div.dataTables_wrapper div.dataTables_filter input {
     margin-left: 0;
     display: inline-block;
@@ -5653,7 +5653,7 @@ span.select2-container.select2-container--default.select2-container--open {
 }
 
 .table .thead-light th {
-    font-size: 15px;
+    font-size: 14px;
     color: #28084b;
     font-weight: 500;
     background-color: #f3f3f9;
@@ -5679,7 +5679,7 @@ span.select2-container.select2-container--default.select2-container--open {
 
 .table tbody tr td {
     border-color: #dee2e6;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .table tbody td h2 {
@@ -5733,7 +5733,8 @@ span.select2-container.select2-container--default.select2-container--open {
 
 .table tbody td a.btn {
     display: inline-block;
-    padding: 5px 10px;
+    padding: 5px 8px;
+    font-size: 12px;
 }
 
 .table tbody td .items-links {
@@ -5935,7 +5936,7 @@ span.select2-container.select2-container--default.select2-container--open {
 }
 
 table .badge {
-    border-radius: 4px;
+    border-radius: 17px;
     display: inline-block;
     font-size: 13px;
     min-width: auto;
@@ -23206,4 +23207,29 @@ table tr td .status-toggle .checktoggle {
     position: absolute;
     top: 13px;
     right: 23px;
+}
+
+table.dataTable thead>tr>th.sorting{
+    padding-right: 24px !important;
+}
+
+.Bgcolor1{
+    background-color: #4F6F52;
+    border-radius: 5px;
+}
+.Bgcolor2{
+    background-color: #3876BF;
+    border-radius: 5px;
+}
+.Bgcolor3{
+    background-color: #4D4C7D;
+    border-radius: 5px;
+}
+.Bgcolor4{
+    background-color: #CD5C08;
+    border-radius: 5px;
+}
+
+.col_details .card .card-body .table tbody tr td,.col_details .card .card-body h5{
+color: white;
 }
