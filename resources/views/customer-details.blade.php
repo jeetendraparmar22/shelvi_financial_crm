@@ -8,6 +8,7 @@
                 <div class="col-lg-4 col-xxl-3">
                     <div class="card border">
                         <div class="card-header">
+
                             <div class="media align-items-center">
                                 <img class="img-radius img-fluid wid-40"
                                     src="{{ asset('assets/img/profiles/avatar-02.jpg') }}" alt="User image">
@@ -19,6 +20,10 @@
                                     target="_blank" class="image_icons me-2" data-bs-toggle="tooltip"
                                     data-bs-placement="top" title="WhatsApp">
                                     <img src="{{ asset('assets/img/whatsapp.svg') }}" />
+                                </a>
+
+                                <a onclick="window.print()" class="image_icons me-2">
+                                    <img src="{{ asset('assets/img/icons/printer.png') }}" />
                                 </a>
                             </div>
                         </div>
