@@ -94,7 +94,7 @@
                                                     <th class="sorting" rowspan="1" colspan="1">Loan Amount</th>
                                                     <th class="sorting" rowspan="1" colspan="1">Vehicle No.</th>
 
-                                                    <th class="sorting" >Executive Name</th>
+                                                    <th class="sorting">Executive Name</th>
                                                     <th class="sorting" rowspan="1" colspan="1">Dealer Name</th>
 
                                                     <th class="sorting text-center" rowspan="1" colspan="1">Documents
@@ -125,21 +125,71 @@
                                                         <td class="ver_middle text-center">
 
                                                             <div class="d-flex justify-content-center">
-                                                                <a href="#">
-                                                                    <img data-fancybox
-                                                                        src="{{ asset('storage/' . $customer->adhar_card) }}"
-                                                                        class="doc_icons" /></a>
-                                                                <a href="#"><img data-fancybox
-                                                                        src="{{ asset('storage/' . $customer->rc_book) }}"
-                                                                        class="doc_icons" /></a>
-                                                                <a href="#"><img data-fancybox
-                                                                        src="{{ asset('storage/' . $customer->insurance_file) }}"
-                                                                        class="doc_icons" /></a>
+                                                                @php
+                                                                    $path = parse_url($customer->adhar_card, PHP_URL_PATH); // Get the path from the URL
+                                                                    // Get the filename without extension
+                                                                    $fileExtension = pathinfo($path, PATHINFO_EXTENSION); // Get the file extension
+
+                                                                @endphp
+                                                                @if ($fileExtension === 'pdf')
+                                                                    <a href="{{ asset('storage/' . $customer->adhar_card) }}"
+                                                                        target="_blank">
+                                                                        <img src="{{ asset('assets/img/icons/pdf-icon.png') }}"
+                                                                            alt="PDF Icon">
+                                                                    </a>
+                                                                @elseif ($customer->adhar_card == '')
+                                                                @else
+                                                                    <a href="#">
+                                                                        <img data-fancybox
+                                                                            src="{{ asset('storage/' . $customer->adhar_card) }}"
+                                                                            class="doc_icons" /></a>
+                                                                @endif
+
+
+                                                                @php
+                                                                    $path = parse_url($customer->rc_book, PHP_URL_PATH); // Get the path from the URL
+                                                                    // Get the filename without extension
+                                                                    $fileExtension = pathinfo($path, PATHINFO_EXTENSION); // Get the file extension
+
+                                                                @endphp
+                                                                @if ($fileExtension === 'pdf')
+                                                                    <a href="{{ asset('storage/' . $customer->rc_book) }}"
+                                                                        target="_blank">
+                                                                        <img src="{{ asset('assets/img/icons/pdf-icon.png') }}"
+                                                                            alt="PDF Icon">
+                                                                    </a>
+                                                                @elseif ($customer->rc_book == '')
+                                                                @else
+                                                                    <a href="#">
+                                                                        <img data-fancybox
+                                                                            src="{{ asset('storage/' . $customer->rc_book) }}"
+                                                                            class="doc_icons" /></a>
+                                                                @endif
+                                                                @php
+                                                                    $path = parse_url($customer->insurance_file, PHP_URL_PATH); // Get the path from the URL
+                                                                    // Get the filename without extension
+                                                                    $fileExtension = pathinfo($path, PATHINFO_EXTENSION); // Get the file extension
+
+                                                                @endphp
+                                                                @if ($fileExtension === 'pdf')
+                                                                    <a href="{{ asset('storage/' . $customer->insurance_file) }}"
+                                                                        target="_blank">
+                                                                        <img src="{{ asset('assets/img/icons/pdf-icon.png') }}"
+                                                                            alt="PDF Icon">
+                                                                    </a>
+                                                                @elseif ($customer->insurance_file == '')
+                                                                @else
+                                                                    <a href="#">
+                                                                        <img data-fancybox
+                                                                            src="{{ asset('storage/' . $customer->insurance_file) }}"
+                                                                            class="doc_icons" /></a>
+                                                                @endif
                                                             </div>
                                                         </td>
                                                         <td>{{ $customer->file_log_in_date }}</td>
                                                         @if ($customer->loan_status == 'Approved')
-                                                            <td class="sorting_1"><span class="badge badge-pill bg-success"
+                                                            <td class="sorting_1"><span
+                                                                    class="badge badge-pill bg-success"
                                                                     id="loan-status-class">{{ $customer->loan_status }}</span>
                                                             </td>
                                                         @elseif ($customer->loan_status == 'Processing')

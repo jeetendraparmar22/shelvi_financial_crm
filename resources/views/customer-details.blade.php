@@ -2,7 +2,9 @@
 @section('main-container')
     <div class="page-wrapper">
         <div class="content container-fluid">
-            <div class="row">
+            <!-- Print button -->
+            {{-- <button id="printCustomerDetail">Print Content</button> --}}
+            <div class="row" id="customer-details">
                 <div class="col-lg-4 col-xxl-3">
                     <div class="card border">
                         <div class="card-header">
@@ -19,15 +21,6 @@
                             <div class="list-group list-group-flush">
                                 <a href="#" class="list-group-item list-group-item-action">
                                     <div class="media align-items-center">
-                                        <i class="fa fa-envelope f-20"></i>
-                                        <div class="media-body mx-3">
-                                            <h6 class="m-0">Email</h6>
-                                        </div>
-                                        <small>{{ $customer->email }}</small>
-                                    </div>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action">
-                                    <div class="media align-items-center">
                                         <i class="fa fa-phone f-20"></i>
                                         <div class="media-body mx-3">
                                             <h6 class="m-0">Mobile No.</h6>
@@ -39,17 +32,47 @@
                                     <div class="media align-items-center">
                                         <i class="fa fa-location f-20"></i>
                                         <div class="media-body mx-3">
-                                            <h6 class="m-0">Location</h6>
+                                            <h6 class="m-0">Address</h6>
                                         </div>
                                         <small>{{ $customer->address }}</small>
                                     </div>
                                 </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="media align-items-center">
+                                        <i class="fa fa-city f-20"></i>
+                                        <div class="media-body mx-3">
+                                            <h6 class="m-0">City/District:</h6>
+                                        </div>
+                                        @foreach ($cities as $city)
+                                            @if ($customer->city == $city->id)
+                                                <small>{{ $city->city_name }}</small>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="media align-items-center">
+                                        <i class="fa fa-city f-20"></i>
+                                        <div class="media-body mx-3">
+                                            <h6 class="m-0">Village:</h6>
+                                        </div>
+                                        @foreach ($villages as $village)
+                                            @if ($customer->village == $village->id)
+                                                <small>{{ $village->village_name }}</small>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </a>
+
+
                             </div>
                         </div>
 
                     </div>
                 </div>
+
                 <div class="col-lg-8 col-xxl-9 col_details">
+
                     <div class="card border">
                         <div class="card-body Bgcolor1">
 
