@@ -15,6 +15,11 @@
                                     <h5 class="mb-1">{{ $customer->first_name }} {{ $customer->surname }}</h5>
 
                                 </div>
+                                <a href="https://api.whatsapp.com/send?phone={{ $customer->mobile_no }}&text=Hello"
+                                    target="_blank" class="image_icons me-2" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="WhatsApp">
+                                    <img src="{{ asset('assets/img/whatsapp.svg') }}" />
+                                </a>
                             </div>
                         </div>
                         <div class="card-body px-2 pb-0">
@@ -25,7 +30,8 @@
                                         <div class="media-body mx-3">
                                             <h6 class="m-0">Mobile No.</h6>
                                         </div>
-                                        <small>{{ $customer->mobile_no }}</small>
+                                        <small>{{ $customer->mobile_no }} </small>
+
                                     </div>
                                 </a>
                                 <a href="#" class="list-group-item list-group-item-action">
