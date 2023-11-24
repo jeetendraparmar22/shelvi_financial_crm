@@ -168,12 +168,13 @@ class CustomerController extends Controller
     public function show(string $id)
     {
         $customer = DB::table('customers')->where('id', $id)->first(); // Replace 'Order' with your order model
-
+        $cities = DB::table('cities')->get();
+        $villages = DB::table('villages')->get();
         if (!$customer) {
             abort(404); // Handle the case where the order doesn't exist
         }
 
-        return view('customer-details', ['customer' => $customer]);
+        return view('customer-details', ['customer' => $customer, 'cities' => $cities, 'villages' => $villages]);
     }
 
     /**
@@ -189,7 +190,7 @@ class CustomerController extends Controller
         $cities = DB::table('cities')->get();
         $villages = DB::table('villages')->get();
 
-        return view('customer-edit',  ['customer' => $customer_data,'states' =>$states,'cities' =>$cities,'villages' =>$villages ]);
+        return view('customer-edit',  ['customer' => $customer_data, 'states' => $states, 'cities' => $cities, 'villages' => $villages]);
     }
 
     /**
