@@ -201,15 +201,16 @@
                                                     <div class="flex_row">
                                                         <div class="form-group mb-3">
                                                             <label>State</label>
-                                                            
+
                                                             <select class="select" name="state"
                                                                 id="edit_application_state_name">
-                                                               <option value="">Select state</option>
-                                                                @foreach ($states as $state )
-                                                                <option value="{{ $state->id }}" @if($state->id == $customer->state) selected @endif>
-                                                                    {{ $state->state_name }}</option>
+                                                                <option value="">Select state</option>
+                                                                @foreach ($states as $state)
+                                                                    <option value="{{ $state->id }}"
+                                                                        @if ($state->id == $customer->state) selected @endif>
+                                                                        {{ $state->state_name }}</option>
                                                                 @endforeach
-                                                                
+
 
                                                             </select>
                                                         </div>
@@ -224,11 +225,13 @@
                                                     <div class="flex_row">
                                                         <div class="form-group mb-3">
                                                             <label>City/District</label>
-                                                            <select class="select" name="city" id="edit_application_city_name">
+                                                            <select class="select" name="city"
+                                                                id="edit_application_city_name">
                                                                 <option value="">Select City/District</option>
-                                                                @foreach ($cities as $city )
-                                                                <option value="{{ $city->id }}" @if($city->id == $customer->city) selected @endif>
-                                                                    {{ $city->city_name }}</option>
+                                                                @foreach ($cities as $city)
+                                                                    <option value="{{ $city->id }}"
+                                                                        @if ($city->id == $customer->city) selected @endif>
+                                                                        {{ $city->city_name }}</option>
                                                                 @endforeach
 
                                                             </select>
@@ -245,11 +248,13 @@
                                                     <div class="flex_row">
                                                         <div class="form-group mb-3">
                                                             <label>Village</label>
-                                                            <select class="select" name="village" id="edit_application_village_name">
+                                                            <select class="select" name="village"
+                                                                id="edit_application_village_name">
                                                                 <option value="">Select Village</option>
-                                                                @foreach ($villages as $village )
-                                                                <option value="{{ $village->id }}" @if($village->id == $customer->village) selected @endif>
-                                                                    {{ $village->village_name }}</option>
+                                                                @foreach ($villages as $village)
+                                                                    <option value="{{ $village->id }}"
+                                                                        @if ($village->id == $customer->village) selected @endif>
+                                                                        {{ $village->village_name }}</option>
                                                                 @endforeach
 
                                                             </select>
@@ -511,10 +516,10 @@
                                                 <h5>Loan Details</h5>
 
                                                 <div class="d-flex ms-4">
-                                                    <a href="#" class="image_icons me-2" data-bs-toggle="tooltip"
+                                                    {{-- <a href="#" class="image_icons me-2" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" title="WhatsApp"> <img
                                                             src="{{ asset('assets/img/whatsapp.svg') }}" />
-                                                    </a>
+                                                    </a> --}}
                                                     <a id="editPrintButton" class="image_icons" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" title="Print"><img
                                                             src="{{ asset('assets/img/print.svg') }}" />
@@ -830,7 +835,8 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="form-group mb-0">
                                 <label>State <span class="text-danger">*</span></label>
-                                <input type="text" id="edit-application-modal-state-name" class="form-control" placeholder="Enter State Name">
+                                <input type="text" id="edit-application-modal-state-name" class="form-control"
+                                    placeholder="Enter State Name">
                             </div>
                         </div>
 
@@ -838,7 +844,8 @@
                 </div>
                 <div class="modal-footer">
                     <a href="#" data-bs-dismiss="modal" class="btn btn-danger me-2">Cancel</a>
-                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary" id="edit-application-add-state">Save</a>
+                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary"
+                        id="edit-application-add-state">Save</a>
                 </div>
             </div>
         </div>
@@ -860,7 +867,8 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="form-group mb-0">
                                 <label>City <span class="text-danger">*</span></label>
-                                <input type="text" id="edit-application-modal-city-name" class="form-control" placeholder="Enter City Name">
+                                <input type="text" id="edit-application-modal-city-name" class="form-control"
+                                    placeholder="Enter City Name">
                             </div>
                         </div>
 
@@ -868,7 +876,8 @@
                 </div>
                 <div class="modal-footer">
                     <a href="#" data-bs-dismiss="modal" class="btn btn-danger me-2">Cancel</a>
-                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary" id="edit-application-modal-save-city-btn">Save</a>
+                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary"
+                        id="edit-application-modal-save-city-btn">Save</a>
                 </div>
             </div>
         </div>
@@ -890,7 +899,8 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="form-group mb-0">
                                 <label>Village <span class="text-danger">*</span></label>
-                                <input type="text" id="edit-application-modal-village-name" class="form-control" placeholder="Enter Village Name">
+                                <input type="text" id="edit-application-modal-village-name" class="form-control"
+                                    placeholder="Enter Village Name">
                             </div>
                         </div>
 
@@ -979,7 +989,7 @@
 
         // City list
         function editApplicationCityList() {
-            
+
 
             axios
                 .get("/cities")
@@ -1018,7 +1028,7 @@
 
         // // Village list
         function EditApplicationVillageList() {
-            
+
 
             axios
                 .get("/villages")
@@ -1062,13 +1072,13 @@
 
             const formData = new FormData();
             formData.append('state_name', modalStateName);
-           
+
 
 
             axios
                 .post("/add-state", formData)
                 .then((response) => {
-                   
+
                     editApplicationstateList();
                     toastr.success("State added Successfully");
 
@@ -1077,10 +1087,10 @@
                     console.error(error);
                 });
         }
-     
+
         // Add state api call
         $("#edit-application-add-state").click(function() {
-           
+
             var mStateName = $('#edit-application-modal-state-name').val();
             if (mStateName == '') {
                 toastr.error("Please Enter state name")
@@ -1096,7 +1106,7 @@
 
             const formData = new FormData();
             formData.append('village_name', villageName);
-           
+
 
             axios
                 .post("/add-village", formData)
@@ -1115,7 +1125,7 @@
         $("#edit-application-modal-add-village-btn").click(function() {
 
             var modalVillageName = $('#edit-application-modal-village-name').val();
-                            
+
             if (modalVillageName == '') {
                 toastr.error("Please Enter village name")
 
@@ -1127,11 +1137,11 @@
 
         // Add City
         function editApplicationAddCity(cityName) {
-           
+
 
             const formData = new FormData();
             formData.append('edit_application_city_name', cityName);
-           
+
 
             axios
                 .post("/add-city", formData)
@@ -1149,9 +1159,9 @@
         $("#edit-application-modal-save-city-btn").click(function() {
 
             var modalCityName = $('#edit-application-modal-city-name').val();
-           
+
             if (modalCityName == '') {
-                toastr.error("Please Enter city name")  
+                toastr.error("Please Enter city name")
             } else {
                 // Call function
                 editApplicationAddCity(modalCityName);

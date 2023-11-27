@@ -1,155 +1,112 @@
-@extends('layouts.master')
-@section('main-container')
-    {{-- <script>
-        // Function to print the content of the specified div
-        // function printContent() {
-        //     var contentToPrint = $(".col_details").html();
-        //     var printWindow = window.open('', '', 'width=800,height=600');
+<!DOCTYPE html>
+<html lang="en">
 
-        //     printWindow.document.open();
-        //     printWindow.document.write('<html><head><title></title>');
-        //     // Include Bootstrap and your existing CSS stylesheets for printing
-        //     printWindow.document.write(
-        //         '<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">'
-        //     );
-        //     printWindow.document.write('<link rel="stylesheet" type="text/css" href="styles.css">');
-        //     // Link the print stylesheet
-        //     printWindow.document.write(
-        //         '<link rel="stylesheet" type="text/css" media="print" href="print.css">');
-        //     printWindow.document.write('</head><body>');
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <title>Shelvi Financial Services</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
 
-        //     // Header with company name and logo
-        //     printWindow.document.write('<div class="header">');
-        //     printWindow.document.write(
-        //         '<img src="{{ asset('assets/img/logo.svg') }}" alt="Company Logo" class="img-fluid logo">');
-
-        //     printWindow.document.write('</div>');
-
-        //     // Content to be printed
-        //     printWindow.document.write(contentToPrint);
-
-        //     printWindow.document.write('</body></html>');
-        //     printWindow.document.close();
-        //     printWindow.print();
-        //     printWindow.close();
-        // }
-        // Function to print the content of the specified div
-        function printContent() {
-            var contentToPrint = $(".col_details").html();
-            var printWindow = window.open('', '', 'width=800,height=600');
-
-            printWindow.document.open();
-
-            printWindow.document.write(
-                '<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">');
-            // Link the print stylesheet
-            printWindow.document.write('<link rel="stylesheet" type="text/css" media="print" href="print.css">');
-            printWindow.document.write('</head><body>');
-
-            // Header with company name and logo
-            printWindow.document.write('<div class="header">');
-            printWindow.document.write(
-                '<img src="{{ asset('assets/img/logo-small.svg') }}" height="5" alt="Company Logo" class="logo">');
-
-            printWindow.document.write('</div>');
-
-            // Content to be printed
-            printWindow.document.write(contentToPrint);
-
-            printWindow.document.write('</body></html>');
-            printWindow.document.close();
-            printWindow.print();
-            printWindow.close();
+    <style>
+        #customer-details .card .card-body {
+            padding: 10px 20px 10px 20px;
         }
-    </script> --}}
-    <div class="page-wrapper">
-        <div class="content container-fluid">
-            <!-- Print button -->
-            {{-- <button id="printCustomerDetail">Print Content</button> --}}
+
+        #customer-details .card {
+            margin: 0 0 5px;
+        }
+
+        #customer-details .col_details .card .card-body .table tbody tr td {
+            padding: 3px 5px;
+            font-size: 13px;
+        }
+
+        #customer-details .card .card-body .my-3 {
+            margin-top: 3px !important;
+            margin-bottom: 3px !important;
+        }
+
+        .small_logo {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin: 0 auto;
+            text-align: center;
+            display: flex;
+            max-width: 100%
+        }
+
+        .logo_flex {
+            margin: 0 auto;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="">
+        <div class="container-fluid">
+            <div class="">
+                <img src="{{ asset('assets/img/logo-small.svg') }}" alt="Company Logo" class="img-fluid logo small_logo">
+            </div>
+
+
             <div class="row" id="customer-details">
-                <div class="col-lg-4 col-xxl-3">
-                    <div class="card border">
-                        <div class="card-header">
-
-                            <div class="media align-items-center">
-                                <img class="img-radius img-fluid wid-40"
-                                    src="{{ asset('assets/img/profiles/avatar-02.jpg') }}" alt="User image">
-                                <div class="media-body mx-3">
-                                    <h5 class="mb-1">{{ $customer->first_name }} {{ $customer->surname }}</h5>
-
-                                </div>
-                                <a href="https://api.whatsapp.com/send?phone={{ $customer->mobile_no }}&text=Hello"
-                                    target="_blank" class="image_icons me-2" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" title="WhatsApp">
-                                    <img src="{{ asset('assets/img/whatsapp.svg') }}" />
-                                </a>
-
-                                {{-- <a onclick="printContent()" class="image_icons me-2">
-                                    <img src="{{ asset('assets/img/icons/printer.png') }}" />
-                                </a> --}}
-                                <a href="{{ route('generate-pdf', ['id' => $customer->id]) }}" class="image_icons me-2"
-                                    target="_blank">
-                                    <img src="{{ asset('assets/img/icons/printer.png') }}" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="card-body px-2 pb-0">
-                            <div class="list-group list-group-flush">
-                                <a href="#" class="list-group-item list-group-item-action">
-                                    <div class="media align-items-center">
-                                        <i class="fa fa-phone f-20"></i>
-                                        <div class="media-body mx-3">
-                                            <h6 class="m-0">Mobile No.</h6>
-                                        </div>
-                                        <small>{{ $customer->mobile_no }} </small>
-
-                                    </div>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action">
-                                    <div class="media align-items-center">
-                                        <i class="fa fa-location f-20"></i>
-                                        <div class="media-body mx-3">
-                                            <h6 class="m-0">Address</h6>
-                                        </div>
-                                        <small>{{ $customer->address }}</small>
-                                    </div>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action">
-                                    <div class="media align-items-center">
-                                        <i class="fa fa-city f-20"></i>
-                                        <div class="media-body mx-3">
-                                            <h6 class="m-0">City/District:</h6>
-                                        </div>
-                                        @foreach ($cities as $city)
-                                            @if ($customer->city == $city->id)
-                                                <small>{{ $city->city_name }}</small>
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action">
-                                    <div class="media align-items-center">
-                                        <i class="fa fa-city f-20"></i>
-                                        <div class="media-body mx-3">
-                                            <h6 class="m-0">Village:</h6>
-                                        </div>
-                                        @foreach ($villages as $village)
-                                            @if ($customer->village == $village->id)
-                                                <small>{{ $village->village_name }}</small>
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </a>
-
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
                 <div class="col-lg-8 col-xxl-9 col_details">
 
+                    <div class="card border">
+                        <div class="card-body Bgcolor3">
+
+                            <h5>Customer Details</h5>
+                            <hr class="my-3">
+                            <div class="table-responsive">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <td><b class="text-header"> Name</b></td>
+                                            <td>:</td>
+                                            <td>{{ $customer->first_name }} {{ $customer->last_name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b class="text-header">Mobile No</b></td>
+                                            <td>:</td>
+                                            <td>{{ $customer->mobile_no }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b class="text-header">Address</b></td>
+                                            <td>:</td>
+                                            <td>{{ $customer->address }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b class="text-header">City/District</b></td>
+                                            <td>:</td>
+                                            <td>
+                                                @foreach ($cities as $city)
+                                                    @if ($customer->city == $city->id)
+                                                        {{ $city->city_name }}
+                                                    @endif
+                                                @endforeach
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b class="text-header">Village</b></td>
+                                            <td>:</td>
+                                            <td>
+                                                @foreach ($villages as $village)
+                                                    @if ($customer->village == $village->id)
+                                                        {{ $village->village_name }}
+                                                    @endif
+                                                @endforeach
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card border">
                         <div class="card-body Bgcolor1">
 
@@ -320,27 +277,6 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="card border">
-                        <div class="card-body Bgcolor5">
-
-                            <h5>Documents Details</h5>
-                            <hr class="my-3">
-                            <div class="table-responsive">
-                                <div class="docs_flex">
-                                    <div class="doc_img">
-                                        <a href="#"><img src="{{ asset('storage/' . $customer->adhar_card) }}"
-                                                data-fancybox /></a>
-                                        <a href="#"><img src="{{ asset('storage/' . $customer->rc_book) }}"
-                                                data-fancybox /></a>
-                                        <a href="#"><img src="{{ asset('storage/' . $customer->insurance_file) }}"
-                                                data-fancybox /></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
-
-
 
                 </div>
             </div>
@@ -348,4 +284,6 @@
     </div>
 
     </div>
-@endsection
+</body>
+
+</html>

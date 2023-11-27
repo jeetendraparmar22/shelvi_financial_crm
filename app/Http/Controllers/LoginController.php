@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 
 {
-    
+
     // update username method
     public function username()
     {

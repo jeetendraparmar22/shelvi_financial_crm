@@ -1,12 +1,15 @@
 <?php
 
+
 namespace App\Http\Controllers;
+
 
 use App\Models\Customer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class CustomerController extends Controller
 {
@@ -344,5 +347,27 @@ class CustomerController extends Controller
         }
 
         return view('customer-list', ['customers' => $customers]);
+    }
+
+
+    // Generate PDF
+    public function generatePDF(Request $request)
+    {
+        $customer = DB::table('customers')->where('id', $request->id)->first();
+        $cities = DB::table('cities')->get();
+        $villages = DB::table('villages')->get();
+        // Provide configuration options for the PDF class
+        $data = [
+            'title' => 'Welcome to ItSolutionStuff.com',
+            'date' => date('m/d/Y'),
+            'customer' => $customer,
+            'cities' => $cities,
+            'villages' => $villages
+        ];
+
+        $pdf = PDF::loadView('pdf.customer', $data);
+
+        return $pdf->stream('customer_details.pdf');
+        // return $pdf->download('itsolutionstuff.pdf');
     }
 }
