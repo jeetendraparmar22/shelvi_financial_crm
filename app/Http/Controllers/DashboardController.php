@@ -18,7 +18,7 @@ class DashboardController extends Controller
             $customers =  $customers = DB::table('customers')
 
                 ->join('users', 'customers.user_id', '=', 'users.id')
-                ->select('customers.*', 'users.name as user_name')
+                ->select('customers.*', 'users.name as user_name')->limit(10)
                 ->get();
 
             $sumApprovedLoansAmount = DB::table('customers')
@@ -38,7 +38,7 @@ class DashboardController extends Controller
             $customers = DB::table('customers')
                 ->where('customers.user_id', Auth::user()->id)
                 ->join('users', 'customers.user_id', '=', 'users.id')
-                ->select('customers.*', 'users.name as user_name')
+                ->select('customers.*', 'users.name as user_name')->limit(10)
                 ->get();
 
             $sumApprovedLoansAmount = DB::table('customers')

@@ -503,10 +503,10 @@
                                                 <h5>Loan Details</h5>
 
                                                 <div class="d-flex ms-4">
-                                                    <a href="#" class="image_icons me-2" data-bs-toggle="tooltip"
+                                                    {{-- <a href="#" class="image_icons me-2" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" title="WhatsApp">
                                                         <img src="{{ asset('assets/img/whatsapp.svg') }}" />
-                                                    </a>
+                                                    </a> --}}
                                                     <a id="printButton" class="image_icons" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" title="Print"><img
                                                             src="{{ asset('assets/img/print.svg') }}" />
@@ -940,7 +940,7 @@
 
         // State List
         function stateList() {
-            
+
             axios
                 .get("/states")
                 .then((response) => {
@@ -971,7 +971,7 @@
 
         // City list
         function cityList() {
-           
+
             axios
                 .get("/cities")
                 .then((response) => {
@@ -1011,7 +1011,7 @@
 
         // Village list
         function villageList() {
-           
+
             axios
                 .get("/villages")
                 .then((response) => {
@@ -1050,7 +1050,7 @@
 
 
         // Add state
-        function addState(countryId=null) {
+        function addState(countryId = null) {
             var modalStateName = $('#modal-state-name').val();
 
             const formData = new FormData();
@@ -1091,7 +1091,7 @@
 
             const formData = new FormData();
             formData.append('village_name', villageName);
-            
+
 
             axios
                 .post("/add-village", formData)
@@ -1110,7 +1110,7 @@
         $("#modal-add-village-save").click(function() {
 
             var modalVillageName = $('#modal-village-name').val();
-            
+
             if (modalVillageName == '') {
                 toastr.error("Please Enter village name")
 
@@ -1127,7 +1127,7 @@
 
             const formData = new FormData();
             formData.append('city_name', cityName);
-           
+
 
             axios
                 .post("/add-city", formData)
@@ -1145,7 +1145,7 @@
         $("#modal-save-city").click(function() {
 
             var modalCityName = $('#modal-city-name').val();
-           
+
             if (modalCityName == '') {
                 toastr.error("Please Enter city name")
             } else {

@@ -47,7 +47,7 @@ Route::middleware(['auth'])->group(function () {
     // Customer Routes
     Route::resource('customers', CustomerController::class);
     Route::post('search-customer', [CustomerController::class, 'searchCustomer']);
-
+    Route::get('/generate-pdf', [CustomerController::class, 'generatePDF'])->name('generate-pdf');
 
     // Coutry list
     Route::get('countries', [CountryController::class, 'countryList']);
