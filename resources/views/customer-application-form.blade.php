@@ -1184,11 +1184,15 @@
 
 
 
+
             var remarks = $("#loan_detail_remark").val();
             var remainingAmount = $('#total-remaining').text();
-
+            var imageUrl = '{{ asset('assets/img/logo.svg') }}';
             return `
+             
           <div id="print-loan-detail" style="background:#d3eafd;padding:10px 10px;border-radius:10px;">
+            
+            <img src="${imageUrl}" alt="Company Logo" style="max-width: 50%; height: auto; margin-top: 10px;">
             <p style="color:#28084b;font-weight:600;font-family: system-ui;">Customer Name: <span style="color:black;font-weight:500">${customerName}</span></p>
             <p style="color:#28084b;font-weight:600;font-family: system-ui;">Executive Name : <span style="color:black;font-weight:500">${executiveName}</span></p>
             <p style="color:#28084b;font-weight:600;font-family: system-ui;">Finance Name : <span style="color:black;font-weight:500"> ${financeName}</span></p>
