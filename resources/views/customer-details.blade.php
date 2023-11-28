@@ -311,7 +311,7 @@
                                         <tr>
                                             <td><b class="text-header">Transfer Loan Amount</b></td>
                                             <td>:</td>
-                                            <td>{{ $customer->transfer_loan_amount }}-INR</td>
+                                            <td>{{ $customer->transfer_loan_amount }}</td>
                                         </tr>
 
 
