@@ -135,7 +135,7 @@
                                                                     <a href="{{ asset('storage/' . $customer->adhar_card) }}"
                                                                         target="_blank">
                                                                         <img src="{{ asset('assets/img/icons/pdf-icon.png') }}"
-                                                                            alt="PDF Icon">
+                                                                            alt="PDF Icon" class="doc_icons">
                                                                     </a>
                                                                 @elseif ($customer->adhar_card == '')
                                                                 @else
@@ -156,7 +156,7 @@
                                                                     <a href="{{ asset('storage/' . $customer->rc_book) }}"
                                                                         target="_blank">
                                                                         <img src="{{ asset('assets/img/icons/pdf-icon.png') }}"
-                                                                            alt="PDF Icon">
+                                                                            alt="PDF Icon" class="doc_icons">
                                                                     </a>
                                                                 @elseif ($customer->rc_book == '')
                                                                 @else
@@ -175,7 +175,7 @@
                                                                     <a href="{{ asset('storage/' . $customer->insurance_file) }}"
                                                                         target="_blank">
                                                                         <img src="{{ asset('assets/img/icons/pdf-icon.png') }}"
-                                                                            alt="PDF Icon">
+                                                                            alt="PDF Icon" class="doc_icons">
                                                                     </a>
                                                                 @elseif ($customer->insurance_file == '')
                                                                 @else
