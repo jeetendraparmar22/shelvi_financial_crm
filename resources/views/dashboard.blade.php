@@ -133,7 +133,7 @@
                             <div class="d-flex align-items-center justify-content-between flex-wrap flex-md-nowrap">
                                 <div class="w-md-100 d-flex align-items-center mb-3 flex-wrap flex-md-nowrap">
                                     <div>
-                                        <span>Total Sales</span>
+                                        <span>Total Sales (Current Month)</span>
                                         <p class="h3 text-primary me-5">&#8377;{{ $sumApprovedLoansAmount }}</p>
                                     </div>
                                     {{-- <div>
@@ -233,10 +233,20 @@
                                     <h5 class="card-title">Recent Add Loan application</h5>
                                 </div>
                                 <div class="col-auto">
-                                    <a href="{{ route('customers.index') }}"
+                                    {{-- <a href="{{ route('customers.index') }}"
                                         class="btn-right btn btn-sm btn-outline-primary">
                                         View All
-                                    </a>
+                                    </a> --}}
+
+                                    <div class="form-group mb-0 me-3 ms-3">
+
+                                        <select class="select basic" name="loan_status" id="loan-status">
+                                            <option value="">Select loan status</option>
+                                            <option value="Processing">Processing</option>
+                                            <option value="Approved">Approved</option>r</option>
+                                            <option value="Rejected">Rejected</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -254,7 +264,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-auto">
-                                        <i class="fas fa-circle text-success me-1"></i><a>Approved</a>
+                                        <i class="fas fa-circle text-success me-1"></i><a href="">Approved</a>
                                     </div>
                                     <div class="col-auto">
                                         <i class="fas fa-circle text-warning me-1"></i> <a>Processing</a>
@@ -280,7 +290,7 @@
                                             {{-- <th class="text-right">Action</th> --}}
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="dashboard-loan-application">
                                         @foreach ($customers as $customer)
                                             <tr>
                                                 <td>
@@ -315,30 +325,7 @@
                                                 <td>
                                                     {{ $customer->executive_name }}
                                                 </td>
-                                                {{-- <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                class="fas fa-ellipsis-h"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="edit-invoice.html"><i
-                                                                    class="far fa-edit me-2"></i>Edit</a>
-                                                            <a class="dropdown-item" href="invoice-details.html"><i
-                                                                    class="far fa-eye me-2"></i>View</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-trash-alt me-2"></i>Delete</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-check-circle me-2"></i>Mark
-                                                                as sent</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-paper-plane me-2"></i>Send
-                                                                Invoice</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                    class="far fa-copy me-2"></i>Clone
-                                                                Invoice</a>
-                                                        </div>
-                                                    </div>
-                                                </td> --}}
+
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -489,6 +476,78 @@
             }
 
             // Continue the same approach for other charts...
+
+
+            // On change get data of loan application
+
+            function loanApplicationList(loanStatus) {
+
+                const formData = new FormData();
+                formData.append('loan_status', loanStatus);
+                // formData.append('country_id', countryId);
+
+
+                axios
+                    .post("/application-list-with-status", formData)
+                    .then((responseData) => {
+                        // clear list
+                        $('#dashboard-loan-application').html("")
+
+
+                        $.each(responseData.data, function(index, customer) {
+
+
+                            var statusClass = '';
+
+                            switch (customer.loan_status) {
+                                case 'Approved':
+                                    statusClass = 'bg-success';
+                                    break;
+                                case 'Processing':
+                                    statusClass = 'bg-warning';
+                                    break;
+                                case 'Rejected':
+                                    statusClass = 'bg-danger';
+                                    break;
+                                    // Add more cases as needed
+                                default:
+                                    statusClass = 'bg-secondary';
+                                    break;
+                            }
+                            // Generate HTML for each customer
+                            var applicationData = `<tr>
+        <td>
+            <h2 class="table-avatar">
+                <a href="/customers/${customer.id}">
+                    ${customer.first_name}
+                </a>
+            </h2>
+        </td>
+        <td>&#8377;${customer.loan_amount}</td>
+        <td>${customer.finance_name}</td>
+        <td>
+            <span class="badge ${statusClass}">${customer.loan_status}</span>
+        </td>
+        <td>${customer.user_name}</td>
+        <td>${customer.executive_name}</td>
+    </tr>`;
+
+                            // Append the generated HTML to the #dashboard-loan-application element
+                            $('#dashboard-loan-application').append(applicationData);
+                        });
+
+
+
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }
+            // Event handler for select change
+            $('#loan-status').on('change', function() {
+                var selectedValue = $(this).val();
+                loanApplicationList(selectedValue);
+            });
         });
     </script>
 @endsection
