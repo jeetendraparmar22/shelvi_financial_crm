@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,19 +11,35 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
 
         // Total Amount
         if (Auth::user()->user_type == 'admin') {
-            $customers =  $customers = DB::table('customers')
+            // $customers =  $customers = DB::table('customers')
 
+            //     ->join('users', 'customers.user_id', '=', 'users.id')
+            //     ->select('customers.*', 'users.name as user_name')
+            //     ->orWhere('loan_status', '')
+            //     ->get();
+            $loanStatus = $request->input('loan_status', '');
+            $customers = DB::table('customers')
                 ->join('users', 'customers.user_id', '=', 'users.id')
                 ->select('customers.*', 'users.name as user_name')
+                ->when($loanStatus !== '', function ($query) use ($loanStatus) {
+                    return $query->where('loan_status', $loanStatus);
+                })
                 ->get();
+
+            // $sumApprovedLoansAmount = DB::table('customers')
+            //     ->where('loan_status', 'Approved')
+            //     ->sum('loan_amount');
+            $currentDate = Carbon::now();
 
             $sumApprovedLoansAmount = DB::table('customers')
                 ->where('loan_status', 'Approved')
+                ->whereMonth('file_log_in_date', '=', $currentDate->month)
+                ->whereYear('file_log_in_date', '=', $currentDate->year)
                 ->sum('loan_amount');
 
             // loan Application
@@ -119,5 +136,18 @@ class DashboardController extends Controller
 
 
         return [$approvedCount, $rejectedCount, $totalCount, $totalProcessingCount];
+    }
+
+    public function loanApplicationListWithStatus(Request $request)
+    {
+        $loanStatus = $request->loan_status;
+        $data =  DB::table('customers')
+            ->join('users', 'customers.user_id', '=', 'users.id')
+            ->select('customers.*', 'users.name as user_name')
+            ->when($loanStatus !== '', function ($query) use ($loanStatus) {
+                return $query->where('loan_status', $loanStatus);
+            })
+            ->get();
+        return $data;
     }
 }
