@@ -92,6 +92,8 @@
                                                     <th class="sorting" rowspan="1" colspan="1">#</th>
                                                     <th class="sorting" rowspan="1" colspan="1">Customer Name</th>
                                                     <th class="sorting" rowspan="1" colspan="1">Loan Amount</th>
+                                                    <th class="sorting" rowspan="1" colspan="1"> Finance Name</th>
+
                                                     <th class="sorting" rowspan="1" colspan="1">Vehicle No.</th>
 
                                                     <th class="sorting">Executive Name</th>
@@ -117,6 +119,8 @@
                                                             </h2>
                                                         </td>
                                                         <td>{{ $customer->loan_amount }}</td>
+                                                        <td>{{ $customer->finance_name }}</td>
+
                                                         <td>{{ $customer->vehicle_registration_no }}</td>
                                                         <td>{{ $customer->executive_name }}</td>
                                                         <td>{{ $customer->Dealer_name }}</td>
