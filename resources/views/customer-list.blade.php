@@ -20,8 +20,13 @@
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title mb-0">Applications List</h4>
+                            <h4 class="card-title mb-0">Applications List
+                            </h4>
+                            <div>
+                                <h4 id="total-loan-amount">1</h4>
+                            </div>
                         </div>
+
                         @if (session('success'))
                             <div class="alert alert-success">
                                 {{ session('success') }}
@@ -72,13 +77,7 @@
                                         </div>
                                         <button type="submit" class="btn btn-primary">Search</button>
                                         </form>
-                                        {{-- <form>
 
-                                            <input type="text" class="form-control" id="datatable-search-btn"
-                                                placeholder="Search here">
-                                            <button class="btn" type="submit"><img src="assets/img/icons/search.svg"
-                                                    alt="img"></button>
-                                        </form> --}}
                                     </div>
                                 </div>
 
@@ -118,7 +117,7 @@
                                                                 </a>
                                                             </h2>
                                                         </td>
-                                                        <td>{{ $customer->loan_amount }}</td>
+                                                        <td class="loanAmount">{{ $customer->loan_amount }}</td>
                                                         <td>{{ $customer->finance_name }}</td>
 
                                                         <td>{{ $customer->vehicle_registration_no }}</td>
@@ -287,4 +286,57 @@
         </div>
 
     </div>
+    <script>
+        // $(document).ready(function() {
+        //     // Initialize DataTable
+        //     const dataTable = $('#customer-list-datatable').DataTable();
+
+        //     // Calculate total loan amount
+        //     calculateTotal();
+
+        //     // Event listener for search input
+        //     $('#searchInput').on('keyup', function() {
+        //         dataTable.search(this.value).draw();
+        //         calculateTotal();
+        //     });
+
+        //     function calculateTotal() {
+        //         let total = 0;
+
+        //         // Iterate through each row and add the loan amount to the total
+        //         $('.loanAmount').each(function() {
+        //             total += parseFloat($(this).text()) || 0;
+        //         });
+
+        //         // Display the total in the console or any other desired location
+        //         console.log('Total Loan Amount: ' + total);
+        //     }
+        // })
+        $(document).ready(function() {
+            // Initialize DataTable with search functionality
+            const dataTable = $('#customer-list-datatable').DataTable();
+
+            // Calculate and display total loan amount on initial load
+            calculateAndDisplayTotal();
+
+            // Add an event listener for the search input
+            $('input[type="search"]').on('keyup', function() {
+                // Recalculate and display total loan amount on search
+                calculateAndDisplayTotal();
+            });
+
+            function calculateAndDisplayTotal() {
+                let total = 0;
+
+                // Iterate through each row and add the loan amount to the total
+                $('.loanAmount').each(function() {
+                    total += parseFloat($(this).text()) || 0;
+                });
+
+                // Display the total in the console or any other desired location
+
+                $('#total-loan-amount').text('Total Loan Amount: ' + total);
+            }
+        });
+    </script>
 @endsection
