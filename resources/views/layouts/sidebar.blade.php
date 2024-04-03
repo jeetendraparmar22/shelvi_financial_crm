@@ -34,6 +34,11 @@
                                 List</span></a>
                     </li>
                 @endif
+
+                <li>
+                    <a href="{{ url('dealer-case') }}"><i class="fe fe-user"></i> <span> Dealer Case
+                            Details</span></a>
+                </li>
             </ul>
 
         </div>
