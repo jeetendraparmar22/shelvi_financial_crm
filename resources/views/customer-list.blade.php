@@ -222,8 +222,16 @@
                                                         @endif
 
                                                         <td class="d-flex align-items-center">
-                                                            <a class="btn btn-small btn-warning  me-2" href=""><i
-                                                                    class="far fa-edit me-2"></i>Transfer</a>
+                                                            @if ($customer->transfer_status == '0' && $customer->loan_status == 'Approved')
+                                                                <a class="btn btn-small btn-warning  me-2"
+                                                                    href="{{ url('update-transfer-status/' . $customer->id) }}"><i
+                                                                        class="far fa-edit me-2"></i>Transfer</a>
+                                                            @elseif($customer->transfer_status == '1')
+                                                                <a class="btn btn-small btn-warning  me-2"
+                                                                    href=""><i
+                                                                        class="far fa-edit me-2"></i>Transferred</a>
+                                                            @endif
+
                                                             <a class="btn btn-small btn-success  me-2"
                                                                 href="{{ route('customers.edit', $customer->id) }}"><i
                                                                     class="far fa-edit me-2"></i> Edit</a>

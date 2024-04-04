@@ -60,7 +60,7 @@
                                             <tbody>
                                                 @foreach ($customers as $customer)
                                                     <tr role="row" class="odd">
-                                                        <td class>{{ $loop->iteration }}</td>
+                                                        <td class>{{ $customer->approved_date }}</td>
                                                         <td>
                                                             <h2 class="table-avatar">
                                                                 <a
@@ -68,14 +68,17 @@
                                                                 </a>
                                                             </h2>
                                                         </td>
-                                                        <td class="loanAmount"></td>
-                                                        <td>{{ $customer->finance_name }}</td>
+                                                        {{-- <td class="loanAmount"></td> --}}
+                                                        <td>{{ $customer->engine_no }}</td>
 
+                                                        <td>{{ $customer->chasis_no }}</td>
                                                         <td>{{ $customer->vehicle_registration_no }}</td>
                                                         <td>{{ $customer->loan_amount }}</td>
+
+                                                        <td>{{ $customer->user_id }}</td>
+                                                        <td>{{ $customer->city }}</td>
+                                                        <td>Days</td>
                                                         <td>{{ $customer->Dealer_name }}</td>
-
-
 
 
 

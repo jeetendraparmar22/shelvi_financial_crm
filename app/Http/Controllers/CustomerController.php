@@ -370,4 +370,17 @@ class CustomerController extends Controller
         return $pdf->stream('customer_details.pdf');
         // return $pdf->download('itsolutionstuff.pdf');
     }
+
+
+    // Update application transfer status
+    public function updateTransferStatus(Request $request)
+    {
+        // update status
+        $id = $request->id;
+        DB::table('customers')->where('id', $id)
+            ->update([
+                'transfer_status' => '1'
+            ]);
+        return redirect()->route('customers.index');
+    }
 }

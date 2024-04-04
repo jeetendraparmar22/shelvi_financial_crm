@@ -14,7 +14,7 @@ class DealerCaseController extends Controller
     {
         if (Auth::user()->user_type == 'admin') {
             // Get all customers
-            $customers = Customer::orderBy('id', 'DESC')->where('loan_status', 'Approved')->get();
+            $customers = Customer::orderBy('id', 'DESC')->where('loan_status', 'Approved')->where('transfer_status', '1')->get();
             // get Users
             $users = DB::table('users')->orderBy('id', 'DESC')->where('user_type', 'user')->get();
         } else {
