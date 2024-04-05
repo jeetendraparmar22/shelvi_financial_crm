@@ -57,6 +57,7 @@
                                                         Name</th>
                                                 </tr>
                                             </thead>
+                                            <?php $current_date = \Illuminate\Support\Carbon::now()->format('Y-m-d'); ?>
                                             <tbody>
                                                 @foreach ($customers as $customer)
                                                     <tr role="row" class="odd">
@@ -75,9 +76,10 @@
                                                         <td>{{ $customer->vehicle_registration_no }}</td>
                                                         <td>{{ $customer->loan_amount }}</td>
 
-                                                        <td>{{ $customer->user_id }}</td>
+                                                        <td>{{ $customer->executive_name }}</td>
                                                         <td>{{ $customer->city }}</td>
-                                                        <td>Days</td>
+                                                        <td>{{ \Illuminate\Support\Carbon::parse($customer->approved_date)->diffInDays(\Illuminate\Support\Carbon::parse($current_date)) }}
+                                                        </td>
                                                         <td>{{ $customer->Dealer_name }}</td>
 
 

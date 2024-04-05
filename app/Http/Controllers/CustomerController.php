@@ -252,6 +252,11 @@ class CustomerController extends Controller
         // update Data
         try {
 
+            // Update approved date
+            $approved_date = null;
+            if ($request->loan_status == 'Approved') {
+                $approved_date = Carbon::now()->format('Y-m-d');
+            }
             $file_log_in_date = Carbon::createFromFormat('d/m/Y', $request->file_log_in_date)->format('Y-m-d');
 
             $update_data = [
@@ -291,6 +296,7 @@ class CustomerController extends Controller
                 'loan_term' => $request->loan_term,
                 'emi' => $request->emi,
                 'loan_status' => $request->loan_status,
+                'approved_date' => $approved_date,
                 'remark_loan_detail' => $request->remark_loan_detail,
 
                 'loan_surakhya_vimo' => $request->loan_surakhya_vimo,
