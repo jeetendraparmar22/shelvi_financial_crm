@@ -4,6 +4,7 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DealerCaseController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\UserController;
@@ -48,6 +49,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('customers', CustomerController::class);
     Route::post('search-customer', [CustomerController::class, 'searchCustomer']);
     Route::get('/generate-pdf', [CustomerController::class, 'generatePDF'])->name('generate-pdf');
+    Route::get('/update-transfer-status/{id}', [CustomerController::class, 'updateTransferStatus']);
 
     // Coutry list
     Route::get('countries', [CountryController::class, 'countryList']);
@@ -70,4 +72,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Loan application with status
     Route::post('application-list-with-status', [DashboardController::class, 'loanApplicationListWithStatus']);
+
+    // Dealer case details 
+    Route::get('dealer-case', [DealerCaseController::class, 'index'])->name('dealer-case');
 });

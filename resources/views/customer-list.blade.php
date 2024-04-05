@@ -129,9 +129,15 @@
 
                                                             <div class="d-flex justify-content-center">
                                                                 @php
-                                                                    $path = parse_url($customer->adhar_card, PHP_URL_PATH); // Get the path from the URL
+                                                                    $path = parse_url(
+                                                                        $customer->adhar_card,
+                                                                        PHP_URL_PATH,
+                                                                    ); // Get the path from the URL
                                                                     // Get the filename without extension
-                                                                    $fileExtension = pathinfo($path, PATHINFO_EXTENSION); // Get the file extension
+                                                                    $fileExtension = pathinfo(
+                                                                        $path,
+                                                                        PATHINFO_EXTENSION,
+                                                                    ); // Get the file extension
 
                                                                 @endphp
                                                                 @if ($fileExtension === 'pdf')
@@ -152,7 +158,10 @@
                                                                 @php
                                                                     $path = parse_url($customer->rc_book, PHP_URL_PATH); // Get the path from the URL
                                                                     // Get the filename without extension
-                                                                    $fileExtension = pathinfo($path, PATHINFO_EXTENSION); // Get the file extension
+                                                                    $fileExtension = pathinfo(
+                                                                        $path,
+                                                                        PATHINFO_EXTENSION,
+                                                                    ); // Get the file extension
 
                                                                 @endphp
                                                                 @if ($fileExtension === 'pdf')
@@ -169,9 +178,15 @@
                                                                             class="doc_icons" /></a>
                                                                 @endif
                                                                 @php
-                                                                    $path = parse_url($customer->insurance_file, PHP_URL_PATH); // Get the path from the URL
+                                                                    $path = parse_url(
+                                                                        $customer->insurance_file,
+                                                                        PHP_URL_PATH,
+                                                                    ); // Get the path from the URL
                                                                     // Get the filename without extension
-                                                                    $fileExtension = pathinfo($path, PATHINFO_EXTENSION); // Get the file extension
+                                                                    $fileExtension = pathinfo(
+                                                                        $path,
+                                                                        PATHINFO_EXTENSION,
+                                                                    ); // Get the file extension
 
                                                                 @endphp
                                                                 @if ($fileExtension === 'pdf')
@@ -206,7 +221,17 @@
                                                             </td>
                                                         @endif
 
-                                                        <td class="d-flex align-items-center ">
+                                                        <td class="d-flex align-items-center">
+                                                            @if ($customer->transfer_status == '0' && $customer->loan_status == 'Approved')
+                                                                <a class="btn btn-small btn-warning  me-2"
+                                                                    href="{{ url('update-transfer-status/' . $customer->id) }}"><i
+                                                                        class="far fa-edit me-2"></i>Transfer</a>
+                                                            @elseif($customer->transfer_status == '1')
+                                                                <a class="btn btn-small btn-warning  me-2"
+                                                                    href=""><i
+                                                                        class="far fa-edit me-2"></i>Transferred</a>
+                                                            @endif
+
                                                             <a class="btn btn-small btn-success  me-2"
                                                                 href="{{ route('customers.edit', $customer->id) }}"><i
                                                                     class="far fa-edit me-2"></i> Edit</a>
