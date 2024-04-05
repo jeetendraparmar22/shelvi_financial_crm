@@ -251,11 +251,13 @@ class CustomerController extends Controller
 
         // update Data
         try {
-
+            $application_detail = DB::table('customers')->where('id', $id)->first();
             // Update approved date
-            $approved_date = null;
-            if ($request->loan_status == 'Approved') {
+
+            if ($request->loan_status == 'Approved' && $application_detail->approved_date == '') {
                 $approved_date = Carbon::now()->format('Y-m-d');
+            } else {
+                $approved_date = $application_detail->approved_date;
             }
             $file_log_in_date = Carbon::createFromFormat('d/m/Y', $request->file_log_in_date)->format('Y-m-d');
 
