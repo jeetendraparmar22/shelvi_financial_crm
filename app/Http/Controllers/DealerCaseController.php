@@ -24,8 +24,8 @@ class DealerCaseController extends Controller
             // get Users
             $users = DB::table('users')->orderBy('id', 'DESC')->where('user_type', 'user')->get();
         }
+        $cities = DB::table('cities')->get();
 
-
-        return view('dealer-case', ['customers' => $customers, 'users' => $users]);
+        return view('dealer-case', ['customers' => $customers, 'users' => $users, 'cities' => $cities]);
     }
 }

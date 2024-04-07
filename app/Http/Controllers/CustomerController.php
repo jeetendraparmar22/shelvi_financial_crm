@@ -98,6 +98,12 @@ class CustomerController extends Controller
             $vehicle_insurance_path = "";
         }
         $file_log_in_date = Carbon::createFromFormat('d/m/Y', $request->file_log_in_date)->format('Y-m-d');
+
+        if ($request->loan_status == 'Approved') {
+            $approved_date = Carbon::now()->format('Y-m-d');
+        } else {
+            $approved_date = null;
+        }
         // save data in table
         try {
             $inser_data = DB::table('customers')->insert([
@@ -135,7 +141,7 @@ class CustomerController extends Controller
                 'loan_term' => $request->loan_term,
                 'emi' => $request->emi,
                 'loan_status' => $request->loan_status,
-
+                'approved_date' =>  $approved_date,
                 'loan_surakhya_vimo' => $request->loan_surakhya_vimo,
                 'iho' => $request->iho,
                 'file_charge' => $request->file_charge,

@@ -36,8 +36,7 @@
                 @endif
 
                 <li>
-                    <a href="{{ url('dealer-case') }}"><i class="fe fe-user"></i> <span> Dealer Case
-                            Details</span></a>
+                    <a href="{{ url('dealer-case') }}"><i class="fe fe-user"></i> <span> PDD List</span></a>
                 </li>
             </ul>
 

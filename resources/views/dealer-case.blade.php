@@ -38,12 +38,14 @@
 
                                                     <th class="sorting" rowspan="1" colspan="1">Approve
                                                         Date</th>
-                                                    <th class="sorting" rowspan="1" colspan="1">Account Name</th>
+                                                    <th class="sorting" rowspan="1" colspan="1">Customer Name</th>
                                                     <th class="sorting" rowspan="1" colspan="1"> Engine No </th>
 
                                                     <th class="sorting" rowspan="1" colspan="1">Chasis No </th>
 
                                                     <th class="sorting">Reg No</th>
+                                                    <th class="sorting">Finance name</th>
+
                                                     <th class="sorting" rowspan="1" colspan="1">Loan
                                                         Amount</th>
 
@@ -74,10 +76,18 @@
 
                                                         <td>{{ $customer->chasis_no }}</td>
                                                         <td>{{ $customer->vehicle_registration_no }}</td>
+                                                        <td>{{ $customer->finance_name }}</td>
                                                         <td>{{ $customer->loan_amount }}</td>
 
                                                         <td>{{ $customer->executive_name }}</td>
-                                                        <td>{{ $customer->city }}</td>
+                                                        <td>
+
+                                                            @foreach ($cities as $city)
+                                                                @if ($city->id == $customer->city)
+                                                                    {{ $city->city_name }}
+                                                                @endif
+                                                            @endforeach
+                                                        </td>
                                                         <td>{{ \Illuminate\Support\Carbon::parse($customer->approved_date)->diffInDays(\Illuminate\Support\Carbon::parse($current_date)) }}
                                                         </td>
                                                         <td>{{ $customer->Dealer_name }}</td>
