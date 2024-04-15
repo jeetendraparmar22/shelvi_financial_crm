@@ -57,12 +57,14 @@
                                                         Days</th>
                                                     <th class="sorting" rowspan="1" colspan="1">Dealer
                                                         Name</th>
+                                                    <th class="sorting" rowspan="1" colspan="1">Action</th>
                                                 </tr>
                                             </thead>
                                             <?php $current_date = \Illuminate\Support\Carbon::now()->format('Y-m-d'); ?>
                                             <tbody>
                                                 @foreach ($customers as $customer)
-                                                    <tr role="row" class="odd">
+                                                    <tr role="row"
+                                                        class="odd @if ($customer->pdd_approve == 'yes') bg-success @endif">
                                                         <td class>{{ $customer->approved_date }}</td>
                                                         <td>
                                                             <h2 class="table-avatar">
@@ -91,6 +93,15 @@
                                                         <td>{{ \Illuminate\Support\Carbon::parse($customer->approved_date)->diffInDays(\Illuminate\Support\Carbon::parse($current_date)) }}
                                                         </td>
                                                         <td>{{ $customer->Dealer_name }}</td>
+                                                        <td>
+                                                            @if ($customer->pdd_approve == 'no')
+                                                                <a class="btn btn-small btn-success  me-2"
+                                                                    href="{{ url('pdd_approve/' . $customer->id) }}"><i
+                                                                        class="far fa-edit me-2"></i> PDD Approve</a>
+                                                            @endif
+
+                                                        </td>
+
 
 
 

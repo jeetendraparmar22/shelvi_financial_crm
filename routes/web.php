@@ -75,4 +75,5 @@ Route::middleware(['auth'])->group(function () {
 
     // Dealer case details 
     Route::get('dealer-case', [DealerCaseController::class, 'index'])->name('dealer-case');
+    Route::get('pdd_approve/{id}', [DealerCaseController::class, 'pddApprove']);
 });

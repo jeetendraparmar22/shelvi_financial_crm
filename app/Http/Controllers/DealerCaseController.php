@@ -28,4 +28,13 @@ class DealerCaseController extends Controller
 
         return view('dealer-case', ['customers' => $customers, 'users' => $users, 'cities' => $cities]);
     }
+
+    public function pddApprove(Request $request)
+    {
+        // Update status of pdd approve
+        DB::table('customers')->where('id', $request->id)->update([
+            'pdd_approve' => 'yes'
+        ]);
+        return redirect()->back();
+    }
 }
