@@ -63,8 +63,15 @@
                                             <?php $current_date = \Illuminate\Support\Carbon::now()->format('Y-m-d'); ?>
                                             <tbody>
                                                 @foreach ($customers as $customer)
+                                                    @php
+                                                        $days = \Illuminate\Support\Carbon::parse(
+                                                            $customer->approved_date,
+                                                        )->diffInDays(\Illuminate\Support\Carbon::parse($current_date));
+                                                    @endphp
                                                     <tr role="row"
-                                                        class="odd @if ($customer->pdd_approve == 'yes') bg-success @endif">
+                                                        class="odd @if ($customer->pdd_approve == 'yes') bg-success 
+                                                        @elseif ($days > 40)
+                                                        bg-danger @endif">
                                                         <td class>{{ $customer->approved_date }}</td>
                                                         <td>
                                                             <h2 class="table-avatar">
@@ -90,7 +97,7 @@
                                                                 @endif
                                                             @endforeach
                                                         </td>
-                                                        <td>{{ \Illuminate\Support\Carbon::parse($customer->approved_date)->diffInDays(\Illuminate\Support\Carbon::parse($current_date)) }}
+                                                        <td>{{ $days }}
                                                         </td>
                                                         <td>{{ $customer->Dealer_name }}</td>
                                                         <td>

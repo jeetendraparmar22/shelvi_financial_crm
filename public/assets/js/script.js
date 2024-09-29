@@ -227,7 +227,7 @@
         $(".datatable").DataTable({
             bFilter: true,
             sDom: "fBtlpi",
-            ordering: true,
+            ordering: false,
             language: {
                 search: " ",
                 sLengthMenu: "_MENU_",
