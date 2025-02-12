@@ -38,21 +38,12 @@
                 <li>
                     <a href="{{ url('dealer-case') }}"><i class="fe fe-user"></i> <span> PDD List</span></a>
                 </li>
+
+                <li>
+                    <a href="{{ url('payload') }}"><i class="fe fe-file"></i> <span>Payment</span></a>
+                </li>
             </ul>
 
         </div>
     </div>
 </div>
-{{-- <script>
-    $(document).ready(function() {
-        // Add click event handler to all menu items
-        $('.sidebar-menu ul li a').click(function() {
-
-            // Remove "active" class from all menu items
-            $('.sidebar-menu ul li a').removeClass('active');
-
-            // Add "active" class to the clicked menu item
-            $(this).addClass('active');
-        });
-    });
-</script> --}}

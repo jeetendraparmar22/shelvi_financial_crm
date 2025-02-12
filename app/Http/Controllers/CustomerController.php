@@ -372,7 +372,7 @@ class CustomerController extends Controller
         $villages = DB::table('villages')->get();
         // Provide configuration options for the PDF class
         $data = [
-            'title' => 'Welcome to ItSolutionStuff.com',
+            'title' => 'Shelvi financial services',
             'date' => date('m/d/Y'),
             'customer' => $customer,
             'cities' => $cities,
@@ -382,7 +382,6 @@ class CustomerController extends Controller
         $pdf = PDF::loadView('pdf.customer', $data);
 
         return $pdf->stream('customer_details.pdf');
-        // return $pdf->download('itsolutionstuff.pdf');
     }
 
 
@@ -396,5 +395,63 @@ class CustomerController extends Controller
                 'transfer_status' => '1'
             ]);
         return redirect()->route('customers.index');
+    }
+
+
+    // Payload
+    public function payload()
+    {
+        // Dealer data
+        $dealers = DB::table('customers')
+            ->select('Dealer_name')
+            ->distinct()
+            ->get();
+
+        return view('payload', ['dealers' => $dealers]);
+    }
+
+    // Search payload
+    public function payloadData(Request $request)
+    {
+        $dealer_name = $request->dealer;
+        $commission = $request->commission;
+        $applications = DB::table('customers')
+            ->where('Dealer_name', $dealer_name)
+            ->get();
+
+        $dealers = DB::table('customers')
+            ->select('Dealer_name')
+            ->distinct()
+            ->get();
+
+        return view('payload', ['applications' => $applications, 'dealers' => $dealers, 'commission' => $commission, 'dealer_name' => $dealer_name]);
+    }
+
+    // Generate payload pdf
+    public function generatePayloadPDF(Request $request)
+    {
+        $dealer_name = $request->dealer_name;
+        $commission = $request->commission;
+        $applications = DB::table('customers')
+            ->where('Dealer_name', $dealer_name)
+            ->select('customers.*', DB::raw("(loan_amount * $commission / 100) as commission_amount"))
+            ->get();
+
+        $grand_total = DB::table('customers')
+            ->where('Dealer_name', $dealer_name)
+            ->sum(DB::raw("(loan_amount * $commission / 100)"));
+
+        $data = [
+            'title' => 'Shelvi financial services',
+            'date' => date('m/d/Y'),
+            'applications' => $applications,
+            'commission' => $commission,
+            'dealer_name' => $dealer_name,
+            'grand_total' => $grand_total
+        ];
+
+        $pdf = PDF::loadView('pdf.dealer_payment', $data);
+
+        return $pdf->stream('payload.pdf');
     }
 }

@@ -37,4 +37,10 @@ class DealerCaseController extends Controller
         ]);
         return redirect()->back();
     }
+
+    // Upload pdd document
+    public function uploadedPddDocument(Request $request)
+    {
+        $application_id = $request->application_id;
+    }
 }

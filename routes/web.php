@@ -76,4 +76,10 @@ Route::middleware(['auth'])->group(function () {
     // Dealer case details 
     Route::get('dealer-case', [DealerCaseController::class, 'index'])->name('dealer-case');
     Route::get('pdd_approve/{id}', [DealerCaseController::class, 'pddApprove']);
+
+    // Payload Route
+    Route::get('payload', [CustomerController::class, 'payload']);
+    Route::post('payload-data', [CustomerController::class, 'payloadData'])->name('payload-data');
+    Route::get('generate-payload-pdf', [CustomerController::class, 'generatePayloadPDF'])->name('generate-payload-pdf');
 });
+Route::view('payment', 'pdf.dealer_payment');
