@@ -81,5 +81,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('payload', [CustomerController::class, 'payload']);
     Route::post('payload-data', [CustomerController::class, 'payloadData'])->name('payload-data');
     Route::get('generate-payload-pdf', [CustomerController::class, 'generatePayloadPDF'])->name('generate-payload-pdf');
+
+    // Update commision
+    Route::post('update-commission', [CustomerController::class, 'updateCommission'])->name('update-commission');
+    Route::post('update-payment-status', [CustomerController::class, 'updatePaymentStatus'])->name('update-payment-status');
 });
-Route::view('payment', 'pdf.dealer_payment');

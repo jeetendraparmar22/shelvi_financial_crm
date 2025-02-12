@@ -17,6 +17,30 @@ class CustomerController extends Controller
     {
         DB::enableQueryLog(); // Enable query logging
     }
+
+    // update commission
+    public function updateCommission(Request $request)
+    {
+        $application_id = $request->application_id;
+        $commission = $request->commission;
+
+        DB::table('customers')->where('id', $application_id)->update(['commission' => $commission]);
+        return response()->json(['message' => 'Commission updated successfully'], 200);
+    }
+
+    // update payment status
+    public function updatePaymentStatus(Request $request)
+    {
+        $application_id = $request->application_id;
+        $payment_status = $request->status;
+
+        try {
+            DB::table('customers')->where('id', $application_id)->update(['commission_status' => $payment_status]);
+            return response()->json(['success' => true, 'message' => 'Payment status updated successfully'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
     /**
      * Display a listing of the resource.
      */
@@ -414,9 +438,12 @@ class CustomerController extends Controller
     public function payloadData(Request $request)
     {
         $dealer_name = $request->dealer;
-        $commission = $request->commission;
+        $fromDate = Carbon::createFromFormat('d/m/Y', $request->from_date)->format('Y-m-d');
+        $toDate = Carbon::createFromFormat('d/m/Y', $request->to_date)->format('Y-m-d');
+
         $applications = DB::table('customers')
             ->where('Dealer_name', $dealer_name)
+            ->whereBetween('file_log_in_date', [$fromDate, $toDate])
             ->get();
 
         $dealers = DB::table('customers')
@@ -424,28 +451,28 @@ class CustomerController extends Controller
             ->distinct()
             ->get();
 
-        return view('payload', ['applications' => $applications, 'dealers' => $dealers, 'commission' => $commission, 'dealer_name' => $dealer_name]);
+        return view('payload', ['applications' => $applications, 'dealers' => $dealers, 'dealer_name' => $dealer_name]);
     }
 
     // Generate payload pdf
     public function generatePayloadPDF(Request $request)
     {
         $dealer_name = $request->dealer_name;
-        $commission = $request->commission;
+
         $applications = DB::table('customers')
             ->where('Dealer_name', $dealer_name)
-            ->select('customers.*', DB::raw("(loan_amount * $commission / 100) as commission_amount"))
+            ->select('customers.*', DB::raw("(loan_amount * commission / 100) as commission_amount"))
             ->get();
 
         $grand_total = DB::table('customers')
             ->where('Dealer_name', $dealer_name)
-            ->sum(DB::raw("(loan_amount * $commission / 100)"));
+            ->where('commission_status', 0)
+            ->sum(DB::raw("(loan_amount * commission / 100)"));
 
         $data = [
             'title' => 'Shelvi financial services',
             'date' => date('m/d/Y'),
             'applications' => $applications,
-            'commission' => $commission,
             'dealer_name' => $dealer_name,
             'grand_total' => $grand_total
         ];

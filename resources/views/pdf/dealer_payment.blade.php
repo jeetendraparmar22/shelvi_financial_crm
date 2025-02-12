@@ -134,6 +134,11 @@
             color: #FFFFFF;
         }
 
+        table .unpaid {
+            background: red;
+            color: #FFFFFF;
+        }
+
         table td.unit,
         table td.qty,
         table td.total {
@@ -234,13 +239,22 @@
             <tbody>
                 @foreach ($applications as $application)
                     <tr>
-                        <td class="no">01</td>
+                        <td class="no">{{ $loop->iteration }}</td>
                         <td class="desc">{{ $application->first_name }}</td>
                         <td class="desc">{{ $application->loan_amount }}</td>
                         <td class="desc">{{ $application->interest_rate }}</td>
-                        <td class="desc">{{ $commission }}</td>
+                        <td class="desc">{{ $application->commission }}</td>
                         <td class="desc">{{ $application->commission_amount }}</td>
-                        <td class="total">Unpaid</td>
+
+                        @if ($application->transfer_status == 1)
+                            <td class="total">
+                                Paid
+                            </td>
+                        @else
+                            <td class="unpaid">
+                                Unpaid
+                            </td>
+                        @endif
 
 
                     </tr>
