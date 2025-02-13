@@ -8,59 +8,68 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title mb-0">File list of @isset($dealer_name)
-                                    {{ $dealer_name }}
-                                @endisset
+                            <h4 class="card-title mb-0">Payload
                             </h4>
                         </div>
                         <div class="card-body">
                             <div class="wizard">
-                                <form method="POST" action="{{ route('payload-data') }}">
-                                    @csrf
 
-                                    <div class="row align-items-end">
-                                        <div class="col-lg-3 col-md-4 col-sm-12">
-                                            <div class="form-group">
-                                                <label>Dealer Name</label>
-                                                <select name="dealer" class="select">
-                                                    <option value="">Select Dealer</option>
-                                                    @foreach ($dealers as $dealer)
-                                                        <option value="{{ $dealer->Dealer_name }}"
-                                                            @isset($dealer_name)
+                                <div class="row align-items-end">
+                                    <div class="col-lg-3 col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Dealer Name</label>
+                                            <select name="dealer" id="dealer" class="select">
+                                                <option value="">Select Dealer</option>
+                                                @foreach ($dealers as $dealer)
+                                                    <option value="{{ $dealer->Dealer_name }}"
+                                                        @isset($dealer_name)
                                                                 @if ($dealer->Dealer_name == $dealer_name) selected @endif
                                                             @endisset>
-                                                            {{ $dealer->Dealer_name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-3 col-md-4 col-sm-12">
-                                            <div class="form-group">
-                                                <label>From Date</label>
-                                                <input type="text" name="from_date" class="datetimepicker form-control"
-                                                    placeholder="Select From Date">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-3 col-md-4 col-sm-12">
-                                            <div class="form-group">
-                                                <label>To Date</label>
-                                                <input type="text" name="to_date" class="datetimepicker form-control"
-                                                    placeholder="Select To Date">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-3 col-md-4 col-sm-12">
-
-                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                        {{ $dealer->Dealer_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
 
+                                    <div class="col-lg-2 col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Excetuvie name</label>
+                                            <select name="executive" id="executive" class="select">
+                                                <option value="">Select Executive</option>
+                                                @foreach ($executives as $executive)
+                                                    <option value="{{ $executive->executive_name }}">
+                                                        {{ $executive->executive_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2 col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <label>From Date</label>
+                                            <input type="text" name="from_date" id="from_date"
+                                                class="datetimepicker form-control" placeholder="Select From Date">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2 col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <label>To Date</label>
+                                            <input type="text" name="to_date" id="to_date"
+                                                class="datetimepicker form-control" placeholder="Select To Date">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-4 col-sm-12">
+
+                                        <button type="submit" class="btn btn-primary" style="margin-top:-63px;"
+                                            id="fetch-dealer-data">Submit</button>
+                                    </div>
+                                </div>
                             </div>
 
-                            </form>
                         </div>
                     </div>
 
@@ -104,56 +113,10 @@
                                         <th>Payment status</th>
                                     </tr>
                                 </thead>
-                                <tbody id="dealer-payload-list ">
-                                    @if (isset($applications))
-                                        @foreach ($applications as $application)
-                                            {{-- Count the commission amount --}}
-                                            <?php
-                                            $commission_amount = ($application->loan_amount * $application->commission) / 100;
-                                            ?>
-
-                                            <tr>
-                                                <td>{{ $application->first_name }} {{ $application->last_name }}</td>
-                                                <td>{{ $application->loan_amount }}</td>
-                                                <td>{{ $application->interest_rate }}</td>
-                                                <td>
-                                                    <select name="commission[]" class="select commission-select"
-                                                        data-application-id="{{ $application->id }}"
-                                                        data-loan-amount="{{ $application->loan_amount }}">
-
-                                                        @for ($i = 0; $i <= 3; $i += 0.25)
-                                                            <option value="{{ number_format($i, 2) }}"
-                                                                @if (number_format($i, 2) == $application->commission) selected @endif>
-                                                                {{ number_format($i, 2) }}
-                                                            </option>
-                                                        @endfor
-                                                    </select>
-
-                                                </td>
-                                                <td class="commission-amount">{{ number_format($commission_amount, 2) }}
-                                                </td>
-                                                @if ($application->commission_status == 0)
-                                                    <td>
-                                                        <span class="badge bg-danger">Unpaid</span>
-                                                        <button type="button"
-                                                            class="btn btn-sm btn-success mark-status-btn"
-                                                            data-application-id="{{ $application->id }}"
-                                                            data-status="1">Mark as Paid</button>
-                                                    </td>
-                                                @else
-                                                    <td>
-                                                        <span class="badge bg-success">Paid</span>
-                                                        <button type="button" class="btn btn-sm btn-danger mark-status-btn"
-                                                            data-application-id="{{ $application->id }}"
-                                                            data-status="0">Mark as Unpaid</button>
-                                                    </td>
-                                                @endif
-
-
-                                            </tr>
-                                        @endforeach
-                                    @endif
-
+                                <tbody id="dealer-payload-list">
+                                    <tr>
+                                        <td colspan="6" class="text-center">No data available</td>
+                                    </tr>
 
                                 </tbody>
                             </table>
@@ -171,7 +134,7 @@
 
     <script>
         $(document).ready(function() {
-            $('.commission-select').on('change', function() {
+            $(document).on('change', '.commission-select', function() {
                 var applicationId = $(this).data('application-id');
                 var commission = $(this).val();
                 var loanAmount = parseFloat($(this).data('loan-amount'));
@@ -232,7 +195,101 @@
 
                 })
             });
+
+            // Set customer data in table
+            $(document).on('click', '#fetch-dealer-data', function(e) {
+                e.preventDefault();
+                const dealer = $('#dealer').val();
+                const fromDate = $('#from_date').val();
+                const toDate = $('#to_date').val();
+                const executive = $('#executive').val();
+
+                axios.post("{{ route('payload-data') }}", {
+                        dealer: dealer,
+                        from_date: fromDate,
+                        to_date: toDate,
+                        executive_name: executive
+                    })
+                    .then(function(response) {
+                        const data = response.data.data;
+                        const tableBody = $('#dealer-payload-list');
+                        tableBody.html("");
+
+                        if (data.length > 0) {
+
+                            data.forEach(application => {
+
+                                var commissionAmount = (application.loan_amount * application
+                                    .commission) / 100;
+                                var statusBadge = application.commission_status == 0 ?
+                                    `<span class="badge bg-danger">Unpaid</span>
+                           <button class="btn btn-sm btn-success mark-status-btn" 
+                               data-application-id="${application.id}" data-status="1">Mark as Paid</button>` :
+                                    `<span class="badge bg-success">Paid</span>
+                           <button class="btn btn-sm btn-danger mark-status-btn" 
+                               data-application-id="${application.id}" data-status="0">Mark as Unpaid</button>`;
+
+                                var row = `<tr>
+                        <td>${application.first_name} ${application.last_name}</td>
+                        <td>${application.loan_amount}</td>
+                        <td>${application.interest_rate}</td>
+                        <td>
+                            <select name="commission[]" class="select commission-select" 
+                                data-application-id="${application.id}" data-loan-amount="${application.loan_amount}">
+                                ${generateCommissionOptions(application.commission)}
+                            </select>
+                        </td>
+                        <td class="commission-amount">${commissionAmount.toFixed(2)}</td>
+                        <td>${statusBadge}</td>
+                    </tr>`;
+
+                                tableBody.append(row);
+                            });
+
+                            $('.select').select2();
+                        } else {
+                            tableBody.html(
+                                '<tr><td colspan="6" class="text-center">No data available</td></tr>'
+                            );
+                        }
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                        alert("unable to fetch data");
+                    });
+            });
+
+        });
+
+        function generateCommissionOptions(selectedValue) {
+            let options = "";
+            for (let i = 0; i <= 3; i += 0.25) {
+                let value = i.toFixed(2);
+                options += `<option value="${value}" ${value == selectedValue ? 'selected' : ''}>${value}</option>`;
+            }
+            return options;
+        }
+
+        $('#generate-payment-pdf').on('click', function(event) {
+            event.preventDefault(); // Prevent default click action
+
+            // Get values from date pickers
+            const fromDate = $('#from_date').val();
+            const toDate = $('#to_date').val();
+            const dealerName = $('#dealer').val();
+            const excutiveName = $('#executive').val();
+            if (!fromDate || !toDate || !dealerName) {
+                toastr.error('Please select a date range and a dealer.');
+                return;
+            }
+            // Construct the new URL with parameters
+            let pdfUrl = "{{ route('generate-payload-pdf') }}";
+            pdfUrl += `?dealer_name=${encodeURIComponent(dealerName)}`;
+            pdfUrl +=
+                `&from_date=${encodeURIComponent(fromDate)}&to_date=${encodeURIComponent(toDate)}&executive_name=${encodeURIComponent(excutiveName)}`;
+
+            // Open the generated URL in a new tab
+            window.open(pdfUrl, '_blank');
         });
     </script>
-
 @endsection
