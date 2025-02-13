@@ -431,52 +431,98 @@ class CustomerController extends Controller
             ->distinct()
             ->get();
 
-        return view('payload', ['dealers' => $dealers]);
+        $executives = DB::table('customers')
+            ->select('executive_name')
+            ->distinct()
+            ->get();
+
+        return view('payload', ['dealers' => $dealers, 'executives' => $executives]);
     }
 
     // Search payload
     public function payloadData(Request $request)
     {
         $dealer_name = $request->dealer;
-        $fromDate = Carbon::createFromFormat('d/m/Y', $request->from_date)->format('Y-m-d');
-        $toDate = Carbon::createFromFormat('d/m/Y', $request->to_date)->format('Y-m-d');
+        $from_date = $request->from_date;
+        $to_date = $request->to_date;
+        $executive_name = $request->executive_name;
 
-        $applications = DB::table('customers')
-            ->where('Dealer_name', $dealer_name)
-            ->whereBetween('file_log_in_date', [$fromDate, $toDate])
-            ->get();
+        $fromDate = Carbon::createFromFormat('d/m/Y', $from_date)->format('Y-m-d');
+        $toDate = Carbon::createFromFormat('d/m/Y', $to_date)->format('Y-m-d');
 
-        $dealers = DB::table('customers')
-            ->select('Dealer_name')
-            ->distinct()
-            ->get();
+        if ($executive_name == '') {
+            $applications = DB::table('customers')
+                ->where('Dealer_name', $dealer_name)
+                ->whereBetween('file_log_in_date', [$fromDate, $toDate])
+                ->get();
+        } else {
+            $applications = DB::table('customers')
+                ->where('Dealer_name', $dealer_name)
+                ->where('executive_name', $executive_name)
+                ->whereBetween('file_log_in_date', [$fromDate, $toDate])
+                ->get();
+        }
 
-        return view('payload', ['applications' => $applications, 'dealers' => $dealers, 'dealer_name' => $dealer_name]);
+        return response()->json(["message" => "success", "data" => $applications]);
+
+        // return view('payload', ['applications' => $applications, 'dealers' => $dealers, 'dealer_name' => $dealer_name, 'from_date' => $from_date, 'to_date' => $to_date]);
     }
 
     // Generate payload pdf
     public function generatePayloadPDF(Request $request)
     {
+
         $dealer_name = $request->dealer_name;
+        $from_date = $request->from_date;
+        $to_date = $request->to_date;
+        $executive_name = $request->executive_name;
 
-        $applications = DB::table('customers')
-            ->where('Dealer_name', $dealer_name)
-            ->select('customers.*', DB::raw("(loan_amount * commission / 100) as commission_amount"))
-            ->get();
+        $fromDate = Carbon::createFromFormat('d/m/Y', $from_date)->format('Y-m-d');
+        $toDate = Carbon::createFromFormat('d/m/Y', $to_date)->format('Y-m-d');
 
-        $grand_total = DB::table('customers')
-            ->where('Dealer_name', $dealer_name)
-            ->where('commission_status', 0)
-            ->sum(DB::raw("(loan_amount * commission / 100)"));
+        if ($executive_name == '') {
+            $applications = DB::table('customers')
+                ->where('Dealer_name', $dealer_name)
+                ->where('commission_status', 0)
+                ->whereBetween('file_log_in_date', [$fromDate, $toDate])
+                ->select('customers.*', DB::raw("(loan_amount * commission / 100) as commission_amount"))
+                ->get();
+
+            $grand_total = DB::table('customers')
+                ->where('Dealer_name', $dealer_name)
+                ->where('commission_status', 0)
+                ->whereBetween('file_log_in_date', [$fromDate, $toDate])
+                ->sum(DB::raw("(loan_amount * commission / 100)"));
+        } else {
+            $applications = DB::table('customers')
+                ->where('Dealer_name', $dealer_name)
+                ->where('executive_name', $executive_name)
+                ->where('commission_status', 0)
+                ->whereBetween('file_log_in_date', [$fromDate, $toDate])
+                ->select('customers.*', DB::raw("(loan_amount * commission / 100) as commission_amount"))
+                ->get();
+
+            $grand_total = DB::table('customers')
+                ->where('Dealer_name', $dealer_name)
+                ->where('executive_name', $executive_name)
+                ->where('commission_status', 0)
+                ->whereBetween('file_log_in_date', [$fromDate, $toDate])
+                ->sum(DB::raw("(loan_amount * commission / 100)"));
+        }
+
+
+
+
 
         $data = [
             'title' => 'Shelvi financial services',
             'date' => date('m/d/Y'),
             'applications' => $applications,
             'dealer_name' => $dealer_name,
-            'grand_total' => $grand_total
+            'grand_total' => $grand_total,
+            'from_date' => $from_date,
+            'to_date' => $to_date
         ];
-
         $pdf = PDF::loadView('pdf.dealer_payment', $data);
 
         return $pdf->stream('payload.pdf');

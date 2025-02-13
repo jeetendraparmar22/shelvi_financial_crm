@@ -217,8 +217,8 @@
             <div id="client">
                 <div class="to">Dealer Name:</div>
                 <h2 class="name">{{ $dealer_name }}</h2>
-                {{-- <div class="address">796 Silver Harbour, TX 79273, US</div>
-                <div class="email"><a href="mailto:john@example.com">john@example.com</a></div> --}}
+                <div class="address">({{ $from_date }} - {{ $to_date }})</div>
+                {{-- <div class="email"><a href="mailto:john@example.com">john@example.com</a></div> --}}
             </div>
 
         </div>
@@ -237,6 +237,7 @@
                 </tr>
             </thead>
             <tbody>
+
                 @foreach ($applications as $application)
                     <tr>
                         <td class="no">{{ $loop->iteration }}</td>
@@ -246,7 +247,7 @@
                         <td class="desc">{{ $application->commission }}</td>
                         <td class="desc">{{ $application->commission_amount }}</td>
 
-                        @if ($application->transfer_status == 1)
+                        @if ($application->commission_status == 1)
                             <td class="total">
                                 Paid
                             </td>
