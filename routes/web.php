@@ -42,11 +42,16 @@ Route::post('/login', [LoginController::class, 'authLogin'])->name('login');
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+
     // User routes
     Route::resource('users', UserController::class);
 
+    // Finance routes
+    Route::post('search-application-data', [CustomerController::class, 'searchApplicationByFinance'])->name('search-application-data');
+
     // Customer Routes
     Route::resource('customers', CustomerController::class);
+
     Route::post('search-customer', [CustomerController::class, 'searchCustomer']);
     Route::get('/generate-pdf', [CustomerController::class, 'generatePDF'])->name('generate-pdf');
     Route::get('/update-transfer-status/{id}', [CustomerController::class, 'updateTransferStatus']);
@@ -67,7 +72,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('add-village', [VillageController::class, 'addVillage']);
 
     // Loan analytic data
-    Route::get('loan-analytic-data', [DashboardController::class, 'loanAnalyticData']);
+    Route::get('loan-analytic-data/{year?}', [DashboardController::class, 'loanAnalyticData']);
     Route::get('loan-application-data', [DashboardController::class, 'loanApplicationData']);
 
     // Loan application with status
