@@ -18,6 +18,28 @@ class CustomerController extends Controller
         DB::enableQueryLog(); // Enable query logging
     }
 
+
+    // search application by finance
+    public function searchApplicationByFinance(Request $request)
+    {
+        $finance_name = $request->finance;
+        $from_date = $request->from_date;
+        $to_date = $request->to_date;
+
+        $from_date = Carbon::createFromFormat('d/m/Y', $from_date)->format('Y-m-d');
+        $to_date = Carbon::createFromFormat('d/m/Y', $to_date)->format('Y-m-d');
+
+        $applications = DB::table('customers')
+            ->whereBetween('file_log_in_date', [$from_date, $to_date])
+            ->where('finance_name', $finance_name)
+            ->get();
+        $total_amount = DB::table('customers')
+            ->whereBetween('file_log_in_date', [$from_date, $to_date])
+            ->where('finance_name', $finance_name)
+            ->sum('loan_amount');
+
+        return response()->json(["message" => "success", "data" => $applications, "total_amount" => $total_amount]);
+    }
     // update commission
     public function updateCommission(Request $request)
     {
@@ -50,18 +72,19 @@ class CustomerController extends Controller
         if (Auth::user()->user_type == 'admin') {
             // Get all customers
             $customers = Customer::orderBy('id', 'DESC')->get();
-            // get Users
-            $users = DB::table('users')->orderBy('id', 'DESC')->where('user_type', 'user')->get();
+            $users = [];
+            $finances = Customer::select('finance_name')->distinct()->get();
         } else {
             // Get all customers
             $customers = DB::table('customers')->orderBy('id', 'DESC')->where('user_id', Auth::user()->id)->get();
 
             // get Users
             $users = DB::table('users')->orderBy('id', 'DESC')->where('user_type', 'user')->get();
+            $finances = [];
         }
 
 
-        return view('customer-list', ['customers' => $customers, 'users' => $users]);
+        return view('customer-list', ['customers' => $customers, 'users' => $users, 'finances' => $finances]);
     }
 
     /**
@@ -525,6 +548,6 @@ class CustomerController extends Controller
         ];
         $pdf = PDF::loadView('pdf.dealer_payment', $data);
 
-        return $pdf->stream('payload.pdf');
+        return $pdf->stream('payout.pdf');
     }
 }

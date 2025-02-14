@@ -74,9 +74,49 @@ class DashboardController extends Controller
     }
 
     // Loan analytic data
-    public function loanAnalyticData()
+    // public function loanAnalyticData()
+    // {
+
+    //     $query = DB::table('customers')
+    //         ->select(
+    //             DB::raw('MONTH(file_log_in_date) as month'),
+    //             DB::raw('YEAR(file_log_in_date) as year'),
+    //             DB::raw('SUM(loan_amount) as total_amount')
+    //         )
+    //         ->where('loan_status', '=', 'approved')
+    //         ->groupBy(DB::raw('YEAR(file_log_in_date)'), DB::raw('MONTH(file_log_in_date)'));
+    //     if (Auth::user()->user_type == 'admin') {
+
+    //         $monthlyCounts = $query->get();
+    //     } else {
+    //         $monthlyCounts = $query->where('user_id', Auth::user()->id)->get();
+    //     }
+
+
+    //     // Create an array with zero values for each month
+    //     $result = [];
+    //     for ($month = 1; $month <= 12; $month++) {
+    //         $result[$month] = 0;
+    //     }
+
+    //     // Fill in the actual total amounts where they exist in the database results
+    //     foreach ($monthlyCounts as $data) {
+    //         $result[$data->month] = $data->total_amount;
+    //     }
+
+    //     // Extract the total_amount values for the response
+    //     $response = array_values($result);
+
+    //     return response($response);
+    // }
+
+
+    public function loanAnalyticData(Request $request, $year = null)
     {
 
+        if ($year == null) {
+            $year = date('Y');
+        }
         $query = DB::table('customers')
             ->select(
                 DB::raw('MONTH(file_log_in_date) as month'),
@@ -84,30 +124,28 @@ class DashboardController extends Controller
                 DB::raw('SUM(loan_amount) as total_amount')
             )
             ->where('loan_status', '=', 'approved')
+            ->whereYear('file_log_in_date', $year)
             ->groupBy(DB::raw('YEAR(file_log_in_date)'), DB::raw('MONTH(file_log_in_date)'));
-        if (Auth::user()->user_type == 'admin') {
 
+        if (Auth::user()->user_type == 'admin') {
             $monthlyCounts = $query->get();
         } else {
             $monthlyCounts = $query->where('user_id', Auth::user()->id)->get();
         }
 
+        // Initialize array with zero values for each month
+        $result = array_fill(1, 12, 0);
 
-        // Create an array with zero values for each month
-        $result = [];
-        for ($month = 1; $month <= 12; $month++) {
-            $result[$month] = 0;
-        }
-
-        // Fill in the actual total amounts where they exist in the database results
+        // Fill actual values from the database
         foreach ($monthlyCounts as $data) {
             $result[$data->month] = $data->total_amount;
         }
 
-        // Extract the total_amount values for the response
-        $response = array_values($result);
+        // return response()->json(array_values($result));
+        return response()->json([
+            "received" => array_values($result),
 
-        return response($response);
+        ]);
     }
 
     // Loan application Data

@@ -110,23 +110,15 @@
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h5 class="card-title">Loan Analytics</h5>
-                                {{-- <div class="dropdown main">
-                                    <button class="btn btn-white btn-sm dropdown-toggle" type="button"
-                                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Monthly
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <li>
-                                            <a href="javascript:void(0);" class="dropdown-item">Weekly</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" class="dropdown-item">Monthly</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" class="dropdown-item">Yearly</a>
-                                        </li>
-                                    </ul>
-                                </div> --}}
+                                <div class="dropdown main">
+                                    <select name="year" id="year" class="select">
+                                        <option value="">Select Year</option>
+                                        @for ($year = date('Y'); $year >= 2020; $year--)
+                                            <option value="{{ $year }}">{{ $year }}</option>
+                                        @endfor
+                                    </select>
+
+                                </div>
                             </div>
                         </div>
                         <div class="card-body">
@@ -365,6 +357,11 @@
 
         $(document).ready(function() {
             // Function to fetch data from Laravel API
+            var currentYear = new Date().getFullYear();
+
+            // Set the dropdown to the current year
+            $("#year").val(currentYear);
+
             function fetchData(url, callback) {
                 axios.get(url)
                     .then(function(response) {
@@ -395,85 +392,93 @@
                 return series;
             }
 
-            // Column chart
-            if ($("#sales_chart").length > 0) {
-                var columnCtx = document.getElementById("sales_chart");
+            $(document).ready(function() {
+                function renderColumnChart(year) {
+                    var columnCtx = document.getElementById("sales_chart");
 
-                // Fetch data from Laravel API for the column chart
-                fetchData('/loan-analytic-data', function(data) {
-                    var columnConfig = {
-                        colors: ["#7638ff", "#fda600"],
-                        series: [{
-                                name: "Received",
-                                type: "column",
-                                data: data,
-                            },
-                            {
-                                name: "Pending",
-                                type: "column",
-                                // data: ,
-                            },
-                        ],
-                        chart: {
-                            type: "bar",
-                            fontFamily: "Poppins, sans-serif",
-                            height: 350,
-                            toolbar: {
-                                show: false,
-                            },
-                        },
-                        plotOptions: {
-                            bar: {
-                                horizontal: false,
-                                columnWidth: "60%",
-                                endingShape: "rounded",
-                            },
-                        },
-                        dataLabels: {
-                            enabled: false,
-                        },
-                        stroke: {
-                            show: true,
-                            width: 2,
-                            colors: ["transparent"],
-                        },
-                        xaxis: {
-                            categories: [
-                                "Jan",
-                                "Feb",
-                                "Mar",
-                                "Apr",
-                                "May",
-                                "Jun",
-                                "Jul",
-                                "Aug",
-                                "Sep",
-                                "Oct",
-                                "Nov",
-                                "Dec",
+                    // Destroy existing chart if it exists
+                    if (window.columnChart) {
+                        window.columnChart.destroy();
+                    }
+
+                    // Fetch data from Laravel API for the column chart
+                    fetchData('/loan-analytic-data/' + year + '/', function(data) {
+                        var columnConfig = {
+                            colors: ["#7638ff", "#fda600"],
+                            series: [{
+                                    name: "Received",
+                                    type: "column",
+                                    data: data.received,
+                                },
+                                {
+                                    name: "Pending",
+                                    type: "column",
+                                    data: data.pending,
+                                },
                             ],
-                        },
-                        yaxis: {
-                            title: {
-                                text: "₹",
-                            },
-                        },
-                        fill: {
-                            opacity: 1,
-                        },
-                        tooltip: {
-                            y: {
-                                formatter: function(val) {
-                                    return "₹ " + val;
+                            chart: {
+                                type: "bar",
+                                fontFamily: "Poppins, sans-serif",
+                                height: 350,
+                                toolbar: {
+                                    show: false,
                                 },
                             },
-                        },
-                    };
+                            plotOptions: {
+                                bar: {
+                                    horizontal: false,
+                                    columnWidth: "60%",
+                                    endingShape: "rounded",
+                                },
+                            },
+                            dataLabels: {
+                                enabled: false,
+                            },
+                            stroke: {
+                                show: true,
+                                width: 2,
+                                colors: ["transparent"],
+                            },
+                            xaxis: {
+                                categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+                                    "Aug", "Sep", "Oct", "Nov", "Dec"
+                                ],
+                            },
+                            yaxis: {
+                                title: {
+                                    text: "₹",
+                                },
+                            },
+                            fill: {
+                                opacity: 1,
+                            },
+                            tooltip: {
+                                y: {
+                                    formatter: function(val) {
+                                        return "₹ " + val;
+                                    },
+                                },
+                            },
+                        };
 
-                    var columnChart = new ApexCharts(columnCtx, columnConfig);
-                    columnChart.render();
+                        window.columnChart = new ApexCharts(columnCtx, columnConfig);
+                        window.columnChart.render();
+                    });
+                }
+
+                // Get current year and load chart initially
+                var currentYear = new Date().getFullYear();
+                renderColumnChart(currentYear);
+
+                // Update chart on year change
+                $(document).on('change', '#year', function() {
+                    var selectedYear = $(this).val();
+                    renderColumnChart(selectedYear);
                 });
-            }
+            });
+
+
+
 
             // Continue the same approach for other charts...
 

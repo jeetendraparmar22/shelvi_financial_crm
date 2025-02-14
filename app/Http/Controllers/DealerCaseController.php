@@ -19,7 +19,7 @@ class DealerCaseController extends Controller
             $customers = Customer::where('loan_status', 'Approved')
                 ->where('transfer_status', '1')
                 ->orderByRaw("FIELD(pdd_approve, 'no', 'yes')")
-                ->whereRaw('DATEDIFF(NOW(), approved_date) > 40')
+                ->whereRaw('DATEDIFF(NOW(), approved_date) > 10')
                 ->get();
             // dd($customers->toArray());
             // get Users

@@ -70,7 +70,7 @@
                                                     @endphp
                                                     <tr role="row"
                                                         class="odd @if ($customer->pdd_approve == 'yes') bg-success 
-                                                        @elseif ($days > 40)
+                                                        @elseif ($days > 10)
                                                         bg-danger @endif">
                                                         <td class>{{ $customer->approved_date }}</td>
                                                         <td>

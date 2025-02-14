@@ -40,7 +40,7 @@
                 </li>
 
                 <li>
-                    <a href="{{ url('payload') }}"><i class="fe fe-file"></i> <span>Payment</span></a>
+                    <a href="{{ url('payload') }}"><i class="fe fe-file"></i> <span>Payout</span></a>
                 </li>
             </ul>
 
