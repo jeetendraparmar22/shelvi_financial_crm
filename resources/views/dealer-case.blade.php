@@ -61,7 +61,7 @@
                                                 </tr>
                                             </thead>
                                             <?php $current_date = \Illuminate\Support\Carbon::now()->format('Y-m-d'); ?>
-                                            <tbody>
+                                            <tbody id="dealer-case-table">
                                                 @foreach ($customers as $customer)
                                                     @php
                                                         $days = \Illuminate\Support\Carbon::parse(
@@ -102,9 +102,9 @@
                                                         <td>{{ $customer->Dealer_name }}</td>
                                                         <td>
                                                             @if ($customer->pdd_approve == 'no')
-                                                                <a class="btn btn-small btn-success  me-2"
-                                                                    href="{{ url('pdd_approve/' . $customer->id) }}"><i
-                                                                        class="far fa-edit me-2"></i> PDD Approve</a>
+                                                                <button class="btn btn-small btn-success  me-2"
+                                                                    onclick="pddApprove({{ $customer->id }})"><i
+                                                                        class="far fa-edit me-2"></i> PDD Approve</button>
                                                             @endif
 
                                                         </td>
@@ -178,5 +178,58 @@
         </div>
 
     </div>
-    <script></script>
+    <script>
+        function pddApprove(id) {
+
+            axios.get(`{{ url('pdd_approve/${id}') }}`).then(response => {
+
+                if (response.data.status == 200) {
+                    alert(response.data.message);
+                    pddApproveList()
+                }
+            }).catch(error => {
+                console.log(error);
+            });
+        }
+
+
+        // PDD Approve list
+        function pddApproveList() {
+
+            axios.get(`{{ url('dealer-case-ajax') }}`).then(response => {
+                if (response.data.status == 200) {
+
+                    var dataTable = $('#customer-list-datatable_extra').DataTable();
+                    dataTable.clear();
+
+                    var current_date = `{{ \Illuminate\Support\Carbon::now()->format('Y-m-d') }}`;
+                    $.each(response.data.customers, function(index, customer) {
+                        var days = moment(customer.approved_date).diff(moment(current_date), 'days');
+                        var row = [
+                            customer.approved_date,
+                            `<h2 class="table-avatar"><a href=""></a></h2>`,
+                            customer.engine_no,
+                            customer.chasis_no,
+                            customer.vehicle_registration_no,
+                            customer.finance_name,
+                            customer.loan_amount,
+                            customer.executive_name,
+                            '',
+                            days,
+                            customer.Dealer_name,
+                            customer.pdd_approve == 'no' ?
+                            `<button class="btn btn-small btn-success me-2" onclick="pddApprove('${customer.id}')"><i class="far fa-edit me-2"></i> PDD Approve</button>` :
+                            ''
+                        ];
+                        var rowNode = dataTable.row.add(row).draw().node();
+                        $(rowNode).addClass(
+                            `${customer.pdd_approve == 'yes' ? 'bg-success' : days > 10 ? 'bg-danger' : ''}`
+                        );
+                    });
+                }
+            }).catch(error => {
+                console.log(error);
+            });
+        }
+    </script>
 @endsection

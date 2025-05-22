@@ -279,7 +279,7 @@
                                             <th> Loan Status</th>
                                             <th> User Name</th>
                                             <th>Executive Name</th>
-                                            {{-- <th class="text-right">Action</th> --}}
+                                            <th class="text-right">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="dashboard-loan-application">
@@ -317,6 +317,25 @@
                                                 <td>
                                                     {{ $customer->executive_name }}
                                                 </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger btn-sm"
+                                                        onclick="deleteCustomer({{ $customer->id }})">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                                <script>
+                                                    function deleteCustomer(id) {
+                                                        if (confirm("Are you sure you want to delete this customer?")) {
+                                                            axios.post("{{ route('customers.destroy', ['customer' => ':id']) }}".replace(':id', id), {
+                                                                _method: 'DELETE'
+                                                            }).then(function(response) {
+                                                                window.location.reload();
+                                                            }).catch(function(error) {
+                                                                console.error(error);
+                                                            });
+                                                        }
+                                                    }
+                                                </script>
 
                                             </tr>
                                         @endforeach
@@ -535,6 +554,11 @@
         </td>
         <td>${customer.user_name}</td>
         <td>${customer.executive_name}</td>
+        <td>
+            <button type="button" class="btn btn-danger btn-sm" onclick="deleteCustomer({{ $customer->id }})">
+                Delete
+            </button>
+        </td>
     </tr>`;
 
                             // Append the generated HTML to the #dashboard-loan-application element

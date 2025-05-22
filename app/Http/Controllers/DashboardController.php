@@ -26,9 +26,12 @@ class DashboardController extends Controller
             $customers = DB::table('customers')
                 ->join('users', 'customers.user_id', '=', 'users.id')
                 ->select('customers.*', 'users.name as user_name')
+                ->where('customers.loan_status', '!=', 'Rejected')
                 ->when($loanStatus !== '', function ($query) use ($loanStatus) {
                     return $query->where('loan_status', $loanStatus);
                 })
+                ->orderBy('id', 'desc')
+                ->limit(100)
                 ->get();
 
             // $sumApprovedLoansAmount = DB::table('customers')
@@ -182,9 +185,12 @@ class DashboardController extends Controller
         $data =  DB::table('customers')
             ->join('users', 'customers.user_id', '=', 'users.id')
             ->select('customers.*', 'users.name as user_name')
+            ->where('customers.loan_status', '!=', 'Rejected')
             ->when($loanStatus !== '', function ($query) use ($loanStatus) {
                 return $query->where('loan_status', $loanStatus);
             })
+            ->orderBy('id', 'desc')
+            ->limit(100)
             ->get();
         return $data;
     }

@@ -9,6 +9,45 @@ use Illuminate\Support\Facades\DB;
 
 class DealerCaseController extends Controller
 {
+
+    public function dealerCaseListAjax()
+    {
+        if (Auth::user()->user_type == 'admin') {
+            // Get all customers
+            // $customers = Customer::orderBy('id', 'DESC')->where('loan_status', 'Approved')->where('transfer_status', '1')->get();
+
+            $customers = Customer::where('loan_status', 'Approved')
+                ->where('transfer_status', '1')
+                ->orderByRaw("FIELD(pdd_approve, 'no', 'yes')")
+                ->whereRaw('DATEDIFF(NOW(), approved_date) > 10')
+                ->get();
+            // dd($customers->toArray());
+            // get Users
+            $users = DB::table('users')->orderBy('id', 'DESC')->where('user_type', 'user')->get();
+
+            // dd($customers);
+        } else {
+            // Get all customers
+            $customers = DB::table('customers')->orderBy('id', 'DESC')->where('user_id', Auth::user()->id)->get();
+
+
+
+            // get Users
+            $users = DB::table('users')->orderBy('id', 'DESC')->where('user_type', 'user')->get();
+        }
+        $cities = DB::table('cities')->get();
+
+        return response()->json(
+            [
+                'status' => 200,
+                'message' => 'success',
+                'customers' => $customers,
+                'users' => $users,
+                'cities' => $cities
+            ],
+
+        );
+    }
     // Listing
     public function index()
     {
@@ -46,7 +85,11 @@ class DealerCaseController extends Controller
         DB::table('customers')->where('id', $request->id)->update([
             'pdd_approve' => 'yes'
         ]);
-        return redirect()->back();
+        return response()->json([
+            'status' => 200,
+            'message' => 'PDD Approved successfully.'
+        ]);
+        // return redirect()->back();
     }
 
     // Upload pdd document

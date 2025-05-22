@@ -18,6 +18,14 @@ class CustomerController extends Controller
         DB::enableQueryLog(); // Enable query logging
     }
 
+    // Delete application
+    public function destroyLoanApplication(Request $request)
+    {
+        $application_id = $request->id;
+        // Delete the application from the database
+        DB::table('customers')->where('id', $application_id)->delete();
+        return response()->json(['message' => 'Application deleted successfully'], 200);
+    }
 
     // search application by finance
     public function searchApplicationByFinance(Request $request)
